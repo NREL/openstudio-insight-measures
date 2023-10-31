@@ -16,14 +16,17 @@ jobs:
         with:
           repository: NREL/openstudio-model-articulation-gem
           ref: ${{ env.COMMON }}
-          path: common
+          path: model-articulation
           sparse-checkout: |
             lib/measures/RotateBuilding
             lib/measures/SetWindowToWallRatioByFacade
 
       - name: copy files from NREL/openstudio-model-articulation-gem
         shell: bash
-        run: cp -r common/lib/measures measures && ls measures
+        run: |
+          cp -r /lib/measures/RotateBuilding/* measures/RotateBuilding
+          cp -r /lib/measures/SetWindowToWallRatioByFacade/* measures/SetWindowToWallRatioByFacade
+          ls measures
 
       - name: upload files
         uses: actions/upload-artifact@v3
