@@ -21,7 +21,9 @@ jobs:
 
       - name: copy files from NREL/openstudio-ee-gem
         shell: bash
-        run: cp -r ee/lib/measures measures && ls measures
+        run: |
+          cp -r ee/lib/measures/AddOverhangsByProjectionFactor/* measures/AddOverhangsByProjectionFactor/
+          ls measures/AddOverhangsByProjectionFactor
 
       - name: upload files
         uses: actions/upload-artifact@v3
@@ -39,7 +41,7 @@ jobs:
       
       - name: list
         run: |
-          ls measures/   
+          ls measures/
 
       - name: pull request
         uses: peter-evans/create-pull-request@v5
