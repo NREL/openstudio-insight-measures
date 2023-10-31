@@ -1,0 +1,53 @@
+name: measures_model_articulation
+
+on: [workflow_call, workflow_dispatch]
+
+env:
+  COMMON: v0.8.0
+
+jobs:
+  update:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: sparse checkout NREL/openstudio-model-articulation-gem
+        uses: actions/checkout@v4
+        with:
+          repository: NREL/openstudio-model-articulation-gem
+          ref: ${{ env.COMMON }}
+          path: common
+          sparse-checkout: |
+            lib/measures/RotateBuilding
+            lib/measures/SetWindowToWallRatioByFacade
+
+      - name: copy files from NREL/openstudio-model-articulation-gem
+        shell: bash
+        run: cp -r common/lib/measures measures && ls measures
+
+      - name: upload files
+        uses: actions/upload-artifact@v3
+        with:
+          name: measures
+          path: measures
+
+  pull-request:
+    needs: update
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/download-artifact@v3
+      
+      - name: list
+        run: |
+          ls measures/   
+
+      - name: pull request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: update measures model articulation
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: '[action] update measures model articulation'
+          branch: action/update-measures-model-articulation
+          base: main 
