@@ -1,0 +1,51 @@
+name: measures_ee
+
+on: [workflow_call, workflow_dispatch]
+
+env:
+  COMMON: v0.8.0
+
+jobs:
+  update:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: sparse checkout NREL/openstudio-ee-gem
+        uses: actions/checkout@v4
+        with:
+          repository: NREL/openstudio-ee-gem
+          ref: ${{ env.COMMON }}
+          path: ee
+          sparse-checkout: lib/measures/AddOverhangsByProjectionFactor
+
+      - name: copy files from NREL/openstudio-ee-gem
+        shell: bash
+        run: cp -r ee/lib/measures measures && ls measures
+
+      - name: upload files
+        uses: actions/upload-artifact@v3
+        with:
+          name: measures
+          path: measures
+
+  pull-request:
+    needs: update
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/download-artifact@v3
+      
+      - name: list
+        run: |
+          ls measures/   
+
+      - name: pull request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: update measures ee
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: '[action] update measures ee'
+          branch: action/update-measures-ee
+          base: main 
