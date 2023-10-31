@@ -20,7 +20,7 @@ jobs:
           sparse-checkout: |
             lib/measures/ChangeBuildingLocation
             lib/measures/SetLightingLoadsByLPD
-            lib/set_space_infiltration_per_exterior_area
+            lib/measures/set_space_infiltration_per_exterior_area
 
       - name: copy files from NREL/openstudio-common-measures-gem
         shell: bash
