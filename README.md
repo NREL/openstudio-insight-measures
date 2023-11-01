@@ -2,7 +2,7 @@
 
 Measures for Autodesk's Insight product.
 
-This is a ongoing work-in-progress to consolidate development into a single repository from the following.
+This is an ongoing work-in-progress to automate, consolidate, and organize development from the following.
 
 ## [OpenStudio Common Measures Gem](https://github.com/NREL/openstudio-common-measures-gem)
 
@@ -19,7 +19,7 @@ This is a ongoing work-in-progress to consolidate development into a single repo
 - gbXML Import
 - gbXML Import Advanced
 - gbXML Import HVAC
-- gbXML Postprocess
+- gbXML Import Postprocess
 
 ## [OpenStudio Model Articulation](https://github.com/NREL/openstudio-model-articulation-gem)
 
