@@ -24,8 +24,8 @@ jobs:
       - name: copy files from NREL/openstudio-model-articulation-gem
         shell: bash
         run: |
-          cp -r /lib/measures/RotateBuilding/* measures/RotateBuilding
-          cp -r /lib/measures/SetWindowToWallRatioByFacade/* measures/SetWindowToWallRatioByFacade
+          cp -r model-articulation/lib/measures/RotateBuilding/* measures/RotateBuilding
+          cp -r model-articulation/lib/measures/SetWindowToWallRatioByFacade/* measures/SetWindowToWallRatioByFacade
           ls measures
 
       - name: upload files
