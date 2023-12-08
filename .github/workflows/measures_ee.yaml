@@ -9,20 +9,23 @@ jobs:
   update:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          path: dst
 
-      - name: sparse checkout NREL/openstudio-ee-gem
+      - name: checkout NREL/openstudio-ee-gem
         uses: actions/checkout@v4
         with:
           repository: NREL/openstudio-ee-gem
           ref: ${{ env.COMMON }}
-          path: ee
+          path: src
           sparse-checkout: lib/measures/AddOverhangsByProjectionFactor
 
       - name: copy files from NREL/openstudio-ee-gem
         shell: bash
         run: |
-          cp -r ee/lib/measures/AddOverhangsByProjectionFactor/* measures/AddOverhangsByProjectionFactor/
+          cp -r src/lib/measures/AddOverhangsByProjectionFactor/* dst/measures/AddOverhangsByProjectionFactor/
           ls measures/AddOverhangsByProjectionFactor
 
       - name: upload files
