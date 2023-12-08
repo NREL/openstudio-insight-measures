@@ -8,6 +8,7 @@ This is an ongoing work-in-progress to automate, consolidate, and organize devel
 
 - [ChangeBuildingLocation](https://github.com/NREL/openstudio-common-measures-gem/tree/develop/lib/measures/ChangeBuildingLocation)
 - [SetLightingLoadsByLPD](https://github.com/NREL/openstudio-common-measures-gem/tree/develop/lib/measures/SetLightingLoadsByLPD)
+- [set_electric_equipment_loads_by_epd](https://github.com/NREL/openstudio-common-measures-gem/tree/develop/lib/measures/set_electric_equipment_loads_by_epd)
 - [set_space_infiltration_per_exterior_area](https://github.com/NREL/openstudio-common-measures-gem/tree/develop/lib/measures/set_space_infiltration_per_exterior_area)
 
 ## [OpenStudio EE Measures](https://github.com/NREL/openstudio-ee-gem)
