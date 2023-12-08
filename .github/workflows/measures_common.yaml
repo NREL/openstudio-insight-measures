@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-        # with:
-        #   path: dst
+        with:
+          path: dst
 
-      - name: sparse checkout NREL/openstudio-common-measures-gem
+      - name: checkout NREL/openstudio-common-measures-gem
         uses: actions/checkout@v4
         with:
           repository: NREL/openstudio-common-measures-gem
@@ -30,10 +30,10 @@ jobs:
         shell: bash
         run: |
           ls
-          cp -r src/lib/measures/ChangeBuildingLocation/* measures/ChangeBuildingLocation/
-          cp -r src/lib/measures/SetLightingLoadsByLPD/* measures/SetLightingLoadsByLPD/
-          cp -r src/lib/measures/set_electric_equipment_loads_by_epd/* measures/set_electric_equipment_loads_by_epd/
-          cp -r src/lib/measures/set_space_infiltration_per_exterior_area/* measures/set_space_infiltration_per_exterior_area/
+          cp -r src/lib/measures/ChangeBuildingLocation/* dst/measures/ChangeBuildingLocation/
+          cp -r src/lib/measures/SetLightingLoadsByLPD/* dst/measures/SetLightingLoadsByLPD/
+          cp -r src/lib/measures/set_electric_equipment_loads_by_epd/* dst/measures/set_electric_equipment_loads_by_epd/
+          cp -r src/lib/measures/set_space_infiltration_per_exterior_area/* dst/measures/set_space_infiltration_per_exterior_area/
 
       - name: upload files
         uses: actions/upload-artifact@v3
