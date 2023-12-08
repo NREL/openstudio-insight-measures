@@ -9,14 +9,17 @@ jobs:
   update:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          path: dst
 
       - name: sparse checkout NREL/openstudio-model-articulation-gem
         uses: actions/checkout@v4
         with:
           repository: NREL/openstudio-model-articulation-gem
           ref: ${{ env.COMMON }}
-          path: model-articulation
+          path: src
           sparse-checkout: |
             lib/measures/RotateBuilding
             lib/measures/SetWindowToWallRatioByFacade
@@ -24,8 +27,8 @@ jobs:
       - name: copy files from NREL/openstudio-model-articulation-gem
         shell: bash
         run: |
-          cp -r model-articulation/lib/measures/RotateBuilding/* measures/RotateBuilding
-          cp -r model-articulation/lib/measures/SetWindowToWallRatioByFacade/* measures/SetWindowToWallRatioByFacade
+          cp -r src/lib/measures/RotateBuilding/* dst/measures/RotateBuilding/
+          cp -r src/lib/measures/SetWindowToWallRatioByFacade/* dst/measures/SetWindowToWallRatioByFacade/
           ls measures
 
       - name: upload files
