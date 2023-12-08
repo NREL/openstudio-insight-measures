@@ -25,10 +25,10 @@ jobs:
       - name: copy files from NREL/openstudio-common-measures-gem
         shell: bash
         run: |
-          cp -r lib/measures/ChangeBuildingLocation/* measures/ChangeBuildingLocation/
-          cp -r lib/measures/SetLightingLoadsByLPD/* measures/SetLightingLoadsByLPD/
-          cp -r lib/measures/set_electric_equipment_loads_by_epd/* measures/set_electric_equipment_loads_by_epd/
-          cp -r lib/measures/set_space_infiltration_per_exterior_area/* measures/set_space_infiltration_per_exterior_area/
+          cp -r lib/measures/ChangeBuildingLocation/* measures/ChangeBuildingLocation
+          cp -r lib/measures/SetLightingLoadsByLPD/* measures/SetLightingLoadsByLPD
+          cp -r lib/measures/set_electric_equipment_loads_by_epd/* measures/set_electric_equipment_loads_by_epd
+          cp -r lib/measures/set_space_infiltration_per_exterior_area/* measures/set_space_infiltration_per_exterior_area
 
       - name: upload files
         uses: actions/upload-artifact@v3
