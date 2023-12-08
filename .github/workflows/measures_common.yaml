@@ -9,7 +9,10 @@ jobs:
   update:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          path: repo
 
       - name: sparse checkout NREL/openstudio-common-measures-gem
         uses: actions/checkout@v4
@@ -26,10 +29,10 @@ jobs:
         shell: bash
         run: |
           ls
-          cp -r lib/measures/ChangeBuildingLocation/* measures/ChangeBuildingLocation
-          cp -r lib/measures/SetLightingLoadsByLPD/* measures/SetLightingLoadsByLPD
-          cp -r lib/measures/set_electric_equipment_loads_by_epd/* measures/set_electric_equipment_loads_by_epd
-          cp -r lib/measures/set_space_infiltration_per_exterior_area/* measures/set_space_infiltration_per_exterior_area
+          cp -r lib/measures/ChangeBuildingLocation/* measures/ChangeBuildingLocation/
+          cp -r lib/measures/SetLightingLoadsByLPD/* measures/SetLightingLoadsByLPD/
+          cp -r lib/measures/set_electric_equipment_loads_by_epd/* measures/set_electric_equipment_loads_by_epd/
+          cp -r lib/measures/set_space_infiltration_per_exterior_area/* measures/set_space_infiltration_per_exterior_area/
 
       - name: upload files
         uses: actions/upload-artifact@v3
