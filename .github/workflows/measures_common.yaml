@@ -2,9 +2,6 @@ name: measures_common
 
 on: [workflow_call, workflow_dispatch]
 
-env:
-  COMMON: v0.8.0
-
 jobs:
   update:
     runs-on: windows-2019
@@ -14,11 +11,16 @@ jobs:
         with:
           path: dst
 
+      - name: dotenv
+        uses: falti/dotenv-action@v1
+        with:
+          path: ./.github/workflows/.env
+
       - name: checkout NREL/openstudio-common-measures-gem
         uses: actions/checkout@v4
         with:
           repository: NREL/openstudio-common-measures-gem
-          ref: ${{ env.COMMON }}
+          ref: ${{ steps.dotenv.outputs.MEAUSRES_VERSION }}
           path: src
           sparse-checkout: |
             lib/measures/ChangeBuildingLocation
@@ -46,12 +48,12 @@ jobs:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/download-artifact@v3
-      
+
       - name: list
         run: |
-          ls measures/   
+          ls measures/
 
       - name: pull request
         uses: peter-evans/create-pull-request@v5
@@ -60,4 +62,4 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           title: '[action] update measures common'
           branch: action/update-measures-common
-          base: main 
+          base: main

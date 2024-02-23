@@ -2,9 +2,6 @@ name: measures_ee
 
 on: [workflow_call, workflow_dispatch]
 
-env:
-  COMMON: v0.8.0
-
 jobs:
   update:
     runs-on: windows-2019
@@ -14,11 +11,16 @@ jobs:
         with:
           path: dst
 
+      - name: dotenv
+        uses: falti/dotenv-action@v1
+        with:
+          path: ./.github/workflows/.env
+
       - name: checkout NREL/openstudio-ee-gem
         uses: actions/checkout@v4
         with:
           repository: NREL/openstudio-ee-gem
-          ref: ${{ env.COMMON }}
+          ref: ${{ steps.dotenv.outputs.MEAUSRES_VERSION }}
           path: src
           sparse-checkout: lib/measures/AddOverhangsByProjectionFactor
 
@@ -39,9 +41,9 @@ jobs:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/download-artifact@v3
-      
+
       - name: list
         run: |
           ls measures/
@@ -53,4 +55,4 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           title: '[action] update measures ee'
           branch: action/update-measures-ee
-          base: main 
+          base: main
