@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: NREL/openstudio-common-measures-gem
-          ref: ${{ steps.dotenv.outputs.MEAUSRES_VERSION }}
+          ref: ${{ steps.dotenv.outputs.MEASURES_VERSION }}
           path: src
           sparse-checkout: |
             lib/measures/ChangeBuildingLocation
