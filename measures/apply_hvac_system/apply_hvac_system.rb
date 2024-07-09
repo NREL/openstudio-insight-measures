@@ -1,0 +1,8 @@
+require_relative 'resources/os_helper'
+require_relative 'resources/factory_producer'
+require_relative 'resources/ptac_factory'
+require_relative 'resources/pthp_factory'
+require_relative 'resources/pvav_factory'
+require_relative 'resources/vav_factory'
+require_relative 'resources/fpfc_factory'
+require_relative 'resources/acvrf_factory'
