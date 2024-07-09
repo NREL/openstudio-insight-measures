@@ -36,8 +36,8 @@ jobs:
       - name: upload files
         uses: actions/upload-artifact@v3
         with:
-          name: measures
-          path: measures
+          name: measures-model-articulation
+          path: dst/measures
 
   pull-request:
     needs: update
