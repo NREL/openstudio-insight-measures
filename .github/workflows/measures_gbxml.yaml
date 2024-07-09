@@ -30,7 +30,11 @@ jobs:
       - name: copy files from NREL/gbxml-to-openstudio
         shell: bash
         run: |
-          cp -r src/measures measures && ls measures
+          ls
+          cp -r src/measures/gbxml_import/* dst/measures/gbxml_import/
+          cp -r src/measures/gbxml_import_advanced/* dst/measures/gbxml_import_advanced/
+          cp -r src/measures/gbxml_import_hvac/* dst/measures/gbxml_import_hvac/
+          cp -r src/measures/gbxml_postprocess/* dst/measures/gbxml_postprocess/
 
       - name: upload files
         uses: actions/upload-artifact@v3
