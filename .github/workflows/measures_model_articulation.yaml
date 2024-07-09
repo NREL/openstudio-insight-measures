@@ -31,7 +31,6 @@ jobs:
         run: |
           cp -r src/lib/measures/RotateBuilding/* dst/measures/RotateBuilding/
           cp -r src/lib/measures/SetWindowToWallRatioByFacade/* dst/measures/SetWindowToWallRatioByFacade/
-          ls measures
 
       - name: upload files
         uses: actions/upload-artifact@v3

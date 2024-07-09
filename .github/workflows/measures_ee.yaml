@@ -28,7 +28,6 @@ jobs:
         shell: bash
         run: |
           cp -r src/lib/measures/AddOverhangsByProjectionFactor/* dst/measures/AddOverhangsByProjectionFactor/
-          ls measures/AddOverhangsByProjectionFactor
 
       - name: upload files
         uses: actions/upload-artifact@v3
