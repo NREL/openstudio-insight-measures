@@ -3,47 +3,52 @@ name: measures_gbxml
 on: [workflow_call, workflow_dispatch]
 
 env:
-  GBXML: master
+  GBXML: v1.2.0
 
 jobs:
   update:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          path: dst
 
-      - name: sparse checkout NREL/gbxml-to-openstudio
+
+      - name: checkout NREL/gbxml-to-openstudio
         uses: actions/checkout@v4
         with:
           repository: NREL/gbxml-to-openstudio
           ref: ${{ env.GBXML }}
-          path: gbxml
+          path: src
           sparse-checkout: |
-            measures/import_gbxml
-            measures/advanced_import_gbxml
-            measures/gbxml_hvac_import
-            measures/gbxml_to_openstudio_cleanup
+            measures/gbxml_import
+            measures/gbxml_import_advanced
+            measures/gbxml_import_hvac
+            measures/gbxml_postprocess
 
       - name: copy files from NREL/gbxml-to-openstudio
         shell: bash
-        run: cp -r gbxml/measures measures && ls measures
+        run: |
+          cp -r src/measures measures && ls measures
 
       - name: upload files
         uses: actions/upload-artifact@v3
         with:
           name: measures
-          path: measures
+          path: dst/measures
 
   pull-request:
     needs: update
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/download-artifact@v3
-      
+
       - name: list
         run: |
-          ls measures/   
+          ls measures/
 
       - name: pull request
         uses: peter-evans/create-pull-request@v5
@@ -52,4 +57,4 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           title: '[action] update measures gbxml'
           branch: action/update-measures-gbxml
-          base: main 
+          base: main
