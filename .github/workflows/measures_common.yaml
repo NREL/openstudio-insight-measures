@@ -40,7 +40,7 @@ jobs:
       - name: upload files
         uses: actions/upload-artifact@v3
         with:
-          name: measures-common
+          name: measures
           path: dst/measures
 
   pull-request:

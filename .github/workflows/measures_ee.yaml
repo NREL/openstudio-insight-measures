@@ -33,7 +33,7 @@ jobs:
       - name: upload files
         uses: actions/upload-artifact@v3
         with:
-          name: measures-ee
+          name: measures
           path: dst/measures
 
   pull-request:
