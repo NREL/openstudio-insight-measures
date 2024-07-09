@@ -1,0 +1,10 @@
+.idea
+run
+output
+out.osw
+reports
+test_results
+test/html_reports/index.html
+measures/.rubocop*
+build
+measures/apply_hvac_system/tests/outputs/
