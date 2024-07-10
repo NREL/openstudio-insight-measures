@@ -96,12 +96,6 @@
       <checksum>CD7F5672</checksum>
     </file>
     <file>
-      <filename>.gitkeep</filename>
-      <filetype>gitkeep</filetype>
-      <usage_type>doc</usage_type>
-      <checksum>00000000</checksum>
-    </file>
-    <file>
       <filename>apply_hvac_system_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
