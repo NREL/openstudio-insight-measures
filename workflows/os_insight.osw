@@ -1,0 +1,275 @@
+{
+  "seed_file": "seed_empty.osm",
+  "weather_file": "USA_CO_Denver.Intl.AP.725650_TMY3.epw",
+  "measure_paths": [
+    "../measures/"
+  ],
+  "file_paths": [
+    "../weather",
+    "../seeds",
+    "../gbxmls"
+  ],
+  "run_directory": "./run",
+  "steps": [
+    {
+      "measure_dir_name": "ChangeBuildingLocation",
+      "name": "Change Building Location",
+      "arguments": {
+        "__SKIP__": false,
+        "weather_file_name": "USA_CO_Denver.Intl.AP.725650_TMY3.epw"
+      }
+    },
+    {
+      "measure_dir_name": "import_gbxml",
+      "name": "ImportGbxml",
+      "arguments": {
+        "gbxml_file_name": "VRFAllVariations.xml"
+      }
+    },
+    {
+      "measure_dir_name": "advanced_import_gbxml",
+      "name": "Advanced Import Gbxml",
+      "arguments": {
+        "gbxml_file_name": "VRFAllVariations.xml"
+      }
+    },
+    {
+      "measure_dir_name": "gbxml_hvac_import",
+      "name": "Gbxml HVAC Import",
+      "arguments": {
+        "gbxml_file_name": "VRFAllVariations.xml"
+      }
+    },
+    {
+      "measure_dir_name": "set_simulation_control",
+      "name": "Set Simulation Control",
+      "arguments": {
+        "cooling_sizing_factor": 1.0,
+        "do_plant_sizing": true,
+        "do_system_sizing": true,
+        "do_zone_sizing": true,
+        "end_date": "12/31",
+        "heating_sizing_factor": 1.0,
+        "loads_convergence_tolerance": 0.1,
+        "max_warmup_days": 25,
+        "min_warmup_days": 6,
+        "sim_for_run_period": true,
+        "sim_for_sizing": true,
+        "solar_distribution": "FullExterior",
+        "start_date": "01/01",
+        "temp_convergence_tolerance": 0.5,
+        "timesteps_per_hour": 4,
+        "max_hvac_iterations": 8
+      }
+    },
+    {
+      "measure_dir_name": "RotateBuilding",
+      "name": "Building Orientation",
+      "arguments": {
+        "__SKIP__": false,
+        "relative_building_rotation": "90"
+      }
+    },
+    {
+      "measure_dir_name": "SetWindowToWallRatioByFacade",
+      "name": "WWR Southern Walls",
+      "arguments": {
+        "__SKIP__": false,
+        "wwr": "0.30",
+        "sillHeight": "30.0",
+        "exl_spaces_not_incl_fl_area": true,
+        "facade": "South",
+        "split_at_doors": "Split Walls at Doors",
+        "inset_tri_sub": true,
+        "triangulate": true
+      }
+    },
+    {
+      "measure_dir_name": "AddOverhangsByProjectionFactor",
+      "name": "Window Shades South",
+      "arguments": {
+        "__SKIP__": false,
+        "facade": "South",
+        "projection_factor": "0.5"
+      }
+    },
+    {
+      "measure_dir_name": "replace_exterior_constructions_with_a_different_construction_from_resource_file",
+      "name": "Window Glass South",
+      "arguments": {
+        "__SKIP__": false,
+        "new_construction": "Window Sgl Clr",
+        "facade": "South"
+      }
+    },
+    {
+      "measure_dir_name": "SetWindowToWallRatioByFacade",
+      "name": "WWR Northern Walls",
+      "arguments": {
+        "__SKIP__": false,
+        "wwr": "0.30",
+        "sillHeight": "30.0",
+        "exl_spaces_not_incl_fl_area": true,
+        "facade": "North",
+        "split_at_doors": "Split Walls at Doors",
+        "inset_tri_sub": true,
+        "triangulate": true
+      }
+    },
+    {
+      "measure_dir_name": "AddOverhangsByProjectionFactor",
+      "name": "Window Shades North",
+      "arguments": {
+        "__SKIP__": false,
+        "facade": "North",
+        "projection_factor": "0.5"
+      }
+    },
+    {
+      "measure_dir_name": "replace_exterior_constructions_with_a_different_construction_from_resource_file",
+      "name": "Window Glass North",
+      "arguments": {
+        "__SKIP__": false,
+        "new_construction": "Window Dbl LoE",
+        "facade": "North"
+      }
+    },
+    {
+      "measure_dir_name": "SetWindowToWallRatioByFacade",
+      "name": "WWR Western Walls",
+      "arguments": {
+        "__SKIP__": false,
+        "wwr": "0.30",
+        "sillHeight": "30.0",
+        "exl_spaces_not_incl_fl_area": true,
+        "facade": "West",
+        "split_at_doors": "Split Walls at Doors",
+        "inset_tri_sub": true,
+        "triangulate": true
+      }
+    },
+    {
+      "measure_dir_name": "AddOverhangsByProjectionFactor",
+      "name": "Window Shades West",
+      "arguments": {
+        "__SKIP__": false,
+        "facade": "West",
+        "projection_factor": "0.5"
+      }
+    },
+    {
+      "measure_dir_name": "replace_exterior_constructions_with_a_different_construction_from_resource_file",
+      "name": "Window Glass West",
+      "arguments": {
+        "__SKIP__": false,
+        "new_construction": "Window Trp Clr",
+        "facade": "West"
+      }
+    },
+    {
+      "measure_dir_name": "SetWindowToWallRatioByFacade",
+      "name": "WWR Eastern Walls",
+      "arguments": {
+        "__SKIP__": false,
+        "wwr": "0.30",
+        "sillHeight": "30.0",
+        "exl_spaces_not_incl_fl_area": true,
+        "facade": "East",
+        "split_at_doors": "Split Walls at Doors",
+        "inset_tri_sub": true,
+        "triangulate": true
+      }
+    },
+    {
+      "measure_dir_name": "AddOverhangsByProjectionFactor",
+      "name": "Window Shades East",
+      "arguments": {
+        "__SKIP__": false,
+        "facade": "East",
+        "projection_factor": "0.5"
+      }
+    },
+    {
+      "measure_dir_name": "replace_exterior_constructions_with_a_different_construction_from_resource_file",
+      "name": "Window Glass East",
+      "arguments": {
+        "__SKIP__": false,
+        "new_construction": "Window Trp LoE",
+        "facade": "East"
+      }
+    },
+    {
+      "measure_dir_name": "replace_exterior_constructions_with_a_different_construction_from_resource_file",
+      "name": "Wall Construction",
+      "arguments": {
+        "__SKIP__": false,
+        "new_construction": "Wall R13+R10 Metal",
+        "facade": "All"
+      }
+    },
+    {
+      "measure_dir_name": "replace_exterior_constructions_with_a_different_construction_from_resource_file",
+      "name": "Roof Construction",
+      "arguments": {
+        "__SKIP__": false,
+        "new_construction": "Roof R38",
+        "facade": "All"
+      }
+    },
+    {
+      "measure_dir_name": "set_space_infiltration_per_exterior_area",
+      "name": "Infiltration",
+      "arguments": {
+        "__SKIP__": false,
+        "flow_per_area": "0.06",
+        "ext_surf_cat": "ExteriorArea",
+        "input_value_at_50_pa": true
+      }
+    },
+    {
+      "measure_dir_name": "SetLightingLoadsByLPD",
+      "name": "Lighting Efficiency",
+      "arguments": {
+        "__SKIP__": false,
+        "lpd": "1.0"
+      }
+    },
+    {
+      "measure_dir_name": "daylighting_and_occupancy_controls",
+      "name": "Daylighting And Occupancy Controls",
+      "arguments": {
+        "__SKIP__": false,
+        "choice": "Daylighting and Occupancy Controls",
+        "template": "90.1-2013"
+      }
+    },
+    {
+      "measure_dir_name": "set_operating_schedules",
+      "name": "Operating Schedule",
+      "arguments": {
+        "__SKIP__": false,
+        "op_hrs": "12/6"
+      }
+    },
+    {
+      "measure_dir_name": "set_electric_equipment_loads_by_epd",
+      "name": "Plug Load Efficiency",
+      "arguments": {
+        "__SKIP__": false,
+        "epd": "2.0"
+      }
+    },
+    {
+      "measure_dir_name": "apply_hvac_system",
+      "name": "Apply HVAC System",
+      "arguments": {
+        "__SKIP__": false,
+        "hvac_system": "PTAC"
+      }
+    },
+    {
+      "measure_dir_name": "gbxml_postprocess",
+      "name": "gbxml_postprocess"
+    }
+  ]
+}

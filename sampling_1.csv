@@ -1,0 +1,22 @@
+﻿ee_name,ee_var,ee_status,0,1,2,3,4,5,6,7
+Building Orientation,relative_building_rotation,run,0,45,90,135,180,225,270,315
+WWR Southern Walls,wwr,run,0,0.15,0.3,0.4,0.5,0.65,0.8,0.95
+Window Shades South,projection_factor,run,0.166666667,0.25,0.333333333,0.5,0.666666667,,,
+Window Glass South,new_construction,run,Window Dbl LoE,Window Sgl Clr,Window Trp Clr,Window Trp LoE,,,,
+WWR Northern Walls,wwr,run,0,0.15,0.3,0.4,0.5,0.65,0.8,0.95
+Window Shades North,projection_factor,run,0.166666667,0.25,0.333333333,0.5,0.666666667,,,
+Window Glass North,new_construction,run,Window Dbl LoE,Window Sgl Clr,Window Trp Clr,Window Trp LoE,,,,
+WWR Western Walls,wwr,run,0,0.15,0.3,0.4,0.5,0.65,0.8,0.95
+Window Shades West,projection_factor,run,0.166666667,0.25,0.333333333,0.5,0.666666667,,,
+Window Glass West,new_construction,run,Window Dbl LoE,Window Sgl Clr,Window Trp Clr,Window Trp LoE,,,,
+WWR Eastern Walls,wwr,run,0,0.15,0.3,0.4,0.5,0.65,0.8,0.95
+Window Shades East,projection_factor,run,0.166666667,0.25,0.333333333,0.5,0.666666667,,,
+Window Glass East,new_construction,run,Window Dbl LoE,Window Sgl Clr,Window Trp Clr,Window Trp LoE,,,,
+Wall Construction,new_construction,run,Wall 12.25-inch SIP,Wall 14-inch ICF,Wall R13 Metal,Wall R13 Wood,Wall R13+R10 Metal,Wall R2 CMU,Wall R38 Wood,Wall Uninsulated
+Roof Construction,new_construction,run,Roof 10.25-inch SIP,Roof R10,Roof R15,Roof R19,Roof R38,Roof R60,Roof Uninsulated,
+Infiltration,flow_per_area,run,0.17,0.4,0.8,1.2,1.6,2,,
+Lighting Efficiency,lpd,run,0.3,0.7,1.1,1.5,1.9,,,
+Daylighting And Occupancy Controls,choice,run,None,Daylighting Controls,Occupancy Controls,Daylighting and Occupancy Controls,,,,
+Operating Schedule,op_hrs,run,12/5,12/6,12/7,24/7,,,,
+Plug Load Efficiency,epd,run,0.6,1,1.3,1.6,2,2.6,,
+Baseline,,run,run without any ee measures,,,,,,,

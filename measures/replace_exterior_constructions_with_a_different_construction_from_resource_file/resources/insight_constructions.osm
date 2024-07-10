@@ -1,0 +1,707 @@
+
+OS:Version,
+  {a51aebe5-dfff-418e-939b-ca69a9ca3cd9}, !- Handle
+  2.7.0;                                  !- Version Identifier
+
+OS:Site,
+  {9c10af82-1b38-4865-ad2b-517a13a292b5}, !- Handle
+  Site 1,                                 !- Name
+  ,                                       !- Latitude {deg}
+  ,                                       !- Longitude {deg}
+  ,                                       !- Time Zone {hr}
+  ,                                       !- Elevation {m}
+  ;                                       !- Terrain
+
+OS:YearDescription,
+  {e0e7858d-2be9-4b8f-922a-b45efea18070}; !- Handle
+
+OS:ClimateZones,
+  {0729be81-369a-4c03-9be0-862256cd86ce}, !- Handle
+  ,                                       !- Active Institution
+  ,                                       !- Active Year
+  ,                                       !- Climate Zone Institution Name 1
+  ,                                       !- Climate Zone Document Name 1
+  ,                                       !- Climate Zone Document Year 1
+  ,                                       !- Climate Zone Value 1
+  CEC,                                    !- Climate Zone Institution Name 2
+  California Climate Zone Descriptions,   !- Climate Zone Document Name 2
+  1995,                                   !- Climate Zone Document Year 2
+  ;                                       !- Climate Zone Value 2
+
+OS:Building,
+  {c8dcb634-117c-45f8-b7df-bee0b5753cb4}, !- Handle
+  Building 1,                             !- Name
+  ,                                       !- Building Sector Type
+  ,                                       !- North Axis {deg}
+  ,                                       !- Nominal Floor to Floor Height {m}
+  ,                                       !- Space Type Name
+  ,                                       !- Default Construction Set Name
+  ;                                       !- Default Schedule Set Name
+
+OS:Facility,
+  {567beb7b-a8b3-4869-8c34-0f9ae8c4d525}; !- Handle
+
+OS:SimulationControl,
+  {8df68934-c21d-4f42-a987-ff8d1e378090}; !- Handle
+
+OS:Sizing:Parameters,
+  {3534bce1-0fee-427c-b38a-74b9b4ec9eac}, !- Handle
+  1.25,                                   !- Heating Sizing Factor
+  1.15;                                   !- Cooling Sizing Factor
+
+OS:Timestep,
+  {dba703b9-0ce6-4461-811f-f7b668e82845}, !- Handle
+  6;                                      !- Number of Timesteps per Hour
+
+OS:ShadowCalculation,
+  {008d6cbb-1ac5-4ebb-9462-08bcca979b1a}, !- Handle
+  20,                                     !- Calculation Frequency
+  15000;                                  !- Maximum Figures in Shadow Overlap Calculations
+
+OS:HeatBalanceAlgorithm,
+  {fd5ff9eb-b748-4fd9-963b-c7c582ff5cab}, !- Handle
+  ConductionTransferFunction,             !- Algorithm
+  200;                                    !- Surface Temperature Upper Limit {C}
+
+OS:RunPeriod,
+  {d2fbd5ce-c654-4b15-acf7-d47aaba23bc4}, !- Handle
+  Run Period 1,                           !- Name
+  1,                                      !- Begin Month
+  1,                                      !- Begin Day of Month
+  12,                                     !- End Month
+  31,                                     !- End Day of Month
+  ,                                       !- Use Weather File Holidays and Special Days
+  ,                                       !- Use Weather File Daylight Saving Period
+  ,                                       !- Apply Weekend Holiday Rule
+  ,                                       !- Use Weather File Rain Indicators
+  ,                                       !- Use Weather File Snow Indicators
+  ;                                       !- Number of Times Runperiod to be Repeated
+
+OS:LifeCycleCost:Parameters,
+  {b8a4ffaf-fddf-46eb-8540-b68b6fde298a}, !- Handle
+  ,                                       !- Analysis Type
+  ,                                       !- Discounting Convention
+  ,                                       !- Inflation Approach
+  ,                                       !- Real Discount Rate
+  ,                                       !- Nominal Discount Rate
+  ,                                       !- Inflation
+  ,                                       !- Base Date Month
+  ,                                       !- Base Date Year
+  ,                                       !- Service Date Month
+  ,                                       !- Service Date Year
+  ;                                       !- Length of Study Period in Years
+
+OS:Construction,
+  {82044b30-674f-49e6-8f22-ab056ecb6ecd}, !- Handle
+  Window Sgl Clr,                         !- Name
+  ,                                       !- Surface Rendering Name
+  {92383a1d-d22d-4726-9295-2c953c212b37}; !- Layer 1
+
+OS:StandardsInformation:Construction,
+  {4a2dc320-cc65-42d6-be57-308257be2471}, !- Handle
+  {82044b30-674f-49e6-8f22-ab056ecb6ecd}, !- Construction Name
+  ExteriorWindow;                         !- Intended Surface Type
+
+OS:Construction,
+  {8dd80eb0-e73a-424a-9221-c0645da9c3e4}, !- Handle
+  Window Dbl LoE,                         !- Name
+  ,                                       !- Surface Rendering Name
+  {dccef885-a87e-4c06-a4a0-36fb4d1def6b}, !- Layer 1
+  {06216681-7f25-4157-a4b4-610306294ce0}, !- Layer 2
+  {92383a1d-d22d-4726-9295-2c953c212b37}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {8082fa6b-94d6-42f9-b0c0-096a73665d48}, !- Handle
+  {8dd80eb0-e73a-424a-9221-c0645da9c3e4}, !- Construction Name
+  ExteriorWindow;                         !- Intended Surface Type
+
+OS:Construction,
+  {e857032b-914c-4b3e-b37c-9a314d31ccd6}, !- Handle
+  Window Trp LoE,                         !- Name
+  ,                                       !- Surface Rendering Name
+  {c6838ad7-0884-48db-bdca-393eae7b7129}, !- Layer 1
+  {e6d7a4e3-0be3-45d0-aa01-3921b148ff19}, !- Layer 2
+  {99a9e4f8-de3e-4b97-8471-eb58cb63d32f}, !- Layer 3
+  {e6d7a4e3-0be3-45d0-aa01-3921b148ff19}, !- Layer 4
+  {92383a1d-d22d-4726-9295-2c953c212b37}; !- Layer 5
+
+OS:StandardsInformation:Construction,
+  {bbc4a589-6526-4d13-837a-775f0eb601b0}, !- Handle
+  {e857032b-914c-4b3e-b37c-9a314d31ccd6}, !- Construction Name
+  ExteriorWindow;                         !- Intended Surface Type
+
+OS:Construction,
+  {339d183b-3ee0-48b5-ad8f-1cfb9fe78f66}, !- Handle
+  Wall R2 CMU,                            !- Name
+  ,                                       !- Surface Rendering Name
+  {53a25268-deb2-46b4-b061-e887c28dc73b}, !- Layer 1
+  {a96a7235-3b30-4641-85a2-901cff6100a4}, !- Layer 2
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {7e09cc14-ddc7-45a4-a486-d0c4bfd1b9f6}, !- Handle
+  {339d183b-3ee0-48b5-ad8f-1cfb9fe78f66}, !- Construction Name
+  ExteriorWall;                           !- Intended Surface Type
+
+OS:Construction,
+  {1cc955b2-25cf-4944-884f-33706a2f1d34}, !- Handle
+  Wall Uninsulated,                       !- Name
+  ,                                       !- Surface Rendering Name
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}, !- Layer 1
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}, !- Layer 2
+  {96713477-fd43-437c-ada6-30daaadf2d2e}, !- Layer 3
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Layer 4
+
+OS:StandardsInformation:Construction,
+  {9dda9796-2bf1-420d-be4e-23eab09f4a75}, !- Handle
+  {1cc955b2-25cf-4944-884f-33706a2f1d34}, !- Construction Name
+  ExteriorWall;                           !- Intended Surface Type
+
+OS:Construction,
+  {36f15ec4-6184-4ba7-a526-e31938ba3100}, !- Handle
+  Wall R13 Metal,                         !- Name
+  ,                                       !- Surface Rendering Name
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}, !- Layer 1
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}, !- Layer 2
+  {cf04c51d-7b53-4468-b3fc-dcfbf98d5259}, !- Layer 3
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Layer 4
+
+OS:StandardsInformation:Construction,
+  {70c09cb6-8ddb-41de-b22f-a87e9ae4d567}, !- Handle
+  {36f15ec4-6184-4ba7-a526-e31938ba3100}, !- Construction Name
+  ExteriorWall;                           !- Intended Surface Type
+
+OS:Construction,
+  {4249948e-dfc1-460c-a88f-31a9c6310855}, !- Handle
+  Wall R13+R10 Metal,                     !- Name
+  ,                                       !- Surface Rendering Name
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}, !- Layer 1
+  {91deddd8-13ce-4da8-9327-bce0cee7b598}, !- Layer 2
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}, !- Layer 3
+  {cf04c51d-7b53-4468-b3fc-dcfbf98d5259}, !- Layer 4
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Layer 5
+
+OS:StandardsInformation:Construction,
+  {914cb8a5-faba-4daa-b65d-4ccae252ee9b}, !- Handle
+  {4249948e-dfc1-460c-a88f-31a9c6310855}, !- Construction Name
+  ExteriorWall;                           !- Intended Surface Type
+
+OS:Construction,
+  {0487e6fa-2610-4928-9d68-2b7beb444e3f}, !- Handle
+  Wall 14-inch ICF,                       !- Name
+  ,                                       !- Surface Rendering Name
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}, !- Layer 1
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}, !- Layer 2
+  {c5383d0e-c205-441b-8fe6-fbdb93664a9e}, !- Layer 3
+  {eeb01648-59d1-4ba4-a94e-1728b1d816a4}, !- Layer 4
+  {c5383d0e-c205-441b-8fe6-fbdb93664a9e}, !- Layer 5
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Layer 6
+
+OS:StandardsInformation:Construction,
+  {0138a2f0-9393-4c05-864b-07cdbf0e675a}, !- Handle
+  {0487e6fa-2610-4928-9d68-2b7beb444e3f}, !- Construction Name
+  ExteriorWall;                           !- Intended Surface Type
+
+OS:Construction,
+  {9bd46ce0-6ac7-4364-aac6-c956051c2353}, !- Handle
+  Wall 12.25-inch SIP,                    !- Name
+  ,                                       !- Surface Rendering Name
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}, !- Layer 1
+  {514129fd-5cdc-4ee4-ba9c-f74afce986cb}, !- Layer 2
+  {78431fe0-e585-497c-a8f4-853f05d68518}, !- Layer 3
+  {514129fd-5cdc-4ee4-ba9c-f74afce986cb}, !- Layer 4
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Layer 5
+
+OS:StandardsInformation:Construction,
+  {5526056c-fd09-4f3c-b2e1-e974b3d718f1}, !- Handle
+  {9bd46ce0-6ac7-4364-aac6-c956051c2353}, !- Construction Name
+  ExteriorWall;                           !- Intended Surface Type
+
+OS:Construction,
+  {8e868180-4b07-4eb5-b745-a2cc8a3ee9dd}, !- Handle
+  Wall R38 Wood,                          !- Name
+  ,                                       !- Surface Rendering Name
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}, !- Layer 1
+  {8cf129de-4976-4232-9081-03199853182e}, !- Layer 2
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}, !- Layer 3
+  {96713477-fd43-437c-ada6-30daaadf2d2e}, !- Layer 4
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Layer 5
+
+OS:StandardsInformation:Construction,
+  {3ab21d96-11af-42bc-a073-6343db21ee7e}, !- Handle
+  {8e868180-4b07-4eb5-b745-a2cc8a3ee9dd}, !- Construction Name
+  ExteriorWall;                           !- Intended Surface Type
+
+OS:Construction,
+  {6dbb9314-db53-4ecc-b069-2fcb35a01187}, !- Handle
+  Wall R13 Wood,                          !- Name
+  ,                                       !- Surface Rendering Name
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}, !- Layer 1
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}, !- Layer 2
+  {db241e30-ce08-4f06-bea3-ce781e1cd94e}, !- Layer 3
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Layer 4
+
+OS:StandardsInformation:Construction,
+  {5074d008-87e5-443e-83ac-2b85be17e7de}, !- Handle
+  {6dbb9314-db53-4ecc-b069-2fcb35a01187}, !- Construction Name
+  ExteriorWall;                           !- Intended Surface Type
+
+OS:Construction,
+  {5232c1ef-1720-465f-b464-7e368d1940f6}, !- Handle
+  Roof Uninsulated,                       !- Name
+  ,                                       !- Surface Rendering Name
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}, !- Layer 1
+  {5b0e9710-2535-4958-b3f4-18e45ce450e6}; !- Layer 2
+
+OS:StandardsInformation:Construction,
+  {8f8dbb8d-58e0-4521-a6ec-5eba910e8047}, !- Handle
+  {5232c1ef-1720-465f-b464-7e368d1940f6}, !- Construction Name
+  ExteriorRoof;                           !- Intended Surface Type
+
+OS:Construction,
+  {eb293dcc-b1a9-4ded-b9dc-e16aa2fa7317}, !- Handle
+  Roof R10,                               !- Name
+  ,                                       !- Surface Rendering Name
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}, !- Layer 1
+  {91deddd8-13ce-4da8-9327-bce0cee7b598}, !- Layer 2
+  {5b0e9710-2535-4958-b3f4-18e45ce450e6}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {841f006e-3163-467b-b589-1560e25da46f}, !- Handle
+  {eb293dcc-b1a9-4ded-b9dc-e16aa2fa7317}, !- Construction Name
+  ExteriorRoof;                           !- Intended Surface Type
+
+OS:Construction,
+  {43e0789a-a7b3-433e-95e2-e47e212dabf4}, !- Handle
+  Roof R15,                               !- Name
+  ,                                       !- Surface Rendering Name
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}, !- Layer 1
+  {96fb2499-dbeb-4865-81d8-3ce0b0eb27ff}, !- Layer 2
+  {5b0e9710-2535-4958-b3f4-18e45ce450e6}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {a902d27b-16ed-41e0-a02a-92d36c7b4ba5}, !- Handle
+  {43e0789a-a7b3-433e-95e2-e47e212dabf4}, !- Construction Name
+  ExteriorRoof;                           !- Intended Surface Type
+
+OS:Construction,
+  {adccd0ae-8573-4842-ba9b-ef5dc878f720}, !- Handle
+  Roof R19,                               !- Name
+  ,                                       !- Surface Rendering Name
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}, !- Layer 1
+  {0283b4c3-c0ad-43c9-b3e0-30d6aebc11fd}, !- Layer 2
+  {5b0e9710-2535-4958-b3f4-18e45ce450e6}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {91095c31-920e-42e9-b8bc-f3c64dba2be8}, !- Handle
+  {adccd0ae-8573-4842-ba9b-ef5dc878f720}, !- Construction Name
+  ExteriorRoof;                           !- Intended Surface Type
+
+OS:Construction,
+  {6f1b869f-2012-46fe-b083-e94fbfa3d1f0}, !- Handle
+  Roof 10.25-inch SIP,                    !- Name
+  ,                                       !- Surface Rendering Name
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}, !- Layer 1
+  {514129fd-5cdc-4ee4-ba9c-f74afce986cb}, !- Layer 2
+  {80581a5b-7870-4736-9d76-4d19261d7f33}, !- Layer 3
+  {514129fd-5cdc-4ee4-ba9c-f74afce986cb}; !- Layer 4
+
+OS:StandardsInformation:Construction,
+  {43162e08-4da8-470f-a483-576035bedd22}, !- Handle
+  {6f1b869f-2012-46fe-b083-e94fbfa3d1f0}, !- Construction Name
+  ExteriorRoof;                           !- Intended Surface Type
+
+OS:Construction,
+  {3e72e9ab-4abe-494f-867d-c539a061f10c}, !- Handle
+  Roof R38,                               !- Name
+  ,                                       !- Surface Rendering Name
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}, !- Layer 1
+  {8cf129de-4976-4232-9081-03199853182e}, !- Layer 2
+  {5b0e9710-2535-4958-b3f4-18e45ce450e6}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {15cafd40-e767-4350-8343-b3f464620aee}, !- Handle
+  {3e72e9ab-4abe-494f-867d-c539a061f10c}, !- Construction Name
+  ExteriorRoof;                           !- Intended Surface Type
+
+OS:Construction,
+  {8ea0c82c-c57b-4a7e-8c5f-548235e67e34}, !- Handle
+  Roof R60,                               !- Name
+  ,                                       !- Surface Rendering Name
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}, !- Layer 1
+  {73fdf292-1227-4982-9596-9f7dbb000d96}, !- Layer 2
+  {5b0e9710-2535-4958-b3f4-18e45ce450e6}; !- Layer 3
+
+OS:StandardsInformation:Construction,
+  {19b9fd0e-9aa1-438c-b783-f18ed451ca35}, !- Handle
+  {8ea0c82c-c57b-4a7e-8c5f-548235e67e34}, !- Construction Name
+  ExteriorRoof;                           !- Intended Surface Type
+
+OS:WindowMaterial:Glazing,
+  {92383a1d-d22d-4726-9295-2c953c212b37}, !- Handle
+  CLEAR 6MM,                              !- Name
+  SpectralAverage,                        !- Optical Data Type
+  ,                                       !- Window Glass Spectral Data Set Name
+  0.006,                                  !- Thickness {m}
+  0.775,                                  !- Solar Transmittance at Normal Incidence
+  0.071,                                  !- Front Side Solar Reflectance at Normal Incidence
+  0.071,                                  !- Back Side Solar Reflectance at Normal Incidence
+  0.881,                                  !- Visible Transmittance at Normal Incidence
+  0.08,                                   !- Front Side Visible Reflectance at Normal Incidence
+  0.08,                                   !- Back Side Visible Reflectance at Normal Incidence
+  0,                                      !- Infrared Transmittance at Normal Incidence
+  0.84,                                   !- Front Side Infrared Hemispherical Emissivity
+  0.84,                                   !- Back Side Infrared Hemispherical Emissivity
+  0.9;                                    !- Conductivity {W/m-K}
+
+OS:StandardsInformation:Material,
+  {5394eecf-17b1-44fd-91ed-b9c4d5011589}, !- Handle
+  {92383a1d-d22d-4726-9295-2c953c212b37}; !- Material Name
+
+OS:WindowMaterial:Gas,
+  {e6d7a4e3-0be3-45d0-aa01-3921b148ff19}, !- Handle
+  AIR 13MM,                               !- Name
+  Air,                                    !- Gas Type
+  0.0127;                                 !- Thickness {m}
+
+OS:StandardsInformation:Material,
+  {b2e84980-86b4-4edd-ad17-03ee0e22e02a}, !- Handle
+  {e6d7a4e3-0be3-45d0-aa01-3921b148ff19}; !- Material Name
+
+OS:Construction,
+  {2242731d-dd35-4640-9337-07f154969aa5}, !- Handle
+  Window Trp Clr,                         !- Name
+  ,                                       !- Surface Rendering Name
+  {c85ea02d-6a65-4a78-a045-9cb6f5c50c25}, !- Layer 1
+  {e6d7a4e3-0be3-45d0-aa01-3921b148ff19}, !- Layer 2
+  {c85ea02d-6a65-4a78-a045-9cb6f5c50c25}, !- Layer 3
+  {e6d7a4e3-0be3-45d0-aa01-3921b148ff19}, !- Layer 4
+  {c85ea02d-6a65-4a78-a045-9cb6f5c50c25}; !- Layer 5
+
+OS:StandardsInformation:Construction,
+  {3ad27636-4aa6-424a-b9c6-17023def5286}, !- Handle
+  {2242731d-dd35-4640-9337-07f154969aa5}, !- Construction Name
+  ExteriorWindow;                         !- Intended Surface Type
+
+OS:WindowMaterial:Glazing,
+  {dccef885-a87e-4c06-a4a0-36fb4d1def6b}, !- Handle
+  LoE SPEC SEL TINT 6MM,                  !- Name
+  SpectralAverage,                        !- Optical Data Type
+  ,                                       !- Window Glass Spectral Data Set Name
+  0.006,                                  !- Thickness {m}
+  0.26,                                   !- Solar Transmittance at Normal Incidence
+  0.14,                                   !- Front Side Solar Reflectance at Normal Incidence
+  0.41,                                   !- Back Side Solar Reflectance at Normal Incidence
+  0.46,                                   !- Visible Transmittance at Normal Incidence
+  0.06,                                   !- Front Side Visible Reflectance at Normal Incidence
+  0.04,                                   !- Back Side Visible Reflectance at Normal Incidence
+  0,                                      !- Infrared Transmittance at Normal Incidence
+  0.84,                                   !- Front Side Infrared Hemispherical Emissivity
+  0.03,                                   !- Back Side Infrared Hemispherical Emissivity
+  0.9;                                    !- Conductivity {W/m-K}
+
+OS:StandardsInformation:Material,
+  {f8a0c6ed-137f-4825-b0c8-1f13be8eddcf}, !- Handle
+  {dccef885-a87e-4c06-a4a0-36fb4d1def6b}; !- Material Name
+
+OS:WindowMaterial:Glazing,
+  {99a9e4f8-de3e-4b97-8471-eb58cb63d32f}, !- Handle
+  COATED POLY-55,                         !- Name
+  SpectralAverage,                        !- Optical Data Type
+  ,                                       !- Window Glass Spectral Data Set Name
+  0.00051,                                !- Thickness {m}
+  0.32,                                   !- Solar Transmittance at Normal Incidence
+  0.582,                                  !- Front Side Solar Reflectance at Normal Incidence
+  0.593,                                  !- Back Side Solar Reflectance at Normal Incidence
+  0.551,                                  !- Visible Transmittance at Normal Incidence
+  0.336,                                  !- Front Side Visible Reflectance at Normal Incidence
+  0.375,                                  !- Back Side Visible Reflectance at Normal Incidence
+  0,                                      !- Infrared Transmittance at Normal Incidence
+  0.046,                                  !- Front Side Infrared Hemispherical Emissivity
+  0.72,                                   !- Back Side Infrared Hemispherical Emissivity
+  0.14;                                   !- Conductivity {W/m-K}
+
+OS:StandardsInformation:Material,
+  {6b018c40-01b5-4152-a833-de9e1b151d9d}, !- Handle
+  {99a9e4f8-de3e-4b97-8471-eb58cb63d32f}; !- Material Name
+
+OS:WindowMaterial:Glazing,
+  {c85ea02d-6a65-4a78-a045-9cb6f5c50c25}, !- Handle
+  CLEAR 3MM,                              !- Name
+  SpectralAverage,                        !- Optical Data Type
+  ,                                       !- Window Glass Spectral Data Set Name
+  0.003,                                  !- Thickness {m}
+  0.837,                                  !- Solar Transmittance at Normal Incidence
+  0.075,                                  !- Front Side Solar Reflectance at Normal Incidence
+  0.075,                                  !- Back Side Solar Reflectance at Normal Incidence
+  0.898,                                  !- Visible Transmittance at Normal Incidence
+  0.081,                                  !- Front Side Visible Reflectance at Normal Incidence
+  0.081,                                  !- Back Side Visible Reflectance at Normal Incidence
+  0,                                      !- Infrared Transmittance at Normal Incidence
+  0.84,                                   !- Front Side Infrared Hemispherical Emissivity
+  0.84,                                   !- Back Side Infrared Hemispherical Emissivity
+  0.9;                                    !- Conductivity {W/m-K}
+
+OS:StandardsInformation:Material,
+  {cbddc665-00ff-4d37-b256-f14fff124858}, !- Handle
+  {c85ea02d-6a65-4a78-a045-9cb6f5c50c25}; !- Material Name
+
+OS:WindowMaterial:Glazing,
+  {c6838ad7-0884-48db-bdca-393eae7b7129}, !- Handle
+  BRONZE 6MM,                             !- Name
+  SpectralAverage,                        !- Optical Data Type
+  ,                                       !- Window Glass Spectral Data Set Name
+  0.006,                                  !- Thickness {m}
+  0.482,                                  !- Solar Transmittance at Normal Incidence
+  0.054,                                  !- Front Side Solar Reflectance at Normal Incidence
+  0.054,                                  !- Back Side Solar Reflectance at Normal Incidence
+  0.534,                                  !- Visible Transmittance at Normal Incidence
+  0.057,                                  !- Front Side Visible Reflectance at Normal Incidence
+  0.057,                                  !- Back Side Visible Reflectance at Normal Incidence
+  0,                                      !- Infrared Transmittance at Normal Incidence
+  0.84,                                   !- Front Side Infrared Hemispherical Emissivity
+  0.84,                                   !- Back Side Infrared Hemispherical Emissivity
+  0.9;                                    !- Conductivity {W/m-K}
+
+OS:StandardsInformation:Material,
+  {bc8db0e0-d710-4dd4-a6d5-6e426f04947b}, !- Handle
+  {c6838ad7-0884-48db-bdca-393eae7b7129}; !- Material Name
+
+OS:WindowMaterial:Gas,
+  {06216681-7f25-4157-a4b4-610306294ce0}, !- Handle
+  AIR 6MM,                                !- Name
+  Air,                                    !- Gas Type
+  0.0063;                                 !- Thickness {m}
+
+OS:StandardsInformation:Material,
+  {6b14b3da-0719-4632-84d5-8cef1233c6bb}, !- Handle
+  {06216681-7f25-4157-a4b4-610306294ce0}; !- Material Name
+
+OS:Material,
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}, !- Handle
+  G01a 19mm gypsum board,                 !- Name
+  MediumSmooth,                           !- Roughness
+  0.019,                                  !- Thickness {m}
+  0.16,                                   !- Conductivity {W/m-K}
+  800,                                    !- Density {kg/m3}
+  1090,                                   !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.4,                                    !- Solar Absorptance
+  0.4;                                    !- Visible Absorptance
+
+OS:StandardsInformation:Material,
+  {7f609418-f1c4-42bc-96bf-c02ae91b71d2}, !- Handle
+  {34d0fbbf-b222-48ab-96c3-456ab312025d}; !- Material Name
+
+OS:Material,
+  {53a25268-deb2-46b4-b061-e887c28dc73b}, !- Handle
+  M05 200mm concrete block,               !- Name
+  MediumRough,                            !- Roughness
+  0.2032,                                 !- Thickness {m}
+  1.11,                                   !- Conductivity {W/m-K}
+  800,                                    !- Density {kg/m3}
+  920;                                    !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Material,
+  {42fae4c1-8f31-4c4d-a9d0-a8f4525d7fd8}, !- Handle
+  {53a25268-deb2-46b4-b061-e887c28dc73b}; !- Material Name
+
+OS:Material:NoMass,
+  {a96a7235-3b30-4641-85a2-901cff6100a4}, !- Handle
+  R2 No Mass,                             !- Name
+  Smooth,                                 !- Roughness
+  0.352220367364612;                      !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {a7b6a6df-2610-458d-86ea-e9cfbab857a8}, !- Handle
+  {a96a7235-3b30-4641-85a2-901cff6100a4}; !- Material Name
+
+OS:Material:AirGap,
+  {96713477-fd43-437c-ada6-30daaadf2d2e}, !- Handle
+  F04 Wall air space resistance,          !- Name
+  0.15;                                   !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {b2121892-923c-480a-86c3-f3187e77a1bd}, !- Handle
+  {96713477-fd43-437c-ada6-30daaadf2d2e}; !- Material Name
+
+OS:Material:NoMass,
+  {db241e30-ce08-4f06-bea3-ce781e1cd94e}, !- Handle
+  R13 wood 16oc cavity No Mass,           !- Name
+  Smooth,                                 !- Roughness
+  1.61845258804039;                       !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {93ca0be9-3393-4fb6-958f-c757bad0f0d3}, !- Handle
+  {db241e30-ce08-4f06-bea3-ce781e1cd94e}; !- Material Name
+
+OS:Material:NoMass,
+  {cf04c51d-7b53-4468-b3fc-dcfbf98d5259}, !- Handle
+  R13 metal 16oc cavity No Mass,          !- Name
+  Smooth,                                 !- Roughness
+  1.05842220393066;                       !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {8b594ba1-a0a8-488b-8fed-98382126859a}, !- Handle
+  {cf04c51d-7b53-4468-b3fc-dcfbf98d5259}; !- Material Name
+
+OS:Material:NoMass,
+  {91deddd8-13ce-4da8-9327-bce0cee7b598}, !- Handle
+  R10 No Mass,                            !- Name
+  Smooth,                                 !- Roughness
+  1.76110183682306;                       !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {9bbf3601-d90f-4fb8-9c33-0549f2645cd4}, !- Handle
+  {91deddd8-13ce-4da8-9327-bce0cee7b598}; !- Material Name
+
+OS:Material:NoMass,
+  {8cf129de-4976-4232-9081-03199853182e}, !- Handle
+  R38 No Mass,                            !- Name
+  Smooth,                                 !- Roughness
+  6.69218697992762;                       !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {93325d8a-cbc0-49cf-8b68-f936f8d4c3e9}, !- Handle
+  {8cf129de-4976-4232-9081-03199853182e}; !- Material Name
+
+OS:Material:NoMass,
+  {0283b4c3-c0ad-43c9-b3e0-30d6aebc11fd}, !- Handle
+  R19 No Mass,                            !- Name
+  Smooth,                                 !- Roughness
+  3.34609348996381;                       !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {ea491f43-62d1-413f-968f-596f8e91958c}, !- Handle
+  {0283b4c3-c0ad-43c9-b3e0-30d6aebc11fd}; !- Material Name
+
+OS:Material:NoMass,
+  {73fdf292-1227-4982-9596-9f7dbb000d96}, !- Handle
+  R60 No Mass,                            !- Name
+  Smooth,                                 !- Roughness
+  10.5666110209384;                       !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {f1ddee63-a647-40ab-b611-f1dc07dc3c19}, !- Handle
+  {73fdf292-1227-4982-9596-9f7dbb000d96}; !- Material Name
+
+OS:Material:NoMass,
+  {96fb2499-dbeb-4865-81d8-3ce0b0eb27ff}, !- Handle
+  R15 No Mass,                            !- Name
+  Smooth,                                 !- Roughness
+  2.64165275523459;                       !- Thermal Resistance {m2-K/W}
+
+OS:StandardsInformation:Material,
+  {aa640156-40f5-4a3e-bdbb-ced6fb929fe3}, !- Handle
+  {96fb2499-dbeb-4865-81d8-3ce0b0eb27ff}; !- Material Name
+
+OS:Material,
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}, !- Handle
+  Roof Membrane,                          !- Name
+  VeryRough,                              !- Roughness
+  0.0095,                                 !- Thickness {m}
+  0.16,                                   !- Conductivity {W/m-K}
+  1121.29,                                !- Density {kg/m3}
+  1460,                                   !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.7,                                    !- Solar Absorptance
+  0.7;                                    !- Visible Absorptance
+
+OS:StandardsInformation:Material,
+  {f5482294-0b2b-4c12-a180-5322993e253e}, !- Handle
+  {3cc74129-2f7c-4bc4-a22d-c08fb90e5e6e}; !- Material Name
+
+OS:Material,
+  {5b0e9710-2535-4958-b3f4-18e45ce450e6}, !- Handle
+  Metal Decking,                          !- Name
+  MediumSmooth,                           !- Roughness
+  0.0015,                                 !- Thickness {m}
+  45.006,                                 !- Conductivity {W/m-K}
+  7680,                                   !- Density {kg/m3}
+  418.4,                                  !- Specific Heat {J/kg-K}
+  0.9,                                    !- Thermal Absorptance
+  0.6,                                    !- Solar Absorptance
+  0.6;                                    !- Visible Absorptance
+
+OS:StandardsInformation:Material,
+  {6bfdbede-9ce7-4512-a41a-fd690a813d54}, !- Handle
+  {5b0e9710-2535-4958-b3f4-18e45ce450e6}; !- Material Name
+
+OS:Material,
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}, !- Handle
+  F07 25mm stucco,                        !- Name
+  Smooth,                                 !- Roughness
+  0.0254,                                 !- Thickness {m}
+  0.72,                                   !- Conductivity {W/m-K}
+  1856,                                   !- Density {kg/m3}
+  840;                                    !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Material,
+  {101b8921-7314-4ac4-9946-42ba1a8667c8}, !- Handle
+  {eacc8ad8-d875-4048-a9bc-b67df4cc88ad}; !- Material Name
+
+OS:Material,
+  {514129fd-5cdc-4ee4-ba9c-f74afce986cb}, !- Handle
+  G02 16mm plywood,                       !- Name
+  Smooth,                                 !- Roughness
+  0.0159,                                 !- Thickness {m}
+  0.12,                                   !- Conductivity {W/m-K}
+  544,                                    !- Density {kg/m3}
+  1210;                                   !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Material,
+  {efd9d6dc-88fb-4d8d-864d-3d454e86558a}, !- Handle
+  {514129fd-5cdc-4ee4-ba9c-f74afce986cb}; !- Material Name
+
+OS:Material,
+  {80581a5b-7870-4736-9d76-4d19261d7f33}, !- Handle
+  Expanded polystyrene 9 in,              !- Name
+  MediumSmooth,                           !- Roughness
+  0.2286,                                 !- Thickness {m}
+  0.029,                                  !- Conductivity {W/m-K}
+  29,                                     !- Density {kg/m3}
+  1210;                                   !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Material,
+  {32199966-fde7-458f-a518-0ac9c8295198}, !- Handle
+  {80581a5b-7870-4736-9d76-4d19261d7f33}; !- Material Name
+
+OS:Material,
+  {78431fe0-e585-497c-a8f4-853f05d68518}, !- Handle
+  Expanded polystyrene 11 in,             !- Name
+  MediumSmooth,                           !- Roughness
+  0.2794,                                 !- Thickness {m}
+  0.029,                                  !- Conductivity {W/m-K}
+  29,                                     !- Density {kg/m3}
+  1210;                                   !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Material,
+  {2280dcfc-9f3b-4905-8ddf-ba764a0088af}, !- Handle
+  {78431fe0-e585-497c-a8f4-853f05d68518}; !- Material Name
+
+OS:Material,
+  {c5383d0e-c205-441b-8fe6-fbdb93664a9e}, !- Handle
+  Expanded polystyrene 3 in,              !- Name
+  MediumSmooth,                           !- Roughness
+  0.2286,                                 !- Thickness {m}
+  0.029,                                  !- Conductivity {W/m-K}
+  29,                                     !- Density {kg/m3}
+  1210;                                   !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Material,
+  {c5855560-666e-4c37-a8fe-4bfc7a389137}, !- Handle
+  {c5383d0e-c205-441b-8fe6-fbdb93664a9e}; !- Material Name
+
+OS:Material,
+  {eeb01648-59d1-4ba4-a94e-1728b1d816a4}, !- Handle
+  M15 200mm heavyweight concrete,         !- Name
+  MediumRough,                            !- Roughness
+  0.2032,                                 !- Thickness {m}
+  1.95,                                   !- Conductivity {W/m-K}
+  2240,                                   !- Density {kg/m3}
+  900;                                    !- Specific Heat {J/kg-K}
+
+OS:StandardsInformation:Material,
+  {aa1dc444-5871-43e8-ba3a-35c5247cf817}, !- Handle
+  {eeb01648-59d1-4ba4-a94e-1728b1d816a4}; !- Material Name
+

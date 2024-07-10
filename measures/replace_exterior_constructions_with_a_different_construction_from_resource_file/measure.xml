@@ -1,0 +1,206 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>replace_exterior_constructions_with_a_different_construction_from_resource_file</name>
+  <uid>f9ed89dc-789e-411a-844a-72edf25e13c1</uid>
+  <version_id>bb8e5451-fa36-460c-bcf9-d99f05882f5d</version_id>
+  <version_modified>20190325T195203Z</version_modified>
+  <xml_checksum>2609226D</xml_checksum>
+  <class_name>ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile</class_name>
+  <display_name>Replace Exterior Constructions with a Different Construction from Resource File</display_name>
+  <description>Replace exterior wall, roof, or window constructions, with construction from a resource file.</description>
+  <modeler_description>This will only have an argument for target construction. How that construction is tagged in the resource file will determine which surface types the construction is applied to.</modeler_description>
+  <arguments>
+    <argument>
+      <name>new_construction</name>
+      <display_name>Target Construction for Exterior Surface Replacement</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <choices>
+        <choice>
+          <value>{6f1b869f-2012-46fe-b083-e94fbfa3d1f0}</value>
+          <display_name>Roof 10.25-inch SIP</display_name>
+        </choice>
+        <choice>
+          <value>{eb293dcc-b1a9-4ded-b9dc-e16aa2fa7317}</value>
+          <display_name>Roof R10</display_name>
+        </choice>
+        <choice>
+          <value>{43e0789a-a7b3-433e-95e2-e47e212dabf4}</value>
+          <display_name>Roof R15</display_name>
+        </choice>
+        <choice>
+          <value>{adccd0ae-8573-4842-ba9b-ef5dc878f720}</value>
+          <display_name>Roof R19</display_name>
+        </choice>
+        <choice>
+          <value>{3e72e9ab-4abe-494f-867d-c539a061f10c}</value>
+          <display_name>Roof R38</display_name>
+        </choice>
+        <choice>
+          <value>{8ea0c82c-c57b-4a7e-8c5f-548235e67e34}</value>
+          <display_name>Roof R60</display_name>
+        </choice>
+        <choice>
+          <value>{5232c1ef-1720-465f-b464-7e368d1940f6}</value>
+          <display_name>Roof Uninsulated</display_name>
+        </choice>
+        <choice>
+          <value>{9bd46ce0-6ac7-4364-aac6-c956051c2353}</value>
+          <display_name>Wall 12.25-inch SIP</display_name>
+        </choice>
+        <choice>
+          <value>{0487e6fa-2610-4928-9d68-2b7beb444e3f}</value>
+          <display_name>Wall 14-inch ICF</display_name>
+        </choice>
+        <choice>
+          <value>{36f15ec4-6184-4ba7-a526-e31938ba3100}</value>
+          <display_name>Wall R13 Metal</display_name>
+        </choice>
+        <choice>
+          <value>{6dbb9314-db53-4ecc-b069-2fcb35a01187}</value>
+          <display_name>Wall R13 Wood</display_name>
+        </choice>
+        <choice>
+          <value>{4249948e-dfc1-460c-a88f-31a9c6310855}</value>
+          <display_name>Wall R13+R10 Metal</display_name>
+        </choice>
+        <choice>
+          <value>{339d183b-3ee0-48b5-ad8f-1cfb9fe78f66}</value>
+          <display_name>Wall R2 CMU</display_name>
+        </choice>
+        <choice>
+          <value>{8e868180-4b07-4eb5-b745-a2cc8a3ee9dd}</value>
+          <display_name>Wall R38 Wood</display_name>
+        </choice>
+        <choice>
+          <value>{1cc955b2-25cf-4944-884f-33706a2f1d34}</value>
+          <display_name>Wall Uninsulated</display_name>
+        </choice>
+        <choice>
+          <value>{8dd80eb0-e73a-424a-9221-c0645da9c3e4}</value>
+          <display_name>Window Dbl LoE</display_name>
+        </choice>
+        <choice>
+          <value>{82044b30-674f-49e6-8f22-ab056ecb6ecd}</value>
+          <display_name>Window Sgl Clr</display_name>
+        </choice>
+        <choice>
+          <value>{2242731d-dd35-4640-9337-07f154969aa5}</value>
+          <display_name>Window Trp Clr</display_name>
+        </choice>
+        <choice>
+          <value>{e857032b-914c-4b3e-b37c-9a314d31ccd6}</value>
+          <display_name>Window Trp LoE</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>facade</name>
+      <display_name>Cardinal Direction.</display_name>
+      <description>Constructions will be applied to the specified facade or facades.</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>All</default_value>
+      <choices>
+        <choice>
+          <value>North</value>
+          <display_name>North</display_name>
+        </choice>
+        <choice>
+          <value>East</value>
+          <display_name>East</display_name>
+        </choice>
+        <choice>
+          <value>South</value>
+          <display_name>South</display_name>
+        </choice>
+        <choice>
+          <value>West</value>
+          <display_name>West</display_name>
+        </choice>
+        <choice>
+          <value>All</value>
+          <display_name>All</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Envelope.Opaque</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>CD7F5672</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>replace_exterior_constructions_with_a_different_construction_from_resource_file_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>45BE711F</checksum>
+    </file>
+    <file>
+      <filename>insight_constructions.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A158F0B0</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.7.0</identifier>
+        <min_compatible>2.7.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>0ED5D103</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>232D0477</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>C86EB293</checksum>
+    </file>
+  </files>
+</measure>
