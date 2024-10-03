@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>reduce_insight_output</name>
   <uid>0ca2453c-40d9-4b88-8295-72a8beceba9b</uid>
-  <version_id>b88871c8-391c-4182-8672-331fb3e8bb5d</version_id>
-  <version_modified>2024-09-30T21:35:51Z</version_modified>
+  <version_id>5229e638-a977-4235-a259-21d5aab63c2b</version_id>
+  <version_modified>2024-10-03T17:14:29Z</version_modified>
   <xml_checksum>588DE44B</xml_checksum>
   <class_name>ReduceInsightOutput</class_name>
   <display_name>Reduce Insight Output</display_name>
@@ -97,7 +97,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>87FBA1D9</checksum>
+      <checksum>9373FBE4</checksum>
+    </file>
+    <file>
+      <filename>USA_CO_Fort.Collins.AWOS.724769_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C2C10117</checksum>
     </file>
     <file>
       <filename>example_model.osm</filename>
@@ -109,7 +115,13 @@
       <filename>reduce_insight_output_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>2B67F857</checksum>
+      <checksum>8010E068</checksum>
+    </file>
+    <file>
+      <filename>smalloffice.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F067306D</checksum>
     </file>
   </files>
 </measure>
