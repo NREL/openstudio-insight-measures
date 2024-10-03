@@ -66,30 +66,17 @@ class ReduceInsightOutput < OpenStudio::Measure::ModelMeasure
       model.getOutputSchedules.remove
     end
 
-    # test change workflowJSON settings
-    fto = OpenStudio::ForwardTranslatorOptions.new
-    # no HTML output will be created
-    fto.setExcludeHTMLOutputReport(true)
-    fto.setExcludeLCCObjects(true)
-    ro = OpenStudio::RunOptions.new
-    ro.setForwardTranslatorOptions(fto)
-    # this skips the default output:tables and output:meters
-    ro.setSkipEnergyPlusPreprocess(true)
-    ro.setSkipZipResults(true)
-    workflow = model.workflowJSON
-    workflow.setRunOptions(ro)
-
-
     # specify Output:Table:SummaryReports
     otsr = model.getOutputTableSummaryReports
     # removing all, still leaves monthly energy and demand tables by end-use. 
     otsr.removeAllSummaryReports
-    # otsr.addSummaryReport('AnnualBuildingUtilityPerformanceSummary')
+    otsr.addSummaryReport('AnnualBuildingUtilityPerformanceSummary')
     # otsr.addSummaryReport('EnergyMeters')
 
     # this will remove tabulardata, tabulardatawithstrings tables
     # model.getOutputSQLite.setOptionType('Simple')
 
+    # suppress other files from being written
     if suppress_files
       ocf = model.getOutputControlFiles
       ocf.setOutputCSV(false)
