@@ -94,7 +94,7 @@ class ReduceInsightOutputTest < Minitest::Test
     puts "Successfully ran #{File.basename(osw_path)}"
 
     # get size of all files in resulting dir
-    before_size = Dir["#{run_dir(test_name)}/run/**/*"].select { |f| File.file?(f) }.sum { |f| File.size(f)}.to_f
+    before_size = Dir["#{run_dir(test_name)}/run/**/*"].select { |f| File.file?(f) }.sum { |f| File.size(f)}
     
     puts "Before measure, test file run dir is #{before_size} B"
 
@@ -145,10 +145,10 @@ class ReduceInsightOutputTest < Minitest::Test
     puts "Successfully ran #{File.basename(osw_path)}"
 
     # get size of all files in resulting dir
-    after_size = Dir["#{run_dir(test_name)}/run/**/*"].select { |f| File.file?(f) }.sum { |f| File.size(f)}.to_f
+    after_size = Dir["#{run_dir(test_name)}/run/**/*"].select { |f| File.file?(f) }.sum { |f| File.size(f)}
     
     puts "After measure, test file run dir is #{after_size} B"
-    puts "Total run dir file size reduced by #{(1.0-(after_size/before_size))*100.0.round(2)} %"
+    puts "Total run dir file size reduced by #{(1.0-(after_size.to_f/before_size.to_f)).round(2)*100.0} %"
 
     # query sqlfile
     sqlFile = OpenStudio::SqlFile.new(OpenStudio::Path.new(sql_path(test_name)))
