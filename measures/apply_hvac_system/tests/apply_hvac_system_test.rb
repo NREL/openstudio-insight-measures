@@ -54,6 +54,8 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
+    assert_equal(8, model.getZoneHVACPackagedTerminalAirConditioners.size)
+
     output_file_dir = Config::OSM_OUTPUTS + 'ptac/'
     FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
     output_file_path = File.join(output_file_dir, 'in.osm')
@@ -83,6 +85,8 @@ class ApplyHVACSystemTest < Minitest::Test
     argument.setValue('PTHP')
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
+
+    assert_equal(8, model.getZoneHVACPackagedTerminalHeatPumps.size)
 
     output_file_dir = Config::OSM_OUTPUTS + 'pthp/'
     FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
@@ -114,6 +118,10 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
+    assert_equal(8, model.getAirTerminalSingleDuctVAVReheats.size)
+    assert_equal(3, model.getAirLoopHVACs.size)
+    assert_equal(1, model.getPlantLoops.size)
+
     output_file_dir = Config::OSM_OUTPUTS + 'pvav/'
     FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
     output_file_path = File.join(output_file_dir, 'in.osm')
@@ -143,6 +151,10 @@ class ApplyHVACSystemTest < Minitest::Test
     argument.setValue('VAV')
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
+
+    assert_equal(8, model.getAirTerminalSingleDuctVAVReheats.size)
+    assert_equal(3, model.getAirLoopHVACs.size)
+    assert_equal(3, model.getPlantLoops.size)
 
     output_file_dir = Config::OSM_OUTPUTS + 'vav/'
     FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
@@ -174,6 +186,11 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
+    assert_equal(8, model.getZoneHVACFourPipeFanCoils.size)
+    assert_equal(8, model.getAirTerminalSingleDuctVAVNoReats)
+    assert_equal(1, model.getAirLoopHVACs.size)
+    assert_equal(3, model.getPlantLoops.size) 
+
     output_file_dir = Config::OSM_OUTPUTS + "fpfc_doas/"
     FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
     output_file_path = File.join(output_file_dir, 'in.osm')
@@ -203,6 +220,11 @@ class ApplyHVACSystemTest < Minitest::Test
     argument.setValue('ACVRF + DOAS')
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
+
+    assert_equal(8, model.getZoneHVACTerminalUnitVariableRefrigerantFlows.size)
+    assert_equal(8, model.getAirTerminalSingleDuctVAVNoReheats.size)
+    assert_equal(1, model.getAirLoopHVACs.size)
+    assert_equal(3, model.getAirConditionerVariableRefrigerantFlows.size)
 
     output_file_dir = Config::OSM_OUTPUTS + "acvrf_doas/"
     FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
