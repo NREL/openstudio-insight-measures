@@ -30,7 +30,7 @@ module OsLibInsight
     res_people_design = 0
     non_res_people_design = 0
     model.getSpaces.each do |space|
-      if standard.space_residential?(space)
+      if OpenstudioStandards::Space.space_residential?(space)
         res_spaces << space
         res_people_design += space.numberOfPeople * space.multiplier
       else
