@@ -10,6 +10,13 @@ require_relative '../measure.rb'
 require_relative 'minitest_helper'
 
 class ApplyHVACSystemTest < Minitest::Test
+
+  def setup
+    if !Dir.exist?(Config::OSM_OUTPUTS)
+      FileUtils.mkdir(Config::OSM_OUTPUTS)
+    end
+  end
+
   def test_number_of_arguments_and_argument_names
     # create an instance of the measure
     measure = ApplyHVACSystem.new
@@ -47,10 +54,16 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
-    output_file_path = Config::OSM_OUTPUTS + "/ptac/in.osm"
+    output_file_dir = Config::OSM_OUTPUTS + 'ptac/'
+    FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
+    output_file_path = File.join(output_file_dir, 'in.osm')
     model.save(output_file_path, true)
 
-    osw_in_path = Config::OSM_OUTPUTS + '/ptac/in.osw'
+    osw_in_path = File.join(output_file_dir, 'in.osw')
+    osw.setSeedFile(output_file_path)
+    osw.setWeatherFile(Config::WEATHER + 'USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw')
+    osw.saveAs(osw_in_path)
+
     cmd = "\"#{Config::CLI_PATH}\" run -w \"#{osw_in_path}\""
     assert(run_command(cmd))
 
@@ -71,10 +84,16 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
-    output_file_path = Config::OSM_OUTPUTS + "/pthp/in.osm"
+    output_file_dir = Config::OSM_OUTPUTS + 'pthp/'
+    FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
+    output_file_path = File.join(output_file_dir, 'in.osm')
     model.save(output_file_path, true)
 
-    osw_in_path = Config::OSM_OUTPUTS + '/pthp/in.osw'
+    osw_in_path = File.join(output_file_dir, 'in.osw')
+    osw.setSeedFile(output_file_path)
+    osw.setWeatherFile(Config::WEATHER + 'USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw')
+    osw.saveAs(osw_in_path)
+    
     cmd = "\"#{Config::CLI_PATH}\" run -w \"#{osw_in_path}\""
     assert(run_command(cmd))
 
@@ -95,10 +114,16 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
-    output_file_path = Config::OSM_OUTPUTS + "/pvav/in.osm"
+    output_file_dir = Config::OSM_OUTPUTS + 'pvav/'
+    FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
+    output_file_path = File.join(output_file_dir, 'in.osm')
     model.save(output_file_path, true)
 
-    osw_in_path = Config::OSM_OUTPUTS + '/pvav/in.osw'
+    osw_in_path = File.join(output_file_dir, 'in.osw')
+    osw.setSeedFile(output_file_path)
+    osw.setWeatherFile(Config::WEATHER + 'USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw')
+    osw.saveAs(osw_in_path)
+    
     cmd = "\"#{Config::CLI_PATH}\" run -w \"#{osw_in_path}\""
     assert(run_command(cmd))
 
@@ -119,10 +144,16 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
-    output_file_path = Config::OSM_OUTPUTS + "/vav/in.osm"
+    output_file_dir = Config::OSM_OUTPUTS + 'vav/'
+    FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
+    output_file_path = File.join(output_file_dir, 'in.osm')
     model.save(output_file_path, true)
 
-    osw_in_path = Config::OSM_OUTPUTS + '/vav/in.osw'
+    osw_in_path = File.join(output_file_dir, 'in.osw') 
+    osw.setSeedFile(output_file_path)
+    osw.setWeatherFile(Config::WEATHER + 'USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw')
+    osw.saveAs(osw_in_path)
+
     cmd = "\"#{Config::CLI_PATH}\" run -w \"#{osw_in_path}\""
     assert(run_command(cmd))
 
@@ -143,10 +174,16 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
-    output_file_path = Config::OSM_OUTPUTS + "fpfc_doas/in.osm"
+    output_file_dir = Config::OSM_OUTPUTS + "fpfc_doas/"
+    FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
+    output_file_path = File.join(output_file_dir, 'in.osm')
     model.save(output_file_path, true)
 
-    osw_in_path = Config::OSM_OUTPUTS + 'fpfc_doas/in.osw'
+    osw_in_path = File.join(output_file_dir, 'in.osw') 
+    osw.setSeedFile(output_file_path)
+    osw.setWeatherFile(Config::WEATHER + 'USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw')
+    osw.saveAs(osw_in_path)
+    
     cmd = "\"#{Config::CLI_PATH}\" run -w \"#{osw_in_path}\""
     assert(run_command(cmd))
 
@@ -167,10 +204,16 @@ class ApplyHVACSystemTest < Minitest::Test
     argument_map = {"hvac_system"=> argument}
     measure.run(model, runner, argument_map)
 
-    output_file_path = Config::OSM_OUTPUTS + "acvrf_doas/in.osm"
+    output_file_dir = Config::OSM_OUTPUTS + "acvrf_doas/"
+    FileUtils.mkdir output_file_dir unless Dir.exist? output_file_dir
+    output_file_path = File.join(output_file_dir, 'in.osm')
     model.save(output_file_path, true)
 
-    osw_in_path = Config::OSM_OUTPUTS + 'acvrf_doas/in.osw'
+    osw_in_path = File.join(output_file_dir, 'in.osw') 
+    osw.setSeedFile(output_file_path)
+    osw.setWeatherFile(Config::WEATHER + 'USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw')
+    osw.saveAs(osw_in_path)
+    
     cmd = "\"#{Config::CLI_PATH}\" run -w \"#{osw_in_path}\""
     assert(run_command(cmd))
 
