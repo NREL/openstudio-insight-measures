@@ -1,9 +1,9 @@
 class PVAVFactory
   def add_hvac_system(model, standard)
     standard.model_remove_prm_hvac(model)
-    standard.model_assign_spaces_to_stories(model)
+    OpenstudioStandards::Geometry.model_assign_spaces_to_building_stories(model)
     conditioned_zones = OSHelper.get_conditioned_zones(model, standard)
-    zones_by_story = standard.model_group_zones_by_story(model, conditioned_zones)
+    zones_by_story = OpenstudioStandards::Geometry.model_group_thermal_zones_by_building_story(model, conditioned_zones)
 
     hw_loop = standard.model_add_hw_loop(model, 'NaturalGas',
                                     dsgn_sup_wtr_temp: 140,
