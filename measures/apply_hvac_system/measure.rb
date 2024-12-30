@@ -28,11 +28,11 @@ class ApplyHVACSystem < OpenStudio::Measure::ModelMeasure
     choices << 'ACVRF + DOAS'
     choices << 'PTAC'
     choices << 'VAV'
-    choices << 'Radiant + DOAS'
+    # choices << 'Radiant + DOAS'
     choices << 'FPFC + DOAS'
     choices << 'PTHP'
     choices << 'PVAV'
-    choices << 'GSHP + DOAS'
+    # choices << 'GSHP + DOAS'
     hvac_system = OpenStudio::Measure::OSArgument.makeChoiceArgument('hvac_system', choices, true)
     hvac_system.setDisplayName('HVAC System')
     hvac_system.setDescription('This input determines the HVAC System to be applied')

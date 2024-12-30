@@ -33,7 +33,16 @@ class ApplyHVACSystemTest < Minitest::Test
   def test_argument_choices
     measure = ApplyHVACSystem.new
 
-    choices = ["ACVRF + DOAS", "PTAC", "VAV", "Radiant + DOAS", "FPFC + DOAS", "PTHP", "PVAV", "GSHP + DOAS"]
+    choices = [
+      "ACVRF + DOAS",
+      "PTAC",
+      "VAV",
+      # "Radiant + DOAS",
+      "FPFC + DOAS",
+      "PTHP",
+      "PVAV",
+      # "GSHP + DOAS"
+    ]
 
     # make an empty model
     model = OpenStudio::Model::Model.new
@@ -187,7 +196,7 @@ class ApplyHVACSystemTest < Minitest::Test
     measure.run(model, runner, argument_map)
 
     assert_equal(8, model.getZoneHVACFourPipeFanCoils.size)
-    assert_equal(8, model.getAirTerminalSingleDuctVAVNoReats)
+    assert_equal(8, model.getAirTerminalSingleDuctVAVNoReheats.size)
     assert_equal(1, model.getAirLoopHVACs.size)
     assert_equal(3, model.getPlantLoops.size) 
 
