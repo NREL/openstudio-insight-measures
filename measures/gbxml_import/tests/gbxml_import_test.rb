@@ -17,7 +17,7 @@ class GbxmlImport_Test < MiniTest::Unit::TestCase
     model = OpenStudio::Model::Model.new
 
     # create an instance of the measure
-    measure = ImportGbxml.new
+    measure = GbxmlImport.new
 
     # create runner with empty OSW
     osw = OpenStudio::WorkflowJSON.new
