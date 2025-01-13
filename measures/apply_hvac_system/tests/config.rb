@@ -5,7 +5,7 @@ module Config
   CLI_PATH = OpenStudio.getOpenStudioCLI
   OSM_FIXTURES = File.join(BASE_PATH + '/fixtures/osms/')
   WEATHER = File.join(BASE_PATH, '/fixtures/weather/')
-  OSM_OUTPUTS = File.join(BASE_PATH + '/outputs/')
+  OSM_OUTPUTS = File.join(BASE_PATH + '/output/')
 end
 
 puts Config::BASE_PATH
