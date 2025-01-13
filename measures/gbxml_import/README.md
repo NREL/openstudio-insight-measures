@@ -2,7 +2,7 @@
 
 ###### (Automatically generated documentation)
 
-# GbxmlImport
+# Gbxml Import
 
 ## Description
 Import a gbXML file

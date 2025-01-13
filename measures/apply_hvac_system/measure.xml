@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>apply_hvac_system</name>
   <uid>1903f7a8-e62b-4aa4-92b8-a51fa9ff0b80</uid>
-  <version_id>3e0b350a-2fd6-4caa-94af-8a1d8735e43c</version_id>
-  <version_modified>20190419T161540Z</version_modified>
+  <version_id>77705a6a-7372-472c-9fc9-21c0480fc98c</version_id>
+  <version_modified>2025-01-13T19:48:13Z</version_modified>
   <xml_checksum>C49A7DAB</xml_checksum>
   <class_name>ApplyHVACSystem</class_name>
   <display_name>Apply HVAC System</display_name>
@@ -31,10 +32,6 @@
           <display_name>VAV</display_name>
         </choice>
         <choice>
-          <value>Radiant + DOAS</value>
-          <display_name>Radiant + DOAS</display_name>
-        </choice>
-        <choice>
           <value>FPFC + DOAS</value>
           <display_name>FPFC + DOAS</display_name>
         </choice>
@@ -46,23 +43,11 @@
           <value>PVAV</value>
           <display_name>PVAV</display_name>
         </choice>
-        <choice>
-          <value>GSHP + DOAS</value>
-          <display_name>GSHP + DOAS</display_name>
-        </choice>
       </choices>
     </argument>
-    <argument>
-      <name>gbxml_file_name</name>
-      <display_name>gbXML filename</display_name>
-      <description>Filename or full path to gbXML file.</description>
-      <type>String</type>
-      <required>true</required>
-      <model_dependent>false</model_dependent>
-    </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Whole System</tag>
   </tags>
@@ -96,16 +81,16 @@
       <checksum>CD7F5672</checksum>
     </file>
     <file>
-      <filename>apply_hvac_system_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>2D596306</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>4A445BF7</checksum>
     </file>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>53D14E69</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>232D0477</checksum>
     </file>
     <file>
       <version>
@@ -116,19 +101,199 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>9D3F2803</checksum>
+      <checksum>E8BF2735</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>232D0477</checksum>
+      <filename>acvrf_factory.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>856B28ED</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>CAEDFFFD</checksum>
+      <filename>factory_producer.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>0B596A82</checksum>
+    </file>
+    <file>
+      <filename>fpfc_factory.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>BA1122EC</checksum>
+    </file>
+    <file>
+      <filename>os_helper.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>CBFE555B</checksum>
+    </file>
+    <file>
+      <filename>ptac_factory.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>FA811203</checksum>
+    </file>
+    <file>
+      <filename>pthp_factory.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>2FD664B5</checksum>
+    </file>
+    <file>
+      <filename>pvav_factory.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>9BFBBBD4</checksum>
+    </file>
+    <file>
+      <filename>vav_factory.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>AFE12EC4</checksum>
+    </file>
+    <file>
+      <filename>apply_hvac_system_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>4D4A1A3C</checksum>
+    </file>
+    <file>
+      <filename>config.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1F0F1D25</checksum>
+    </file>
+    <file>
+      <filename>factories/acvrf_factory_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>DB407C06</checksum>
+    </file>
+    <file>
+      <filename>factories/factory_producer_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C30D174C</checksum>
+    </file>
+    <file>
+      <filename>factories/fpfc_factory_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B439A654</checksum>
+    </file>
+    <file>
+      <filename>factories/ptac_factory_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>49FA4349</checksum>
+    </file>
+    <file>
+      <filename>factories/pthp_factory_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2D7A786E</checksum>
+    </file>
+    <file>
+      <filename>factories/pvav_factory_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>03EEEFDC</checksum>
+    </file>
+    <file>
+      <filename>factories/vav_factory_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C352318C</checksum>
+    </file>
+    <file>
+      <filename>fixtures/gbxmls/SimpleRevit.xml</filename>
+      <filetype>xml</filetype>
+      <usage_type>test</usage_type>
+      <checksum>CAB496C6</checksum>
+    </file>
+    <file>
+      <filename>fixtures/gbxmls/test.xml</filename>
+      <filetype>xml</filetype>
+      <usage_type>test</usage_type>
+      <checksum>581ABF52</checksum>
+    </file>
+    <file>
+      <filename>fixtures/gbxmls/test_703.xml</filename>
+      <filetype>xml</filetype>
+      <usage_type>test</usage_type>
+      <checksum>2DACFBD0</checksum>
+    </file>
+    <file>
+      <filename>fixtures/osms/example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>fixtures/osms/in.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>958A7354</checksum>
+    </file>
+    <file>
+      <filename>fixtures/osms/in.osw</filename>
+      <filetype>osw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>5E008994</checksum>
+    </file>
+    <file>
+      <filename>fixtures/revit_models/SimpleRevit.rvt</filename>
+      <filetype>rvt</filetype>
+      <usage_type>test</usage_type>
+      <checksum>1B077CD0</checksum>
+    </file>
+    <file>
+      <filename>fixtures/weather/USA_CO_Denver.Intl.AP.725650_TMY3.ddy</filename>
+      <filetype>ddy</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FB253570</checksum>
+    </file>
+    <file>
+      <filename>fixtures/weather/USA_CO_Denver.Intl.AP.725650_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E23378AA</checksum>
+    </file>
+    <file>
+      <filename>fixtures/weather/USA_CO_Denver.Intl.AP.725650_TMY3.stat</filename>
+      <filetype>stat</filetype>
+      <usage_type>test</usage_type>
+      <checksum>A8786025</checksum>
+    </file>
+    <file>
+      <filename>fixtures/weather/USA_MA_Boston-Logan.Intl.AP.725090_TMY3.ddy</filename>
+      <filetype>ddy</filetype>
+      <usage_type>test</usage_type>
+      <checksum>E4CBEAF0</checksum>
+    </file>
+    <file>
+      <filename>fixtures/weather/USA_MA_Boston-Logan.Intl.AP.725090_TMY3.epw</filename>
+      <filetype>epw</filetype>
+      <usage_type>test</usage_type>
+      <checksum>B65824C3</checksum>
+    </file>
+    <file>
+      <filename>fixtures/weather/USA_MA_Boston-Logan.Intl.AP.725090_TMY3.stat</filename>
+      <filetype>stat</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8657DDB9</checksum>
+    </file>
+    <file>
+      <filename>minitest_helper.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>376CB40D</checksum>
+    </file>
+    <file>
+      <filename>os_helper_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>13DD08C2</checksum>
     </file>
   </files>
 </measure>

@@ -3,11 +3,11 @@
   <schema_version>3.1</schema_version>
   <name>gbxml_import</name>
   <uid>a335136f-bad3-451d-a585-9ea31249e38b</uid>
-  <version_id>5752fd87-ac2a-4563-980a-1f6109864a0f</version_id>
-  <version_modified>2024-06-28T17:41:21Z</version_modified>
+  <version_id>36ce5b03-de19-4c8d-b3db-d8d496203b8d</version_id>
+  <version_modified>2025-01-13T18:46:36Z</version_modified>
   <xml_checksum>DA3B952E</xml_checksum>
   <class_name>GbxmlImport</class_name>
-  <display_name>GbxmlImport</display_name>
+  <display_name>Gbxml Import</display_name>
   <description>Import a gbXML file</description>
   <modeler_description>Import a gbXML file</modeler_description>
   <arguments>
@@ -90,7 +90,7 @@
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>6B4A52CA</checksum>
+      <checksum>8E177D4B</checksum>
     </file>
     <file>
       <filename>README.md.erb</filename>
@@ -107,7 +107,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>67A74842</checksum>
+      <checksum>1D4E88F9</checksum>
     </file>
     <file>
       <filename>gbXMLStandard Test Model 2016.xml</filename>
@@ -116,10 +116,10 @@
       <checksum>D39FE3DA</checksum>
     </file>
     <file>
-      <filename>import_gbxml_test.rb</filename>
+      <filename>gbxml_import_test.rb</filename>
       <filetype>rb</filetype>
       <usage_type>test</usage_type>
-      <checksum>3F13F2CF</checksum>
+      <checksum>41FF7E38</checksum>
     </file>
   </files>
 </measure>
