@@ -60,7 +60,6 @@ class SetOperatingSchedules < OpenStudio::Measure::ModelMeasure
     runner.registerInitialCondition("The building started with #{model.getScheduleRulesets.size} ruleset schedules.")
 
     # get hours of operation
-    # OsLibInsight.model_infer_hours_of_operation_building(model, invert_res: false,gen_occ_profile: true)
     OpenstudioStandards::Schedules.model_infer_hours_of_operation_building(model, invert_res: false, gen_occ_profile: true)
 
     # report back hours of operation
