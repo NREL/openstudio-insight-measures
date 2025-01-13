@@ -1,9 +1,10 @@
+<?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>set_operating_schedules</name>
   <uid>88b8b949-4ea1-47e3-8cd2-14469eb830e4</uid>
-  <version_id>74e3714a-aae9-42cc-9985-d8277c78b081</version_id>
-  <version_modified>20190405T044226Z</version_modified>
+  <version_id>7630f6c2-259a-4282-9673-43e7785d8f13</version_id>
+  <version_modified>2025-01-13T19:44:21Z</version_modified>
   <xml_checksum>FC9586A7</xml_checksum>
   <class_name>SetOperatingSchedules</class_name>
   <display_name>Set Operating Schedules</display_name>
@@ -39,11 +40,15 @@
           <value>24/7</value>
           <display_name>24/7</display_name>
         </choice>
+        <choice>
+          <value>None</value>
+          <display_name>None</display_name>
+        </choice>
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Whole Building.Whole Building Schedules</tag>
   </tags>
@@ -77,40 +82,16 @@
       <checksum>CD7F5672</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
-    </file>
-    <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>53D14E69</checksum>
-    </file>
-    <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
       <checksum>4D62663E</checksum>
     </file>
     <file>
-      <filename>insight_temp_hoo.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>5B3AFD92</checksum>
-    </file>
-    <file>
-      <filename>set_operating_schedules_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>C554A174</checksum>
-    </file>
-    <file>
-      <filename>os_lib_schedules.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>803AFB61</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
     </file>
     <file>
       <version>
@@ -121,7 +102,19 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>2E4FBE45</checksum>
+      <checksum>88324F7E</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>set_operating_schedules_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>C554A174</checksum>
     </file>
   </files>
 </measure>

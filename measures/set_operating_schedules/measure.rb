@@ -3,8 +3,7 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
-require "#{File.dirname(__FILE__)}/resources/os_lib_schedules"
-require "#{File.dirname(__FILE__)}/resources/insight_temp_hoo"
+require 'openstudio-standards'
 
 # start the measure
 class SetOperatingSchedules < OpenStudio::Measure::ModelMeasure
@@ -61,10 +60,11 @@ class SetOperatingSchedules < OpenStudio::Measure::ModelMeasure
     runner.registerInitialCondition("The building started with #{model.getScheduleRulesets.size} ruleset schedules.")
 
     # get hours of operation
-    OsLibInsight.model_infer_hours_of_operation_building(model, invert_res: false,gen_occ_profile: true)
+    # OsLibInsight.model_infer_hours_of_operation_building(model, invert_res: false,gen_occ_profile: true)
+    OpenstudioStandards::Schedules.model_infer_hours_of_operation_building(model, invert_res: false, gen_occ_profile: true)
 
     # report back hours of operation
-    hours_of_operation_hash = OsLibInsight.space_hours_of_operation(model.getSpaces.first)
+    hours_of_operation_hash = OpenstudioStandards::Space.space_hours_of_operation(model.getSpaces.first)
     base_start_hoo = hours_of_operation_hash[-1][:hoo_start]
     base_finish_hoo = hours_of_operation_hash[-1][:hoo_end]
     base_length = hours_of_operation_hash[-1][:hoo_hours]
@@ -127,7 +127,7 @@ class SetOperatingSchedules < OpenStudio::Measure::ModelMeasure
 
       # get min-max values
       if target_days < 7
-        min_max = OsLib_Schedules.getMinMaxAnnualProfileValue(model, schedule)
+        min_max = OpenstudioStandards::Schedules.schedule_get_min_max(schedule)
         # use min value unless this schedule is used for thermostat cooling setpoint
         if cooling_setoint_schedules.uniq.include?(schedule)
           non_opp_val_target = min_max['max']
@@ -173,7 +173,7 @@ class SetOperatingSchedules < OpenStudio::Measure::ModelMeasure
       end
 
       # shift and expand schedules
-      OsLib_Schedules.adjust_hours_of_operation_for_schedule_ruleset(runner, model, schedule, inputs)
+      OpenstudioStandards::Schedules.schedule_ruleset_adjust_hours_of_operation(schedule, inputs)
 
     end
 
