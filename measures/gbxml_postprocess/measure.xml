@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
   <name>gbxml_postprocess</name>
   <uid>305ff045-bf96-46b7-afdc-586779961252</uid>
   <version_id>7d855e06-0c14-4a5c-aec6-c6f1be9dc75d</version_id>

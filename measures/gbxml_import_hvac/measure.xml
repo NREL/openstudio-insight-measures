@@ -3,8 +3,8 @@
   <schema_version>3.1</schema_version>
   <name>gbxml_import_hvac</name>
   <uid>f82940f7-8046-4fd1-9dbb-df6411e86de6</uid>
-  <version_id>bc5cfda7-ac7f-4dc8-a41d-652bc54dc5df</version_id>
-  <version_modified>2024-06-28T17:52:43Z</version_modified>
+  <version_id>3dac6339-4f13-4d22-906b-4b64868a767d</version_id>
+  <version_modified>2025-01-13T18:46:37Z</version_modified>
   <xml_checksum>D8922A73</xml_checksum>
   <class_name>GbxmlImportHvac</class_name>
   <display_name>Gbxml Import Hvac</display_name>
@@ -69,7 +69,7 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>4577C3E6</checksum>
+      <checksum>D5639E28</checksum>
     </file>
     <file>
       <filename>acb.rb</filename>
