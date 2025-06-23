@@ -3,6 +3,9 @@
 # see the URL below for information on how to write OpenStudio measures
 # http://nrel.github.io/OpenStudio-user-documentation/reference/measure_writing_guide/
 
+require 'oga'
+require_relative 'resources/windowtype'
+
 # start the measure
 class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < OpenStudio::Measure::ModelMeasure
   # human readable name
@@ -13,12 +16,12 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
 
   # human readable description
   def description
-    return 'Replace exterior wall, roof, or window constructions, with construction from a resource file.'
+    return 'Replace exterior wall, roof, or window constructions, with an existing construction from the model or a construction imported from a resource file.'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This will only have an argument for target construction. How that construction is tagged in the resource file will determine which surface types the construction is applied to.'
+    return 'This will take an argument for target construction from the existing model or to import a construction from a resource GbXML file. How that construction is applied in the model or tagged in the resource file will determine which surface types the construction is applied to. If both arguments are entered, preference will be given to the existing model construction.'
   end
 
   # define the arguments that the user will input
@@ -29,28 +32,54 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
     construction_handles = OpenStudio::StringVector.new
     construction_display_names = OpenStudio::StringVector.new
 
-    #load construction library
-    translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/resources/insight_constructions.osm")
-    model2 = translator.loadModel(path)
-    model2 = model2.get
-
-    #putting constructions into hash
-    construction_args = model2.getConstructions
+    # get existing contructions
+    construction_args = model.getConstructions
     construction_args_hash = {}
     construction_args.each do |construction_arg|
       construction_args_hash[construction_arg.name.to_s] = construction_arg
     end
 
-    #looping through sorted hash of model objects
-    construction_args_hash.sort.map do |key,value|
+    construction_args_hash.sort.map do |key, value|
       construction_handles << value.handle.to_s
       construction_display_names << key
     end
 
+    # make choice arg for existing construction
+    existing_model_cons = OpenStudio::Ruleset::OSArgument::makeChoiceArgument('existing_cons', construction_handles, construction_display_names, false)
+    existing_model_cons.setDisplayName('Target Existing Model Construction to use for Exterior Surface Replacement')
+    args << existing_model_cons 
+    #
+    # #load construction library
+    # translator = OpenStudio::OSVersion::VersionTranslator.new
+    # path = OpenStudio::Path.new(File.dirname(__FILE__) + "/resources/insight_constructions.osm")
+    # model2 = translator.loadModel(path)
+    # model2 = model2.get
+
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/resources/Constructions.xml')
+    xml_doc = File.read(path.to_s)
+    parsed_xml = Oga.parse_xml(xml_doc)
+    construction_names = parsed_xml.xpath("//Construction[@surfaceType='ExteriorWall' or @surfaceType='Roof']/Name").map(&:text)
+    construction_names += parsed_xml.xpath("//WindowType[@openingType='FixedWindow']/Name").map(&:text)
+
+    # nonunique names
+    
+    # #putting constructions into hash
+    # construction_args = model2.getConstructions
+    # construction_args_hash = {}
+    # construction_args.each do |construction_arg|
+    #   construction_args_hash[construction_arg.name.to_s] = construction_arg
+    # end
+
+    # #looping through sorted hash of model objects
+    # construction_args_hash.sort.map do |key,value|
+    #   construction_handles << value.handle.to_s
+    #   construction_display_names << key
+    # end
+
     #make a choice argument for new construction
-    new_construction = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("new_construction", construction_handles, construction_display_names,true)
-    new_construction.setDisplayName("Target Construction for Exterior Surface Replacement")
+    # new_construction = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("new_construction", construction_handles, construction_display_names,true)
+    new_construction = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("new_construction", construction_names, false)
+    new_construction.setDisplayName("Target Construction from Library to use for Exterior Surface Replacement")
     args << new_construction
 
     # make choice argument for facade
@@ -79,64 +108,100 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
       return false
     end
 
-    # load resources model
-    translator = OpenStudio::OSVersion::VersionTranslator.new
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/resources/insight_constructions.osm")
-    model2 = translator.loadModel(path)
-    model2 = model2.get
+    # # load resources model
+    # translator = OpenStudio::OSVersion::VersionTranslator.new
+    # path = OpenStudio::Path.new(File.dirname(__FILE__) + "/resources/insight_constructions.osm")
+    # model2 = translator.loadModel(path)
+    # model2 = model2.get
+
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/resources/Constructions.xml')
+    # parse gbxml to retrieve un-translated attributes
+    gbxml = Oga.parse_xml(File.read(path.to_s)) 
+    # translate gbxml to OpenStudio model
+    translator = OpenStudio::GbXML::GbXMLReverseTranslator.new
+    model2 = translator.loadModel(path).get
 
     #assign the user inputs to variables
-    new_construction = runner.getOptionalWorkspaceObjectChoiceValue("new_construction", user_arguments, model2)
+    new_construction_name = runner.getStringArgumentValue("new_construction", user_arguments)
     facade = runner.getStringArgumentValue('facade', user_arguments)
 
+    new_cons_obj_name = gbxml.at_xpath("//Name[text()='#{new_construction_name}']").parent['id']
+    selected_construction = model2.getConstructionByName(new_cons_obj_name)
     #check the new construction for reasonableness
-    if new_construction.empty?
-      handle = runner.getStringArgumentValue("new_construction", user_arguments)
-      if handle.empty?
-        runner.registerError("No construction was chosen.")
-      else
-        runner.registerError("The selected construction with handle '#{handle}' was not found in the model. It may have been removed by another measure.")
-      end
+    if selected_construction.empty?
+      runner.registerError("The selected construction with display name '#{new_construction_name}' was not found in the model. It may have been removed by another measure.")
       return false
     else
-      if not new_construction.get.to_Construction.empty?
-        new_construction = new_construction.get.to_Construction.get
+      if not selected_construction.get.to_Construction.empty?
+        selected_construction = selected_construction.get.to_Construction.get
       else
         runner.registerError("Script Error - argument not showing up as construction.")
         return false
       end
     end
 
-    # clone construction into model
-    if not model2.getConstructionByName(new_construction.name.to_s).is_initialized
-      runner.registerError('Did not find the expected construction in library.')
-      return false
+    # change construction name based on additionalProperties
+    display_name = selected_construction.additionalProperties.getFeatureAsString('displayName')
+    if display_name.is_initialized
+      display_name = display_name.get
+      display_name_clean = display_name.gsub(',',' |') + ' Construction'
+      runner.registerInfo("Changing imported construction name from  #{selected_construction.name} to #{display_name_clean}")
+      selected_construction.setName(display_name_clean)
     end
-    selected_construction = model2.getConstructionByName(new_construction.name.to_s).get
+
     new_construction = selected_construction.clone(model).to_Construction.get
 
-    # identify construction type selected
-    if new_construction.standardsInformation.intendedSurfaceType.is_initialized
-      const_int_use = new_construction.standardsInformation.intendedSurfaceType.get
+    # # identify construction type selected
+    # if new_construction.standardsInformation.intendedSurfaceType.is_initialized
+    #   const_int_use = new_construction.standardsInformation.intendedSurfaceType.get
+    # else
+    #   runner.registerError("Selected construction named #{new_construction.name} is not tagged with and intended surface type and cannot be applied to surfaces in the model.")
+    #   return false
+    # end
+
+    # identify contruction type from gbxml attributes
+    obj = gbxml.at_xpath("//Name[text()='#{new_construction_name}']").parent
+    # obj_attrs = obj.values
+    const_int_use = nil
+    case obj.name
+    when 'Construction'
+      const_int_use = obj.get('surfaceType')
+    when 'WindowType'
+      const_int_use = obj.get('openingType')
     else
       runner.registerError("Selected construction named #{new_construction.name} is not tagged with and intended surface type and cannot be applied to surfaces in the model.")
       return false
     end
 
-    # report choice and store variable
-    runner.registerInfo("Selected #{new_construction.name}, #{const_int_use}")
+    runner.registerInfo("Selected #{new_construction_name} in GbXML object #{obj.name} with surface/opening type: #{const_int_use}")
     surf_type = nil
     sub_surf_type = []
-    if const_int_use == "ExteriorWall"
-      surf_type = "Wall"
-    elsif const_int_use == "ExteriorRoof"
-      surf_type = "RoofCeiling"
-    elsif const_int_use == "ExteriorWindow"
-      sub_surf_type = ["FixedWindow","OperableWindow"] # GlassDoor?
+    case const_int_use
+    when 'ExteriorWall'
+      surf_type = 'Wall'
+    when 'Roof'
+      surf_type = 'RoofCeiling'
+    when 'FixedWindow'
+      sub_surf_type = ['FixedWindow', 'OperableWindow']
     else
-      runner.registerError("Selected construction named #{new_construction.name} tag of #{const_int_use} is not expected by this measure.")
+      runner.registerError("Selected construction named #{new_construction_name} with attributes #{obj_attrs} not expected by this measure.")
       return false
     end
+
+    # # report choice and store variable
+    # runner.registerInfo("Selected #{new_construction.name}, #{const_int_use}")
+    # surf_type = nil
+    # sub_surf_type = []
+    # if const_int_use == "ExteriorWall"
+    #   surf_type = "Wall"
+    # elsif const_int_use == "ExteriorRoof"
+    #   surf_type = "RoofCeiling"
+    # elsif const_int_use == "ExteriorWindow"
+    #   sub_surf_type = ["FixedWindow","OperableWindow"] # GlassDoor?
+    # else
+    #   runner.registerError("Selected construction named #{new_construction.name} tag of #{const_int_use} is not expected by this measure.")
+    #   return false
+    # end
 
     # store initial constructions used
     ext_constructions = []

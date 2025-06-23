@@ -1,97 +1,2336 @@
+<?xml version="1.0"?>
 <measure>
-  <schema_version>3.0</schema_version>
+  <schema_version>3.1</schema_version>
+  <error>Failed to query information from measure 'ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile' from 'C:/Repos/NREL/openstudio-insight-measures/measures/replace_exterior_constructions_with_a_different_construction_from_resource_file/measure.rb': SWIG director method error. Errno::ENOENT: No such file or directory @ rb_sysopen - C:/Repos/NREL/openstudio-insight-measures/measures/replace_exterior_constructions_with_a_different_construction_from_resource_file/resources/Constructions.xml
+
+Traceback (most recent call last):
+eval:448:in `read'
+eval:448:in `read'
+C:/Repos/NREL/openstudio-insight-measures/measures/replace_exterior_constructions_with_a_different_construction_from_resource_file/measure.rb:58:in `arguments'
+</error>
   <name>replace_exterior_constructions_with_a_different_construction_from_resource_file</name>
   <uid>f9ed89dc-789e-411a-844a-72edf25e13c1</uid>
-  <version_id>bb8e5451-fa36-460c-bcf9-d99f05882f5d</version_id>
-  <version_modified>20190325T195203Z</version_modified>
+  <version_id>57d4a28c-2802-45c4-adce-9f9f6d220349</version_id>
+  <version_modified>2025-01-13T19:48:18Z</version_modified>
   <xml_checksum>2609226D</xml_checksum>
   <class_name>ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile</class_name>
   <display_name>Replace Exterior Constructions with a Different Construction from Resource File</display_name>
-  <description>Replace exterior wall, roof, or window constructions, with construction from a resource file.</description>
-  <modeler_description>This will only have an argument for target construction. How that construction is tagged in the resource file will determine which surface types the construction is applied to.</modeler_description>
+  <description>Replace exterior wall, roof, or window constructions, with an existing construction from the model or a construction imported from a resource file.</description>
+  <modeler_description>This will take an argument for target construction from the existing model or to import a construction from a resource GbXML file. How that construction is applied in the model or tagged in the resource file will determine which surface types the construction is applied to. If both arguments are entered, preference will be given to the existing model construction.</modeler_description>
   <arguments>
     <argument>
-      <name>new_construction</name>
-      <display_name>Target Construction for Exterior Surface Replacement</display_name>
+      <name>existing_cons</name>
+      <display_name>Target Existing Model Construction to use for Exterior Surface Replacement</display_name>
       <type>Choice</type>
-      <required>true</required>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>new_construction</name>
+      <display_name>Target Construction from Library to use for Exterior Surface Replacement</display_name>
+      <type>Choice</type>
+      <required>false</required>
       <model_dependent>false</model_dependent>
       <choices>
         <choice>
-          <value>{6f1b869f-2012-46fe-b083-e94fbfa3d1f0}</value>
-          <display_name>Roof 10.25-inch SIP</display_name>
+          <value>Flat roof - A</value>
+          <display_name>Flat roof - A</display_name>
         </choice>
         <choice>
-          <value>{eb293dcc-b1a9-4ded-b9dc-e16aa2fa7317}</value>
-          <display_name>Roof R10</display_name>
+          <value>Flat roof - B</value>
+          <display_name>Flat roof - B</display_name>
         </choice>
         <choice>
-          <value>{43e0789a-a7b3-433e-95e2-e47e212dabf4}</value>
-          <display_name>Roof R15</display_name>
+          <value>Flat roof - C</value>
+          <display_name>Flat roof - C</display_name>
         </choice>
         <choice>
-          <value>{adccd0ae-8573-4842-ba9b-ef5dc878f720}</value>
-          <display_name>Roof R19</display_name>
+          <value>Sloping roof including loft</value>
+          <display_name>Sloping roof including loft</display_name>
         </choice>
         <choice>
-          <value>{3e72e9ab-4abe-494f-867d-c539a061f10c}</value>
-          <display_name>Roof R38</display_name>
+          <value>Sloping roof including loft</value>
+          <display_name>Sloping roof including loft</display_name>
         </choice>
         <choice>
-          <value>{8ea0c82c-c57b-4a7e-8c5f-548235e67e34}</value>
-          <display_name>Roof R60</display_name>
+          <value>Lightweight curtain roof</value>
+          <display_name>Lightweight curtain roof</display_name>
         </choice>
         <choice>
-          <value>{5232c1ef-1720-465f-b464-7e368d1940f6}</value>
-          <display_name>Roof Uninsulated</display_name>
+          <value>Lightweight curtain roof</value>
+          <display_name>Lightweight curtain roof</display_name>
         </choice>
         <choice>
-          <value>{9bd46ce0-6ac7-4364-aac6-c956051c2353}</value>
-          <display_name>Wall 12.25-inch SIP</display_name>
+          <value>Sloping roof - domestic</value>
+          <display_name>Sloping roof - domestic</display_name>
         </choice>
         <choice>
-          <value>{0487e6fa-2610-4928-9d68-2b7beb444e3f}</value>
-          <display_name>Wall 14-inch ICF</display_name>
+          <value>Un-insulated flat roof</value>
+          <display_name>Un-insulated flat roof</display_name>
         </choice>
         <choice>
-          <value>{36f15ec4-6184-4ba7-a526-e31938ba3100}</value>
-          <display_name>Wall R13 Metal</display_name>
+          <value>Super-insulated flat roof</value>
+          <display_name>Super-insulated flat roof</display_name>
         </choice>
         <choice>
-          <value>{6dbb9314-db53-4ecc-b069-2fcb35a01187}</value>
-          <display_name>Wall R13 Wood</display_name>
+          <value>Roof terrace system</value>
+          <display_name>Roof terrace system</display_name>
         </choice>
         <choice>
-          <value>{4249948e-dfc1-460c-a88f-31a9c6310855}</value>
-          <display_name>Wall R13+R10 Metal</display_name>
+          <value>Roof terrace system</value>
+          <display_name>Roof terrace system</display_name>
         </choice>
         <choice>
-          <value>{339d183b-3ee0-48b5-ad8f-1cfb9fe78f66}</value>
-          <display_name>Wall R2 CMU</display_name>
+          <value>Steel sheet with 2 in insulation</value>
+          <display_name>Steel sheet with 2 in insulation</display_name>
         </choice>
         <choice>
-          <value>{8e868180-4b07-4eb5-b745-a2cc8a3ee9dd}</value>
-          <display_name>Wall R38 Wood</display_name>
+          <value>Steel sheet with 1 in insulation</value>
+          <display_name>Steel sheet with 1 in insulation</display_name>
         </choice>
         <choice>
-          <value>{1cc955b2-25cf-4944-884f-33706a2f1d34}</value>
-          <display_name>Wall Uninsulated</display_name>
+          <value>Steel sheet with 2 in insulation</value>
+          <display_name>Steel sheet with 2 in insulation</display_name>
         </choice>
         <choice>
-          <value>{8dd80eb0-e73a-424a-9221-c0645da9c3e4}</value>
-          <display_name>Window Dbl LoE</display_name>
+          <value>Steel sheet with 1 in insulation</value>
+          <display_name>Steel sheet with 1 in insulation</display_name>
         </choice>
         <choice>
-          <value>{82044b30-674f-49e6-8f22-ab056ecb6ecd}</value>
-          <display_name>Window Sgl Clr</display_name>
+          <value>Steel sheet with 4 in insulation</value>
+          <display_name>Steel sheet with 4 in insulation</display_name>
         </choice>
         <choice>
-          <value>{2242731d-dd35-4640-9337-07f154969aa5}</value>
-          <display_name>Window Trp Clr</display_name>
+          <value>Steel sheet with 8 in insulation</value>
+          <display_name>Steel sheet with 8 in insulation</display_name>
         </choice>
         <choice>
-          <value>{e857032b-914c-4b3e-b37c-9a314d31ccd6}</value>
-          <display_name>Window Trp LoE</display_name>
+          <value>Steel sheet with 12 in insulation</value>
+          <display_name>Steel sheet with 12 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Stone chipping, asphalt, screed, heavy concrete block</value>
+          <display_name>Stone chipping, asphalt, screed, heavy concrete block</display_name>
+        </choice>
+        <choice>
+          <value>Stone chipping, asphalt, screed, light concrete block</value>
+          <display_name>Stone chipping, asphalt, screed, light concrete block</display_name>
+        </choice>
+        <choice>
+          <value>Asphalt, screed, dense cast concrete, dense plaster</value>
+          <display_name>Asphalt, screed, dense cast concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Asphalt, aerated concrete slab, dense plaster</value>
+          <display_name>Asphalt, aerated concrete slab, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Asphalt, fiberboard, aced, air, aced</value>
+          <display_name>Asphalt, fiberboard, aced, air, aced</display_name>
+        </choice>
+        <choice>
+          <value>Asphalt, fiberboard, gypsum</value>
+          <display_name>Asphalt, fiberboard, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>Asphalt, fiberboard, 1 in batting, gypsum</value>
+          <display_name>Asphalt, fiberboard, 1 in batting, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>Asphalt, fiberboard, 2 in batting, gypsum</value>
+          <display_name>Asphalt, fiberboard, 2 in batting, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>3/4 in asphalt 1/2 in fiberboard 1 in air 3 in batt 3/8 in gyp.</value>
+          <display_name>3/4 in asphalt 1/2 in fiberboard 1 in air 3 in batt 3/8 in gyp.</display_name>
+        </choice>
+        <choice>
+          <value>3/4 in asphalt 1/2 in fiberboard 2 in EPS slab 1 in air 3/8 in gyp.</value>
+          <display_name>3/4 in asphalt 1/2 in fiberboard 2 in EPS slab 1 in air 3/8 in gyp.</display_name>
+        </choice>
+        <choice>
+          <value>3/4 in asphalt 1/2 in fiberboard 2 in EPS slab 1 in air 3/8 in gyp.</value>
+          <display_name>3/4 in asphalt 1/2 in fiberboard 2 in EPS slab 1 in air 3/8 in gyp.</display_name>
+        </choice>
+        <choice>
+          <value>3/4 in asphalt 1/2 in screed 2 in wood wool slab 1 in air 3/8 in gyp.</value>
+          <display_name>3/4 in asphalt 1/2 in screed 2 in wood wool slab 1 in air 3/8 in gyp.</display_name>
+        </choice>
+        <choice>
+          <value>3/4 in felt / bitumen 1 in EPS slab 1/8 in metal deck</value>
+          <display_name>3/4 in felt / bitumen 1 in EPS slab 1/8 in metal deck</display_name>
+        </choice>
+        <choice>
+          <value>4 in wood with 2 in insulation</value>
+          <display_name>4 in wood with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 1/2 in wood with 2 in insulation</value>
+          <display_name>2 1/2 in wood with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in wood with 2 in insulation</value>
+          <display_name>4 in wood with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in wood with 1 in insulation</value>
+          <display_name>4 in wood with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 1/2 in wood with 1 in insulation</value>
+          <display_name>2 1/2 in wood with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>1 in wood with 1 in insulation</value>
+          <display_name>1 in wood with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in lightweight concrete</value>
+          <display_name>8 in lightweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>6 in lightweight concrete</value>
+          <display_name>6 in lightweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete</value>
+          <display_name>4 in lightweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>6 in heavyweight concrete with 2 in insulation</value>
+          <display_name>6 in heavyweight concrete with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete with 2 in insulation</value>
+          <display_name>4 in heavyweight concrete with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 in heavyweight concrete with 2 in insulation</value>
+          <display_name>2 in heavyweight concrete with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>6 in heavyweight concrete with 1 in insulation</value>
+          <display_name>6 in heavyweight concrete with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete with 1 in insulation</value>
+          <display_name>4 in heavyweight concrete with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 in heavyweight concrete with 1 in insulation</value>
+          <display_name>2 in heavyweight concrete with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in wood with 2 in insulation</value>
+          <display_name>4 in wood with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 1/2 in wood with 2 in insulation</value>
+          <display_name>2 1/2 in wood with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>1 in wood with 2 in insulation</value>
+          <display_name>1 in wood with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in wood with 1 in insulation</value>
+          <display_name>4 in wood with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 1/2 in wood with 1 in insulation</value>
+          <display_name>2 1/2 in wood with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>1 in wood with 1 in insulation</value>
+          <display_name>1 in wood with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in lightweight concrete</value>
+          <display_name>8 in lightweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>6 in lightweight concrete</value>
+          <display_name>6 in lightweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete</value>
+          <display_name>4 in lightweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>6 in heavyweight concrete with 2 in insulation</value>
+          <display_name>6 in heavyweight concrete with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete with 2 in insulation</value>
+          <display_name>4 in heavyweight concrete with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 in heavyweight concrete with 2 in insulation</value>
+          <display_name>2 in heavyweight concrete with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>6 in heavyweight concrete with 1 in insulation</value>
+          <display_name>6 in heavyweight concrete with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete with 1 in insulation</value>
+          <display_name>4 in heavyweight concrete with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 in heavyweight concrete with 1 in insulation</value>
+          <display_name>2 in heavyweight concrete with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 in heavyweight concrete with 4 in insulation</value>
+          <display_name>2 in heavyweight concrete with 4 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete with 4 in insulation</value>
+          <display_name>4 in heavyweight concrete with 4 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>6 in heavyweight concrete with 4 in insulation</value>
+          <display_name>6 in heavyweight concrete with 4 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>6 in heavyweight concrete with 6 in insulation</value>
+          <display_name>6 in heavyweight concrete with 6 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>6 in heavyweight concrete with 9 in insulation</value>
+          <display_name>6 in heavyweight concrete with 9 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>6 in heavyweight concrete with 12 in insulation</value>
+          <display_name>6 in heavyweight concrete with 12 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in wood with 4 in insulation</value>
+          <display_name>4 in wood with 4 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in wood with 8 in insulation</value>
+          <display_name>4 in wood with 8 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in wood with 12 in insulation</value>
+          <display_name>4 in wood with 12 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Concrete ballast, membrane, sheathing, insulation, metal deck</value>
+          <display_name>Concrete ballast, membrane, sheathing, insulation, metal deck</display_name>
+        </choice>
+        <choice>
+          <value>Asphalt shingles, wood sheathing, R-19 batt insulation, gyp board</value>
+          <display_name>Asphalt shingles, wood sheathing, R-19 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Slate or tile, wood sheathing, R-19 batt insulation, gyp board</value>
+          <display_name>Slate or tile, wood sheathing, R-19 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Wood shingles, wood sheathing, R-19 batt insulation, gyp board</value>
+          <display_name>Wood shingles, wood sheathing, R-19 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Metal roof, R-19 batt insulation, gyp board</value>
+          <display_name>Metal roof, R-19 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Metal roof, R-19 batt insulation, suspended acoustical ceiling</value>
+          <display_name>Metal roof, R-19 batt insulation, suspended acoustical ceiling</display_name>
+        </choice>
+        <choice>
+          <value>Metal roof, R-19 batt insulation</value>
+          <display_name>Metal roof, R-19 batt insulation</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-10 insulation board, wood deck</value>
+          <display_name>Membrane, sheathing, R-10 insulation board, wood deck</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-10 insulation, wood deck, suspended ceiling</value>
+          <display_name>Membrane, sheathing, R-10 insulation, wood deck, suspended ceiling</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-10 insulation board, metal deck</value>
+          <display_name>Membrane, sheathing, R-10 insulation board, metal deck</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-10 insulation, metal deck, suspended ceiling</value>
+          <display_name>Membrane, sheathing, R-10 insulation, metal deck, suspended ceiling</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-15 insulation board, metal deck</value>
+          <display_name>Membrane, sheathing, R-15 insulation board, metal deck</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-10 plus R-15 insulation boards, metal deck</value>
+          <display_name>Membrane, sheathing, R-10 plus R-15 insulation boards, metal deck</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-15 insulation, 4 in light concrete</value>
+          <display_name>Membrane, sheathing, R-15 insulation, 4 in light concrete</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-15 insulation, 6 in light concrete</value>
+          <display_name>Membrane, sheathing, R-15 insulation, 6 in light concrete</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-15 insulation, 8 in light concrete</value>
+          <display_name>Membrane, sheathing, R-15 insulation, 8 in light concrete</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-15 insulation, 6 in heavy concrete</value>
+          <display_name>Membrane, sheathing, R-15 insulation, 6 in heavy concrete</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, sheathing, R-15 insulation, 8 in heavy concrete</value>
+          <display_name>Membrane, sheathing, R-15 insulation, 8 in heavy concrete</display_name>
+        </choice>
+        <choice>
+          <value>Membrane, concrete, R-19 insulation, suspended ceiling</value>
+          <display_name>Membrane, concrete, R-19 insulation, suspended ceiling</display_name>
+        </choice>
+        <choice>
+          <value>R-10 over roof deck</value>
+          <display_name>R-10 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-15 over roof deck</value>
+          <display_name>R-15 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-19 wood framed roof</value>
+          <display_name>R-19 wood framed roof</display_name>
+        </choice>
+        <choice>
+          <value>R-20 over roof deck</value>
+          <display_name>R-20 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-25 over roof deck</value>
+          <display_name>R-25 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-30 wood frame roof</value>
+          <display_name>R-30 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-38 wood frame roof</value>
+          <display_name>R-38 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-49 wood frame roof</value>
+          <display_name>R-49 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-60 wood frame roof</value>
+          <display_name>R-60 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-30 over roof deck</value>
+          <display_name>R-30 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-15 over roof deck - cool roof</value>
+          <display_name>R-15 over roof deck - cool roof</display_name>
+        </choice>
+        <choice>
+          <value>R-20 over roof deck - cool roof</value>
+          <display_name>R-20 over roof deck - cool roof</display_name>
+        </choice>
+        <choice>
+          <value>R-18.7 over roof deck</value>
+          <display_name>R-18.7 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-30 over roof deck - cool roof</value>
+          <display_name>R-30 over roof deck - cool roof</display_name>
+        </choice>
+        <choice>
+          <value>R-18.7 over roof deck - cool roof</value>
+          <display_name>R-18.7 over roof deck - cool roof</display_name>
+        </choice>
+        <choice>
+          <value>R-38 over roof deck</value>
+          <display_name>R-38 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-38 over roof deck-cool roof</value>
+          <display_name>R-38 over roof deck-cool roof</display_name>
+        </choice>
+        <choice>
+          <value>R-50 over roof deck</value>
+          <display_name>R-50 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-50 over roof deck-cool roof</value>
+          <display_name>R-50 over roof deck-cool roof</display_name>
+        </choice>
+        <choice>
+          <value>R-13 wood frame roof</value>
+          <display_name>R-13 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-22 wood frame roof</value>
+          <display_name>R-22 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-26 wood frame roof</value>
+          <display_name>R-26 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-43 wood frame roof</value>
+          <display_name>R-43 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-52 wood frame roof</value>
+          <display_name>R-52 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-11 wood frame roof</value>
+          <display_name>R-11 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-15 wood frame roof</value>
+          <display_name>R-15 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-0 wood or steel frame roof</value>
+          <display_name>R-0 wood or steel frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-0 over roof deck</value>
+          <display_name>R-0 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-60 over roof deck</value>
+          <display_name>R-60 over roof deck</display_name>
+        </choice>
+        <choice>
+          <value>R-19 insulation over concret deck</value>
+          <display_name>R-19 insulation over concret deck</display_name>
+        </choice>
+        <choice>
+          <value>R-38 attic ceiling</value>
+          <display_name>R-38 attic ceiling</display_name>
+        </choice>
+        <choice>
+          <value>R-30 attic ceiling</value>
+          <display_name>R-30 attic ceiling</display_name>
+        </choice>
+        <choice>
+          <value>R-45 attic ceiling</value>
+          <display_name>R-45 attic ceiling</display_name>
+        </choice>
+        <choice>
+          <value>R-11 wood frame roof</value>
+          <display_name>R-11 wood frame roof</display_name>
+        </choice>
+        <choice>
+          <value>R-22 insulated panels</value>
+          <display_name>R-22 insulated panels</display_name>
+        </choice>
+        <choice>
+          <value>R-28 insulated panels</value>
+          <display_name>R-28 insulated panels</display_name>
+        </choice>
+        <choice>
+          <value>R-36 insulated panels</value>
+          <display_name>R-36 insulated panels</display_name>
+        </choice>
+        <choice>
+          <value>Ballast, 2 in polystyrene, screed, concrete, plaster</value>
+          <display_name>Ballast, 2 in polystyrene, screed, concrete, plaster</display_name>
+        </choice>
+        <choice>
+          <value>Ballast, 4 in polystyrene, screed, concrete, plaster</value>
+          <display_name>Ballast, 4 in polystyrene, screed, concrete, plaster</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, screed, cast concrete, dense plaster</value>
+          <display_name>Waterproof covering, screed, cast concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, polyurethane, screed, concrete, plaster</value>
+          <display_name>Waterproof covering, polyurethane, screed, concrete, plaster</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, polyurethane, screed, concrete, plaster</value>
+          <display_name>Waterproof covering, polyurethane, screed, concrete, plaster</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, polyurethane, screed, concrete, plaster</value>
+          <display_name>Waterproof covering, polyurethane, screed, concrete, plaster</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, timber decking, plasterboard</value>
+          <display_name>Waterproof covering, timber decking, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, mineral fiber insulation, plasterboard</value>
+          <display_name>Waterproof covering, mineral fiber insulation, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, 1 1/4 in polyurethane, decking, plasterboard</value>
+          <display_name>Waterproof covering, 1 1/4 in polyurethane, decking, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, 4 in polyurethane, decking, plasterboard</value>
+          <display_name>Waterproof covering, 4 in polyurethane, decking, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Waterproof covering, 8 in polyurethane, decking, plasterboard</value>
+          <display_name>Waterproof covering, 8 in polyurethane, decking, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Standard wall construction - A</value>
+          <display_name>Standard wall construction - A</display_name>
+        </choice>
+        <choice>
+          <value>Standard wall construction - B</value>
+          <display_name>Standard wall construction - B</display_name>
+        </choice>
+        <choice>
+          <value>Standard wall construction - C</value>
+          <display_name>Standard wall construction - C</display_name>
+        </choice>
+        <choice>
+          <value>Brick / block wall</value>
+          <display_name>Brick / block wall</display_name>
+        </choice>
+        <choice>
+          <value>Timber-frame wall</value>
+          <display_name>Timber-frame wall</display_name>
+        </choice>
+        <choice>
+          <value>Lightweight curtain wall</value>
+          <display_name>Lightweight curtain wall</display_name>
+        </choice>
+        <choice>
+          <value>Metal-clad wall</value>
+          <display_name>Metal-clad wall</display_name>
+        </choice>
+        <choice>
+          <value>Brick / block wall</value>
+          <display_name>Brick / block wall</display_name>
+        </choice>
+        <choice>
+          <value>Brick / block wall</value>
+          <display_name>Brick / block wall</display_name>
+        </choice>
+        <choice>
+          <value>Timber-frame wall</value>
+          <display_name>Timber-frame wall</display_name>
+        </choice>
+        <choice>
+          <value>Brick / block wall</value>
+          <display_name>Brick / block wall</display_name>
+        </choice>
+        <choice>
+          <value>Lightweight concrete-clad wall</value>
+          <display_name>Lightweight concrete-clad wall</display_name>
+        </choice>
+        <choice>
+          <value>Brickwork single-leaf construction dense plaster</value>
+          <display_name>Brickwork single-leaf construction dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brickwork single-leaf construction light plaster</value>
+          <display_name>Brickwork single-leaf construction light plaster</display_name>
+        </choice>
+        <choice>
+          <value>Un-insulated brick/block wall</value>
+          <display_name>Un-insulated brick/block wall</display_name>
+        </choice>
+        <choice>
+          <value>Super-insulated external wall</value>
+          <display_name>Super-insulated external wall</display_name>
+        </choice>
+        <choice>
+          <value>Sheet steel</value>
+          <display_name>Sheet steel</display_name>
+        </choice>
+        <choice>
+          <value>Sheet aluminum</value>
+          <display_name>Sheet aluminum</display_name>
+        </choice>
+        <choice>
+          <value>Brickwork single-leaf construction with insulation and plaster</value>
+          <display_name>Brickwork single-leaf construction with insulation and plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brickwork single-leaf construction fiber insulation and render</value>
+          <display_name>Brickwork single-leaf construction fiber insulation and render</display_name>
+        </choice>
+        <choice>
+          <value>Brickwork single-leaf construction EPS insulation and render</value>
+          <display_name>Brickwork single-leaf construction EPS insulation and render</display_name>
+        </choice>
+        <choice>
+          <value>Lightweight concrete block air gap and plasterboard</value>
+          <display_name>Lightweight concrete block air gap and plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Lightweight concrete block GRP insulation and plasterboard</value>
+          <display_name>Lightweight concrete block GRP insulation and plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Lightweight concrete block poly-insulation and plasterboard</value>
+          <display_name>Lightweight concrete block poly-insulation and plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Brick cavity with dense plaster</value>
+          <display_name>Brick cavity with dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick cavity with mineral insulation and lightweight plaster</value>
+          <display_name>Brick cavity with mineral insulation and lightweight plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick cavity full mineral insulation and lightweight plaster</value>
+          <display_name>Brick cavity full mineral insulation and lightweight plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick cavity with UF foam insulation and lightweight plaster</value>
+          <display_name>Brick cavity with UF foam insulation and lightweight plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, heavy concrete block, phenolic foam, light plaster</value>
+          <display_name>Brick, heavy concrete block, phenolic foam, light plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, heavy concrete block, mineral insulation, light plaster</value>
+          <display_name>Brick, heavy concrete block, mineral insulation, light plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, medium concrete block, foam insulation, light plaster</value>
+          <display_name>Brick, medium concrete block, foam insulation, light plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, light concrete block, foam insulation, light plaster</value>
+          <display_name>Brick, light concrete block, foam insulation, light plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, light concrete block, light plaster</value>
+          <display_name>Brick, light concrete block, light plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, foam insulation, light concrete block, light plaster</value>
+          <display_name>Brick, foam insulation, light concrete block, light plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, mineral insulation, light concrete block, light plaster</value>
+          <display_name>Brick, mineral insulation, light concrete block, light plaster</display_name>
+        </choice>
+        <choice>
+          <value>Face brick, insulation, light concrete block</value>
+          <display_name>Face brick, insulation, light concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete</value>
+          <display_name>4 in lightweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 8 in common brick</value>
+          <display_name>4 in face brick, 8 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 8 in heavyweight concrete block</value>
+          <display_name>4 in face brick, 8 in heavyweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 8 in lightweight concrete block</value>
+          <display_name>4 in face brick, 8 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick air space and 8 in clay tile</value>
+          <display_name>4 in face brick air space and 8 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick air space and 2 in heavyweight concrete</value>
+          <display_name>4 in face brick air space and 2 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick air space and 4 in common brick</value>
+          <display_name>4 in face brick air space and 4 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick air space and 4 in heavyweight concrete block</value>
+          <display_name>4 in face brick air space and 4 in heavyweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick air space and 4 in lightweight concrete block</value>
+          <display_name>4 in face brick air space and 4 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>12 in heavyweight concrete</value>
+          <display_name>12 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete with 2 in insulation</value>
+          <display_name>8 in heavyweight concrete with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete with 1 in insulation</value>
+          <display_name>8 in heavyweight concrete with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete with air space</value>
+          <display_name>8 in heavyweight concrete with air space</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete</value>
+          <display_name>8 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 8 in common brick with 1 in insulation</value>
+          <display_name>4 in face brick 8 in common brick with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 8 in common brick with air space</value>
+          <display_name>4 in face brick 8 in common brick with air space</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick air space and 4 in lightweight block</value>
+          <display_name>4 in face brick air space and 4 in lightweight block</display_name>
+        </choice>
+        <choice>
+          <value>Wall with 3 in fiberglass insulation and stucco outside finish</value>
+          <display_name>Wall with 3 in fiberglass insulation and stucco outside finish</display_name>
+        </choice>
+        <choice>
+          <value>Two-sided brick wall with air space</value>
+          <display_name>Two-sided brick wall with air space</display_name>
+        </choice>
+        <choice>
+          <value>Brick wall 8 in concrete block and no air space</value>
+          <display_name>Brick wall 8 in concrete block and no air space</display_name>
+        </choice>
+        <choice>
+          <value>Brick wall with 4 in concrete block</value>
+          <display_name>Brick wall with 4 in concrete block</display_name>
+        </choice>
+        <choice>
+          <value>Brick wall with 8 in concrete block</value>
+          <display_name>Brick wall with 8 in concrete block</display_name>
+        </choice>
+        <choice>
+          <value>Brick wall with 6 in concrete</value>
+          <display_name>Brick wall with 6 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 2 in insulation and 4 in brick veneer</value>
+          <display_name>Frame wall with 2 in insulation and 4 in brick veneer</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 2 in insulation</value>
+          <display_name>Frame wall with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Metal curtain wall with 3 in insulation</value>
+          <display_name>Metal curtain wall with 3 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Metal curtain wall with 2 in insulation</value>
+          <display_name>Metal curtain wall with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Metal curtain wall with 1 in insulation</value>
+          <display_name>Metal curtain wall with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Wall 12 in concrete with 2 in insulation on the outside</value>
+          <display_name>Wall 12 in concrete with 2 in insulation on the outside</display_name>
+        </choice>
+        <choice>
+          <value>Wall 8 in concrete with 2 in insulation on the outside</value>
+          <display_name>Wall 8 in concrete with 2 in insulation on the outside</display_name>
+        </choice>
+        <choice>
+          <value>Wall 4 in concrete with 2 in insulation on the outside</value>
+          <display_name>Wall 4 in concrete with 2 in insulation on the outside</display_name>
+        </choice>
+        <choice>
+          <value>Wall 12 in concrete with 2 in insulation on the inside</value>
+          <display_name>Wall 12 in concrete with 2 in insulation on the inside</display_name>
+        </choice>
+        <choice>
+          <value>Wall 8 in concrete with 2 in insulation on the inside</value>
+          <display_name>Wall 8 in concrete with 2 in insulation on the inside</display_name>
+        </choice>
+        <choice>
+          <value>Wall 4 in concrete with 2 in insulation on the inside</value>
+          <display_name>Wall 4 in concrete with 2 in insulation on the inside</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 3 in insulation</value>
+          <display_name>Frame wall with 3 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 2 in insulation</value>
+          <display_name>Frame wall with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 1 in insulation</value>
+          <display_name>Frame wall with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall without insulation</value>
+          <display_name>Frame wall without insulation</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 12 in heavyweight concrete</value>
+          <display_name>2 in insulation with 12 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 8 in heavyweight concrete</value>
+          <display_name>2 in insulation with 8 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 8 in common brick</value>
+          <display_name>2 in insulation with 8 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 8 in heavyweight concrete block</value>
+          <display_name>2 in insulation with 8 in heavyweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 8 in lightweight concrete block</value>
+          <display_name>2 in insulation with 8 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 8 in clay tile</value>
+          <display_name>2 in insulation with 8 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 4 in heavyweight concrete</value>
+          <display_name>2 in insulation with 4 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 4 in common brick</value>
+          <display_name>2 in insulation with 4 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 4 in heavyweight concrete block</value>
+          <display_name>2 in insulation with 4 in heavyweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 4 in lightweight concrete block</value>
+          <display_name>2 in insulation with 4 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>2 in insulation with 4 in clay tile</value>
+          <display_name>2 in insulation with 4 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 2 in insulation, 12 in heavy concrete</value>
+          <display_name>4 in face brick, 2 in insulation, 12 in heavy concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 2 in insulation, 8 in heavy concrete</value>
+          <display_name>4 in face brick, 2 in insulation, 8 in heavy concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 2 in insulation and 8 in common brick</value>
+          <display_name>4 in face brick 2 in insulation and 8 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick air space and 12 in heavyweight concrete</value>
+          <display_name>4 in face brick air space and 12 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick air space and 8 in heavyweight concrete</value>
+          <display_name>4 in face brick air space and 8 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 2 in insulation, 8 in heavy concrete block</value>
+          <display_name>4 in face brick, 2 in insulation, 8 in heavy concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 2 in insulation, 8 in light concrete block</value>
+          <display_name>4 in face brick, 2 in insulation, 8 in light concrete block</display_name>
+        </choice>
+        <choice>
+          <value>2 in face brick 2 in insulation and 8 in clay tile</value>
+          <display_name>2 in face brick 2 in insulation and 8 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 2 in insulation and 4 in heavyweight concrete</value>
+          <display_name>4 in face brick 2 in insulation and 4 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 2 in insulation and 4 in common brick</value>
+          <display_name>4 in face brick 2 in insulation and 4 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 2 in insulation, 4 in heavy concrete block</value>
+          <display_name>4 in face brick, 2 in insulation, 4 in heavy concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick with 8 in common brick</value>
+          <display_name>4 in face brick with 8 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete block with 1 in insulation</value>
+          <display_name>8 in heavyweight concrete block with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete block</value>
+          <display_name>8 in heavyweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>8 in lightweight concrete block with insulation</value>
+          <display_name>8 in lightweight concrete block with insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in lightweight concrete block</value>
+          <display_name>8 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 8 in clay tile and 1 in insulation</value>
+          <display_name>4 in face brick 8 in clay tile and 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 8 in  clay tile and air space</value>
+          <display_name>4 in face brick 8 in  clay tile and air space</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick with 8 in clay tile</value>
+          <display_name>4 in face brick with 8 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>8 in clay tile with 1 in Insulation</value>
+          <display_name>8 in clay tile with 1 in Insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in clay tile with air space</value>
+          <display_name>8 in clay tile with air space</display_name>
+        </choice>
+        <choice>
+          <value>8 in clay tile</value>
+          <display_name>8 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete with 2 in insulation</value>
+          <display_name>4 in heavyweight concrete with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete with 1 in insulation</value>
+          <display_name>4 in heavyweight concrete with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete with air space</value>
+          <display_name>4 in heavyweight concrete with air space</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete</value>
+          <display_name>4 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 4 in common brick and 1 in insulation</value>
+          <display_name>4 in face brick 4 in common brick and 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 4 in common brick and air space</value>
+          <display_name>4 in face brick 4 in common brick and air space</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick with 4 in common brick</value>
+          <display_name>4 in face brick with 4 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in common brick</value>
+          <display_name>4 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in heavyweight concrete block</value>
+          <display_name>4 in heavyweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick, 4 in light concrete block, 1 in insulation</value>
+          <display_name>4 in face brick, 4 in light concrete block, 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 4 in lightweight concrete block and air space</value>
+          <display_name>4 in face brick 4 in lightweight concrete block and air space</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick with 4 in lightweight concrete block</value>
+          <display_name>4 in face brick with 4 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete block and 1 in insulation</value>
+          <display_name>4 in lightweight concrete block and 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete block and air space</value>
+          <display_name>4 in lightweight concrete block and air space</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete block</value>
+          <display_name>4 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 4 in clay tile and 1 in insulation</value>
+          <display_name>4 in face brick 4 in clay tile and 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick 4 in clay tile and air space</value>
+          <display_name>4 in face brick 4 in clay tile and air space</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick and 4 in clay tile</value>
+          <display_name>4 in face brick and 4 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>4 in clay tile and 1 in insulation</value>
+          <display_name>4 in clay tile and 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in clay tile and air space</value>
+          <display_name>4 in clay tile and air space</display_name>
+        </choice>
+        <choice>
+          <value>4 in clay tile</value>
+          <display_name>4 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>Sheet metal with 1 in insulation</value>
+          <display_name>Sheet metal with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Sheet metal with 2 in insulation</value>
+          <display_name>Sheet metal with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Sheet metal with 3 in insulation</value>
+          <display_name>Sheet metal with 3 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in insulation with 8 in lightweight concrete block</value>
+          <display_name>4 in insulation with 8 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>6 in insulation with 8 in lightweight concrete block</value>
+          <display_name>6 in insulation with 8 in lightweight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>4 in insulation with 8 in clay tile</value>
+          <display_name>4 in insulation with 8 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>6 in insulation with 8 in clay tile</value>
+          <display_name>6 in insulation with 8 in clay tile</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete with 4 in insulation</value>
+          <display_name>8 in heavyweight concrete with 4 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete with 6 in insulation</value>
+          <display_name>8 in heavyweight concrete with 6 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>4 in insulation with 8 in common brick</value>
+          <display_name>4 in insulation with 8 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>6 in insulation with 8 in common brick</value>
+          <display_name>6 in insulation with 8 in common brick</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 6 in insulation</value>
+          <display_name>Frame wall with 6 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 8 in insulation</value>
+          <display_name>Frame wall with 8 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Sheet metal with 6 in insulation</value>
+          <display_name>Sheet metal with 6 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Sheet metal with 8 in insulation</value>
+          <display_name>Sheet metal with 8 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 6 in insulation and 4 in brick veneer</value>
+          <display_name>Frame wall with 6 in insulation and 4 in brick veneer</display_name>
+        </choice>
+        <choice>
+          <value>Frame wall with 12 in insulation and 4 in brick veneer</value>
+          <display_name>Frame wall with 12 in insulation and 4 in brick veneer</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick</value>
+          <display_name>4 in face brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick</value>
+          <display_name>4 in face brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick</value>
+          <display_name>4 in face brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick</value>
+          <display_name>4 in face brick</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick</value>
+          <display_name>4 in face brick</display_name>
+        </choice>
+        <choice>
+          <value>Metal curtain wall with 3 in insulation</value>
+          <display_name>Metal curtain wall with 3 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Metal curtain wall with 2 in insulation</value>
+          <display_name>Metal curtain wall with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Metal curtain wall with 1 in insulation</value>
+          <display_name>Metal curtain wall with 1 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Wall 12 in concrete with 2 in insulation on the outside</value>
+          <display_name>Wall 12 in concrete with 2 in insulation on the outside</display_name>
+        </choice>
+        <choice>
+          <value>Wall 8 in concrete with 2 in insulation on the outside</value>
+          <display_name>Wall 8 in concrete with 2 in insulation on the outside</display_name>
+        </choice>
+        <choice>
+          <value>Wall 4 in concrete with 2 in insulation on the outside</value>
+          <display_name>Wall 4 in concrete with 2 in insulation on the outside</display_name>
+        </choice>
+        <choice>
+          <value>4 in face brick with 2 in insulation</value>
+          <display_name>4 in face brick with 2 in insulation</display_name>
+        </choice>
+        <choice>
+          <value>Spandrel glass, R-10 insulation board, gyp board</value>
+          <display_name>Spandrel glass, R-10 insulation board, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Metal wall panel, R-10 insulation board, gyp board</value>
+          <display_name>Metal wall panel, R-10 insulation board, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Metal wall panel, sheathing, R-11 batt insulation, gyp board</value>
+          <display_name>Metal wall panel, sheathing, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>1 in stone, R-10 insulation board, gyp board</value>
+          <display_name>1 in stone, R-10 insulation board, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>1 in stone, sheathing, R-11 batt insulation, gyp board</value>
+          <display_name>1 in stone, sheathing, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>1 in stucco, sheathing, R-11 batt insulation, gyp board</value>
+          <display_name>1 in stucco, sheathing, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>1 in stucco, 8 in heavyweight CMU, R-11 batt insulation, gyp board</value>
+          <display_name>1 in stucco, 8 in heavyweight CMU, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Wood siding, sheathing, batt insulation, 1/2 in wood</value>
+          <display_name>Wood siding, sheathing, batt insulation, 1/2 in wood</display_name>
+        </choice>
+        <choice>
+          <value>EIFS finish, R-5 insulation board, sheathing, gyp board</value>
+          <display_name>EIFS finish, R-5 insulation board, sheathing, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Synthetic stucco, R-5 plus R-11 insulation, gypsum board</value>
+          <display_name>Synthetic stucco, R-5 plus R-11 insulation, gypsum board</display_name>
+        </choice>
+        <choice>
+          <value>Synthetic stucco, insulation, sheathing, light concrete, gypsum</value>
+          <display_name>Synthetic stucco, insulation, sheathing, light concrete, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>Synthetic stucco, insulation, concrete, gypsum</value>
+          <display_name>Synthetic stucco, insulation, concrete, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>Synthetic stucco, insulation board, light concrete, gypsum</value>
+          <display_name>Synthetic stucco, insulation board, light concrete, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>Brick, R-5 insulation board, sheathing, gypsum</value>
+          <display_name>Brick, R-5 insulation board, sheathing, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>Brick, sheathing, R-11 batt insulation, gypsum</value>
+          <display_name>Brick, sheathing, R-11 batt insulation, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>Brick, R-5 plus R-11 insulation with sheathing, gypsum</value>
+          <display_name>Brick, R-5 plus R-11 insulation with sheathing, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>Brick, R-5 insulation board, 8 in light-weight concrete block</value>
+          <display_name>Brick, R-5 insulation board, 8 in light-weight concrete block</display_name>
+        </choice>
+        <choice>
+          <value>Brick, 8 in lightweight CMU, R-11 batt insulation, gyp board</value>
+          <display_name>Brick, 8 in lightweight CMU, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Brick, R-5 insulation board, 8 in heavyweight CMU, gyp board</value>
+          <display_name>Brick, R-5 insulation board, 8 in heavyweight CMU, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Brick, R-5 insulation board, brick</value>
+          <display_name>Brick, R-5 insulation board, brick</display_name>
+        </choice>
+        <choice>
+          <value>Brick, R-5 insulation board, 8 in lightweight concrete, gyp board</value>
+          <display_name>Brick, R-5 insulation board, 8 in lightweight concrete, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Brick, R-5 insulation board, 12 in heavyweight concrete, gyp board</value>
+          <display_name>Brick, R-5 insulation board, 12 in heavyweight concrete, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>Brick, 8 in heavyweight concrete, R-11 batt insulation, gyp board</value>
+          <display_name>Brick, 8 in heavyweight concrete, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete, R-5 board insulation, gyp board</value>
+          <display_name>4 in lightweight concrete, R-5 board insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete, R-11 batt insulation, gyp board</value>
+          <display_name>4 in lightweight concrete, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>4 in lightweight concrete, R-10 board insulation, 4 in lightweight concrete</value>
+          <display_name>4 in lightweight concrete, R-10 board insulation, 4 in lightweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>8 in lightweight CMU, R-11 batt insulation, gyp board</value>
+          <display_name>8 in lightweight CMU, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>8 in concrete block, filled, R-11 insulation, gypsum</value>
+          <display_name>8 in concrete block, filled, R-11 insulation, gypsum</display_name>
+        </choice>
+        <choice>
+          <value>8 in lightweight CMU with fill insulation</value>
+          <display_name>8 in lightweight CMU with fill insulation</display_name>
+        </choice>
+        <choice>
+          <value>8 in lightweight CMU with fill insulation, gyp board</value>
+          <display_name>8 in lightweight CMU with fill insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>8 in lightweight concrete, R-11 batt insulation, gyp board</value>
+          <display_name>8 in lightweight concrete, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>8 in heavyweight concrete, R-11 batt insulation, gyp board</value>
+          <display_name>8 in heavyweight concrete, R-11 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>12 in lightweight CMU with fill insulation, gyp board</value>
+          <display_name>12 in lightweight CMU with fill insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>12 in heavyweight concrete, R-19 batt insulation, gyp board</value>
+          <display_name>12 in heavyweight concrete, R-19 batt insulation, gyp board</display_name>
+        </choice>
+        <choice>
+          <value>12 in heavyweight concrete</value>
+          <display_name>12 in heavyweight concrete</display_name>
+        </choice>
+        <choice>
+          <value>R-0 8 in CMU wall</value>
+          <display_name>R-0 8 in CMU wall</display_name>
+        </choice>
+        <choice>
+          <value>R-20 8 in CMU wall</value>
+          <display_name>R-20 8 in CMU wall</display_name>
+        </choice>
+        <choice>
+          <value>R-0 wood frame wall</value>
+          <display_name>R-0 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-11.4 8 in CMU wall</value>
+          <display_name>R-11.4 8 in CMU wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13 + R10 metal frame wall</value>
+          <display_name>R-13 + R10 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13 + R13 metal frame wall</value>
+          <display_name>R-13 + R13 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13 + R3.8 wood frame wall</value>
+          <display_name>R-13 + R3.8 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13 + R7.5 wood frame wall</value>
+          <display_name>R-13 + R7.5 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13.3 8 in concrete</value>
+          <display_name>R-13.3 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R-15.2 8 in concrete</value>
+          <display_name>R-15.2 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R-5.7 8 in concrete</value>
+          <display_name>R-5.7 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R7.6 8 in concrete</value>
+          <display_name>R7.6 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R9.5 8 in concrete</value>
+          <display_name>R9.5 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R-0 8 in CMU under ground wall</value>
+          <display_name>R-0 8 in CMU under ground wall</display_name>
+        </choice>
+        <choice>
+          <value>R7.5 8 in CMU under ground wall</value>
+          <display_name>R7.5 8 in CMU under ground wall</display_name>
+        </choice>
+        <choice>
+          <value>R-19 wood frame wall</value>
+          <display_name>R-19 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-21 wood frame wall</value>
+          <display_name>R-21 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13 wood frame wall</value>
+          <display_name>R-13 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-30 wood frame wall</value>
+          <display_name>R-30 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-15 wood frame wall</value>
+          <display_name>R-15 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-2.7 8 in CMU under ground wall</value>
+          <display_name>R-2.7 8 in CMU under ground wall</display_name>
+        </choice>
+        <choice>
+          <value>R-4 8 in CMU under ground wall</value>
+          <display_name>R-4 8 in CMU under ground wall</display_name>
+        </choice>
+        <choice>
+          <value>R-5.4 8 in CMU under ground wall</value>
+          <display_name>R-5.4 8 in CMU under ground wall</display_name>
+        </choice>
+        <choice>
+          <value>R8.1 8 in CMU under ground wall</value>
+          <display_name>R8.1 8 in CMU under ground wall</display_name>
+        </choice>
+        <choice>
+          <value>R-10.8 8 in CMU under ground wall</value>
+          <display_name>R-10.8 8 in CMU under ground wall</display_name>
+        </choice>
+        <choice>
+          <value>R-12.5 8 in CMU under ground wall</value>
+          <display_name>R-12.5 8 in CMU under ground wall</display_name>
+        </choice>
+        <choice>
+          <value>R-11 wood frame wall</value>
+          <display_name>R-11 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-19 8 in concrete</value>
+          <display_name>R-19 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R-38 wood frame wall</value>
+          <display_name>R-38 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-11.4 8 in concrete</value>
+          <display_name>R-11.4 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R-13.3 8 in concrete</value>
+          <display_name>R-13.3 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R-15.2 8 in concrete</value>
+          <display_name>R-15.2 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>R-13+3.8 wood frame wall</value>
+          <display_name>R-13+3.8 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13+7.5 wood frame wall</value>
+          <display_name>R-13+7.5 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-0 metal frame wall</value>
+          <display_name>R-0 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R9 curtain wall</value>
+          <display_name>R9 curtain wall</display_name>
+        </choice>
+        <choice>
+          <value>R-11 UG ex-wall</value>
+          <display_name>R-11 UG ex-wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13 UG ex-wall</value>
+          <display_name>R-13 UG ex-wall</display_name>
+        </choice>
+        <choice>
+          <value>R-15 UG ex-wall</value>
+          <display_name>R-15 UG ex-wall</display_name>
+        </choice>
+        <choice>
+          <value>R-19 UG ex-wall</value>
+          <display_name>R-19 UG ex-wall</display_name>
+        </choice>
+        <choice>
+          <value>R-30 8 in concrete</value>
+          <display_name>R-30 8 in concrete</display_name>
+        </choice>
+        <choice>
+          <value>8 in concrete wall with perlite filled cores</value>
+          <display_name>8 in concrete wall with perlite filled cores</display_name>
+        </choice>
+        <choice>
+          <value>8 in concrete wall with poured cores</value>
+          <display_name>8 in concrete wall with poured cores</display_name>
+        </choice>
+        <choice>
+          <value>8 in concrete wall hollow</value>
+          <display_name>8 in concrete wall hollow</display_name>
+        </choice>
+        <choice>
+          <value>8 in CMU with concrete poured concrete</value>
+          <display_name>8 in CMU with concrete poured concrete</display_name>
+        </choice>
+        <choice>
+          <value>8 in CMU with perlite poured concrete</value>
+          <display_name>8 in CMU with perlite poured concrete</display_name>
+        </choice>
+        <choice>
+          <value>Straw bale wall</value>
+          <display_name>Straw bale wall</display_name>
+        </choice>
+        <choice>
+          <value>Insulated concrete form (ICF) wall, 10" thick form</value>
+          <display_name>Insulated concrete form (ICF) wall, 10" thick form</display_name>
+        </choice>
+        <choice>
+          <value>Insulated concrete form (ICF) wall, 12" thick form</value>
+          <display_name>Insulated concrete form (ICF) wall, 12" thick form</display_name>
+        </choice>
+        <choice>
+          <value>Insulated concrete form (ICF) wall, 14" thick form</value>
+          <display_name>Insulated concrete form (ICF) wall, 14" thick form</display_name>
+        </choice>
+        <choice>
+          <value>Structurally ins. panel (SIP) wall 4 1/2 in (114 mm)</value>
+          <display_name>Structurally ins. panel (SIP) wall 4 1/2 in (114 mm)</display_name>
+        </choice>
+        <choice>
+          <value>Structurally ins. panel (SIP) wall 6 1/2 in</value>
+          <display_name>Structurally ins. panel (SIP) wall 6 1/2 in</display_name>
+        </choice>
+        <choice>
+          <value>Structurally ins. panel (SIP) wall 8 1/4 in (210 mm)</value>
+          <display_name>Structurally ins. panel (SIP) wall 8 1/4 in (210 mm)</display_name>
+        </choice>
+        <choice>
+          <value>Structurally ins. panel (SIP) wall 10 1/4 in (260 mm)</value>
+          <display_name>Structurally ins. panel (SIP) wall 10 1/4 in (260 mm)</display_name>
+        </choice>
+        <choice>
+          <value>Structurally ins. panel (SIP) wall 12 1/4 in (311 mm)</value>
+          <display_name>Structurally ins. panel (SIP) wall 12 1/4 in (311 mm)</display_name>
+        </choice>
+        <choice>
+          <value>R-2 CMU wall</value>
+          <display_name>R-2 CMU wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13 wood frame wall</value>
+          <display_name>R-13 wood frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-11 metal frame wall</value>
+          <display_name>R-11 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13 metal frame wall</value>
+          <display_name>R-13 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-15 metal frame wall</value>
+          <display_name>R-15 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-19 metal frame wall</value>
+          <display_name>R-19 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-30 metal frame wall</value>
+          <display_name>R-30 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13+R13 metal frame wall</value>
+          <display_name>R-13+R13 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-15+R15 metal frame wall</value>
+          <display_name>R-15+R15 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-38 metal frame wall</value>
+          <display_name>R-38 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13+3.8 metal frame wall</value>
+          <display_name>R-13+3.8 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-13+7.5 metal frame wall</value>
+          <display_name>R-13+7.5 metal frame wall</display_name>
+        </choice>
+        <choice>
+          <value>R-3 8 in CMU wall</value>
+          <display_name>R-3 8 in CMU wall</display_name>
+        </choice>
+        <choice>
+          <value>R-4 8 in CMU wall</value>
+          <display_name>R-4 8 in CMU wall</display_name>
+        </choice>
+        <choice>
+          <value>R-6 8 in concrete block</value>
+          <display_name>R-6 8 in concrete block</display_name>
+        </choice>
+        <choice>
+          <value>2 ft stone, 2 in airspace, 1 in dense plaster</value>
+          <display_name>2 ft stone, 2 in airspace, 1 in dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Stone, insulation, plasterboard</value>
+          <display_name>Stone, insulation, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Render, no-fines concrete, plasterboard</value>
+          <display_name>Render, no-fines concrete, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Render, no-fines concrete, insulation, plasterboard</value>
+          <display_name>Render, no-fines concrete, insulation, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Render, mineral fiber insulation, no-fines concrete, plasterboard</value>
+          <display_name>Render, mineral fiber insulation, no-fines concrete, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>9 in solid brick, 1/2 in dense plaster</value>
+          <display_name>9 in solid brick, 1/2 in dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>9 in solid brick, 1/2 in plasterboard</value>
+          <display_name>9 in solid brick, 1/2 in plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>9 in solid brick, mineral fiber insulation, plasterboard</value>
+          <display_name>9 in solid brick, mineral fiber insulation, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Render, insulation, solid brick, dense plaster</value>
+          <display_name>Render, insulation, solid brick, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Render, dense concrete block, dense plaster</value>
+          <display_name>Render, dense concrete block, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Render, dense concrete block, plasterboard</value>
+          <display_name>Render, dense concrete block, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Render, dense concrete block, insulation, plasterboard</value>
+          <display_name>Render, dense concrete block, insulation, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Render, insulation, dense concrete block, dense plaster</value>
+          <display_name>Render, insulation, dense concrete block, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Dense concrete, 1 in insulation, dense concrete, dense plaster</value>
+          <display_name>Dense concrete, 1 in insulation, dense concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Dense concrete, 1 in insulation, dense concrete, plasterboard</value>
+          <display_name>Dense concrete, 1 in insulation, dense concrete, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Dense concrete, 2 in insulation, dense concrete, plasterboard</value>
+          <display_name>Dense concrete, 2 in insulation, dense concrete, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Render, dense concrete, insulation, dense concrete, dense plaster</value>
+          <display_name>Render, dense concrete, insulation, dense concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, air, brick, dense plaster</value>
+          <display_name>Brick, air, brick, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, air, brick, light-weight plaster</value>
+          <display_name>Brick, air, brick, light-weight plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, foam insulation, brick, dense plaster</value>
+          <display_name>Brick, foam insulation, brick, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, blown fiber insulation, brick, dense plaster</value>
+          <display_name>Brick, blown fiber insulation, brick, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, polystyrene insulation, brick, plasterboard</value>
+          <display_name>Brick, polystyrene insulation, brick, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Brick, air, dense concrete block, dense plaster</value>
+          <display_name>Brick, air, dense concrete block, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, foam insulation, dense concrete block, dense plaster</value>
+          <display_name>Brick, foam insulation, dense concrete block, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, blown fiber insulation, dense concrete, dense plaster</value>
+          <display_name>Brick, blown fiber insulation, dense concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, polystyrene insulation, dense concrete, dense plaster</value>
+          <display_name>Brick, polystyrene insulation, dense concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, air, light-weight concrete block, dense plaster</value>
+          <display_name>Brick, air, light-weight concrete block, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, foam insulation, light-weight concrete, dense plaster</value>
+          <display_name>Brick, foam insulation, light-weight concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, fiber insulation, light-weight concrete, dense plaster</value>
+          <display_name>Brick, fiber insulation, light-weight concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, fiber insulation, light-weight concrete, dense plaster</value>
+          <display_name>Brick, fiber insulation, light-weight concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, polystyrene insulation, light-weight concrete, dense plaster</value>
+          <display_name>Brick, polystyrene insulation, light-weight concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, air, plywood sheathing, studding, plasterboard</value>
+          <display_name>Brick, air, plywood sheathing, studding, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>1/2 in dense plaster, 8 in brick, 1/2 in dense plaster</value>
+          <display_name>1/2 in dense plaster, 8 in brick, 1/2 in dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>1/2 in dense plaster, dense concrete block, 1/2 in dense plaster</value>
+          <display_name>1/2 in dense plaster, dense concrete block, 1/2 in dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, polystyrene insulation, light-weight concrete, dense plaster</value>
+          <display_name>Brick, polystyrene insulation, light-weight concrete, dense plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, 4 in autoclaved aerated concrete block, light-weight plaster</value>
+          <display_name>Brick, 4 in autoclaved aerated concrete block, light-weight plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, 6 in autoclaved aerated concrete block, light-weight plaster</value>
+          <display_name>Brick, 6 in autoclaved aerated concrete block, light-weight plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, insulation, autoclaved aerated concrete block, plaster</value>
+          <display_name>Brick, insulation, autoclaved aerated concrete block, plaster</display_name>
+        </choice>
+        <choice>
+          <value>Brick, plywood, studding, 4 in insulation, plasterboard</value>
+          <display_name>Brick, plywood, studding, 4 in insulation, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Brick, plywood, studding, 6 in insulation, plasterboard</value>
+          <display_name>Brick, plywood, studding, 6 in insulation, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Plasterboard, concrete block, air, concrete block, plasterboard</value>
+          <display_name>Plasterboard, concrete block, air, concrete block, plasterboard</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing (1/4 in + 1/4 in)</value>
+          <display_name>Low-E double glazing (1/4 in + 1/4 in)</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing (1/4 in + 1/4 in)</value>
+          <display_name>Low-E double glazing (1/4 in + 1/4 in)</display_name>
+        </choice>
+        <choice>
+          <value>1/8 in Pilkington single glazing</value>
+          <display_name>1/8 in Pilkington single glazing</display_name>
+        </choice>
+        <choice>
+          <value>1/4 in Pilkington single glazing</value>
+          <display_name>1/4 in Pilkington single glazing</display_name>
+        </choice>
+        <choice>
+          <value>3/8 in Pilkington single glazing</value>
+          <display_name>3/8 in Pilkington single glazing</display_name>
+        </choice>
+        <choice>
+          <value>1/2 in Pilkington single glazing</value>
+          <display_name>1/2 in Pilkington single glazing</display_name>
+        </choice>
+        <choice>
+          <value>1/8 in single panes with 1/4 in cavity</value>
+          <display_name>1/8 in single panes with 1/4 in cavity</display_name>
+        </choice>
+        <choice>
+          <value>3/8 in single panes with 3/16 in cavity</value>
+          <display_name>3/8 in single panes with 3/16 in cavity</display_name>
+        </choice>
+        <choice>
+          <value>1/4 in single panes with 3/8 in cavity</value>
+          <display_name>1/4 in single panes with 3/8 in cavity</display_name>
+        </choice>
+        <choice>
+          <value>Pilkington RW33 double glazing (1/4 in + 1/4 in)</value>
+          <display_name>Pilkington RW33 double glazing (1/4 in + 1/4 in)</display_name>
+        </choice>
+        <choice>
+          <value>Pilkington RW36 double glazing (3/8 in + 1/8 in)</value>
+          <display_name>Pilkington RW36 double glazing (3/8 in + 1/8 in)</display_name>
+        </choice>
+        <choice>
+          <value>Pilkington RW38 double glazing (3/8 in +  1/4 in)</value>
+          <display_name>Pilkington RW38 double glazing (3/8 in +  1/4 in)</display_name>
+        </choice>
+        <choice>
+          <value>1/8 in single glass pane in unsealed openable frames</value>
+          <display_name>1/8 in single glass pane in unsealed openable frames</display_name>
+        </choice>
+        <choice>
+          <value>1/4 in single glass pane in heavy frame</value>
+          <display_name>1/4 in single glass pane in heavy frame</display_name>
+        </choice>
+        <choice>
+          <value>3/8 in single glass pane in heavy frame</value>
+          <display_name>3/8 in single glass pane in heavy frame</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - domestic</value>
+          <display_name>Double glazing - domestic</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing - domestic</value>
+          <display_name>Low-E double glazing - domestic</display_name>
+        </choice>
+        <choice>
+          <value>Small single-glazed windows</value>
+          <display_name>Small single-glazed windows</display_name>
+        </choice>
+        <choice>
+          <value>Small double-glazed windows</value>
+          <display_name>Small double-glazed windows</display_name>
+        </choice>
+        <choice>
+          <value>Small double-glazed windows - low-E coating</value>
+          <display_name>Small double-glazed windows - low-E coating</display_name>
+        </choice>
+        <choice>
+          <value>Large single-glazed windows</value>
+          <display_name>Large single-glazed windows</display_name>
+        </choice>
+        <choice>
+          <value>Large double-glazed windows - absorbing coating</value>
+          <display_name>Large double-glazed windows - absorbing coating</display_name>
+        </choice>
+        <choice>
+          <value>Large double-glazed windows - reflective coating</value>
+          <display_name>Large double-glazed windows - reflective coating</display_name>
+        </choice>
+        <choice>
+          <value>Large double-glazed windows (reflective coating) - industry</value>
+          <display_name>Large double-glazed windows (reflective coating) - industry</display_name>
+        </choice>
+        <choice>
+          <value>Single-glazed windows - domestic</value>
+          <display_name>Single-glazed windows - domestic</display_name>
+        </choice>
+        <choice>
+          <value>Air partition</value>
+          <display_name>Air partition</display_name>
+        </choice>
+        <choice>
+          <value>Low-E triple glazing SC=0.65</value>
+          <display_name>Low-E triple glazing SC=0.65</display_name>
+        </choice>
+        <choice>
+          <value>Low-E triple glazing SC=0.5</value>
+          <display_name>Low-E triple glazing SC=0.5</display_name>
+        </choice>
+        <choice>
+          <value>Low-E triple glazing SC=0.4</value>
+          <display_name>Low-E triple glazing SC=0.4</display_name>
+        </choice>
+        <choice>
+          <value>Low-E triple glazing SC=0.3</value>
+          <display_name>Low-E triple glazing SC=0.3</display_name>
+        </choice>
+        <choice>
+          <value>Low-E triple glazing SC=0.2</value>
+          <display_name>Low-E triple glazing SC=0.2</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing SC=0.6</value>
+          <display_name>Low-E double glazing SC=0.6</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing SC=0.5</value>
+          <display_name>Low-E double glazing SC=0.5</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing SC=0.4</value>
+          <display_name>Low-E double glazing SC=0.4</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing SC=0.3</value>
+          <display_name>Low-E double glazing SC=0.3</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing SC=0.2</value>
+          <display_name>Low-E double glazing SC=0.2</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing (1/4 in + 1/4 in)</value>
+          <display_name>Low-E double glazing (1/4 in + 1/4 in)</display_name>
+        </choice>
+        <choice>
+          <value>1/8 in Pilkington single glazing (U-value 5.5473)</value>
+          <display_name>1/8 in Pilkington single glazing (U-value 5.5473)</display_name>
+        </choice>
+        <choice>
+          <value>1/4 in Pilkington single glazing</value>
+          <display_name>1/4 in Pilkington single glazing</display_name>
+        </choice>
+        <choice>
+          <value>3/8 in Pilkington single glazing</value>
+          <display_name>3/8 in Pilkington single glazing</display_name>
+        </choice>
+        <choice>
+          <value>1/2 in Pilkington single glazing</value>
+          <display_name>1/2 in Pilkington single glazing</display_name>
+        </choice>
+        <choice>
+          <value>1/8 in single panes with 1/4 in cavity</value>
+          <display_name>1/8 in single panes with 1/4 in cavity</display_name>
+        </choice>
+        <choice>
+          <value>3/8 in single panes with 3/16 in cavity</value>
+          <display_name>3/8 in single panes with 3/16 in cavity</display_name>
+        </choice>
+        <choice>
+          <value>1/4 in single panes with 3/8 in cavity</value>
+          <display_name>1/4 in single panes with 3/8 in cavity</display_name>
+        </choice>
+        <choice>
+          <value>Pilkington RW33 double glazing (1/4 in + 1/4 in)</value>
+          <display_name>Pilkington RW33 double glazing (1/4 in + 1/4 in)</display_name>
+        </choice>
+        <choice>
+          <value>Pilkington RW36 double glazing (3/8 in + 1/8 in)</value>
+          <display_name>Pilkington RW36 double glazing (3/8 in + 1/8 in)</display_name>
+        </choice>
+        <choice>
+          <value>Pilkington RW38 double glazing (3/8 in +  1/4 in)</value>
+          <display_name>Pilkington RW38 double glazing (3/8 in +  1/4 in)</display_name>
+        </choice>
+        <choice>
+          <value>1/8 in single glass pane in unsealed openable frames</value>
+          <display_name>1/8 in single glass pane in unsealed openable frames</display_name>
+        </choice>
+        <choice>
+          <value>1/4 in single glass pane in heavy frame</value>
+          <display_name>1/4 in single glass pane in heavy frame</display_name>
+        </choice>
+        <choice>
+          <value>3/8 in single glass pane in heavy frame</value>
+          <display_name>3/8 in single glass pane in heavy frame</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - domestic</value>
+          <display_name>Double glazing - domestic</display_name>
+        </choice>
+        <choice>
+          <value>Low-E double glazing - domestic</value>
+          <display_name>Low-E double glazing - domestic</display_name>
+        </choice>
+        <choice>
+          <value>Small single-glazed windows</value>
+          <display_name>Small single-glazed windows</display_name>
+        </choice>
+        <choice>
+          <value>Small double-glazed windows</value>
+          <display_name>Small double-glazed windows</display_name>
+        </choice>
+        <choice>
+          <value>Small double-glazed windows - low-E coating</value>
+          <display_name>Small double-glazed windows - low-E coating</display_name>
+        </choice>
+        <choice>
+          <value>Large single-glazed windows</value>
+          <display_name>Large single-glazed windows</display_name>
+        </choice>
+        <choice>
+          <value>Large double-glazed windows - absorbing coating</value>
+          <display_name>Large double-glazed windows - absorbing coating</display_name>
+        </choice>
+        <choice>
+          <value>Large double-glazed windows - reflective coating</value>
+          <display_name>Large double-glazed windows - reflective coating</display_name>
+        </choice>
+        <choice>
+          <value>Large double-glazed windows (reflective coating) - industry</value>
+          <display_name>Large double-glazed windows (reflective coating) - industry</display_name>
+        </choice>
+        <choice>
+          <value>Single-glazed windows - domestic</value>
+          <display_name>Single-glazed windows - domestic</display_name>
+        </choice>
+        <choice>
+          <value>Clear element (all solar gain transmitted)</value>
+          <display_name>Clear element (all solar gain transmitted)</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - domestic SC=0.6</value>
+          <display_name>Double glazing - domestic SC=0.6</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - domestic SC=0.5</value>
+          <display_name>Double glazing - domestic SC=0.5</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - domestic SC=0.4</value>
+          <display_name>Double glazing - domestic SC=0.4</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - domestic SC=0.3</value>
+          <display_name>Double glazing - domestic SC=0.3</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - domestic SC=0.7</value>
+          <display_name>Double glazing - domestic SC=0.7</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/8 in thick - clear glass</value>
+          <display_name>Uncoated single glazing - 1/8 in thick - clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/4 in thick - clear glass</value>
+          <display_name>Uncoated single glazing - 1/4 in thick - clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/8 in thick - clear glass</value>
+          <display_name>Uncoated single glazing - 1/8 in thick - clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/4 in thick - clear glass</value>
+          <display_name>Uncoated single glazing - 1/4 in thick - clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/8 in thick - green glass</value>
+          <display_name>Uncoated single glazing - 1/8 in thick - green glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/4 in thick - green glass</value>
+          <display_name>Uncoated single glazing - 1/4 in thick - green glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/8 in thick - gray glass</value>
+          <display_name>Uncoated single glazing - 1/8 in thick - gray glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/4 in thick - gray glass</value>
+          <display_name>Uncoated single glazing - 1/4 in thick - gray glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated single glazing - 1/4 in thick - bluegreen glass</value>
+          <display_name>Uncoated single glazing - 1/4 in thick - bluegreen glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective single glazing - 1/4 in thick - 8% stainless steel on clear glass</value>
+          <display_name>Reflective single glazing - 1/4 in thick - 8% stainless steel on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective single glazing - 1/4 in thick - 14% stainless steel on clear glass</value>
+          <display_name>Reflective single glazing - 1/4 in thick - 14% stainless steel on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective single glazing - 1/4 in thick - 20% stainless steel on clear glass</value>
+          <display_name>Reflective single glazing - 1/4 in thick - 20% stainless steel on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective single glazing - 1/4 in thick - 14% stainless steel on green glass</value>
+          <display_name>Reflective single glazing - 1/4 in thick - 14% stainless steel on green glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective single glazing - 1/4 in thick - 20% titanium on clear glass</value>
+          <display_name>Reflective single glazing - 1/4 in thick - 20% titanium on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective single glazing - 1/4 in thick - 30% titanium on clear glass</value>
+          <display_name>Reflective single glazing - 1/4 in thick - 30% titanium on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/8 in thick - clear/clear glass</value>
+          <display_name>Uncoated double glazing - 1/8 in thick - clear/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/4 in thick - clear/clear glass</value>
+          <display_name>Uncoated double glazing - 1/4 in thick - clear/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/8 in thick - clear/clear glass</value>
+          <display_name>Uncoated double glazing - 1/8 in thick - clear/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/4 in thick - clear/clear glass</value>
+          <display_name>Uncoated double glazing - 1/4 in thick - clear/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/8 in thick - green/clear glass</value>
+          <display_name>Uncoated double glazing - 1/8 in thick - green/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/4 in thick - green/clear glass</value>
+          <display_name>Uncoated double glazing - 1/4 in thick - green/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/8 in thick - gray/clear glass</value>
+          <display_name>Uncoated double glazing - 1/8 in thick - gray/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/4 in thick - gray/clear glass</value>
+          <display_name>Uncoated double glazing - 1/4 in thick - gray/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Uncoated double glazing - 1/4 in thick - bluegreen/clear glass</value>
+          <display_name>Uncoated double glazing - 1/4 in thick - bluegreen/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective double glazing - 1/4 in thick - 8% stainless steel on clear glass</value>
+          <display_name>Reflective double glazing - 1/4 in thick - 8% stainless steel on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective double glazing - 1/4 in thick - 14% stainless steel on clear glass</value>
+          <display_name>Reflective double glazing - 1/4 in thick - 14% stainless steel on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective double glazing - 1/4 in thick - 20% stainless steel on clear glass</value>
+          <display_name>Reflective double glazing - 1/4 in thick - 20% stainless steel on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective double glazing - 1/4 in thick - 14% stainless steel on green glass</value>
+          <display_name>Reflective double glazing - 1/4 in thick - 14% stainless steel on green glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective double glazing - 1/4 in thick - 20% titanium on clear glass</value>
+          <display_name>Reflective double glazing - 1/4 in thick - 20% titanium on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Reflective double glazing - 1/4 in thick - 30% titanium on clear glass</value>
+          <display_name>Reflective double glazing - 1/4 in thick - 30% titanium on clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - low-E/clear (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/8 in thick - low-E/clear (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - low-E/clear (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/4 in thick - low-E/clear (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - clear/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/8 in thick - clear/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - clear/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/4 in thick - clear/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - clear/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/8 in thick - clear/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - clear/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/4 in thick - clear/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - green/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/8 in thick - green/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - green/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/4 in thick - green/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - gray/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/8 in thick - gray/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - gray/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/4 in thick - gray/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - bluegreen/low-E (e = 0.2) glass</value>
+          <display_name>Double glazing - 1/4 in thick - bluegreen/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - low-E/clear (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/8 in thick - low-E/clear (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - low-E/clear (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/4 in thick - low-E/clear (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - clear/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/8 in thick - clear/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - clear/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/4 in thick - clear/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - clear/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/8 in thick - clear/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - clear/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/4 in thick - clear/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - green/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/8 in thick - green/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - green/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/4 in thick - green/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - gray/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/8 in thick - gray/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - gray/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/4 in thick - gray/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - bluegreen/low-E (e = 0.1) glass</value>
+          <display_name>Double glazing - 1/4 in thick - bluegreen/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/8 in thick - low-E/clear (e = 0.05) glass</value>
+          <display_name>Double glazing - 1/8 in thick - low-E/clear (e = 0.05) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - low-E/clear (e = 0.05) glass</value>
+          <display_name>Double glazing - 1/4 in thick - low-E/clear (e = 0.05) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - clear/low-E (e = 0.05) glass</value>
+          <display_name>Double glazing - 1/4 in thick - clear/low-E (e = 0.05) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - green/low-E (e = 0.05) glass</value>
+          <display_name>Double glazing - 1/4 in thick - green/low-E (e = 0.05) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - gray/low-E (e = 0.05) glass</value>
+          <display_name>Double glazing - 1/4 in thick - gray/low-E (e = 0.05) glass</display_name>
+        </choice>
+        <choice>
+          <value>Double glazing - 1/4 in thick - bluegreen/low-E (e = 0.05) glass</value>
+          <display_name>Double glazing - 1/4 in thick - bluegreen/low-E (e = 0.05) glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/8 in thick - clear/clear/clear glass</value>
+          <display_name>Triple glazing - 1/8 in thick - clear/clear/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/4 in thick - clear/clear/clear glass</value>
+          <display_name>Triple glazing - 1/4 in thick - clear/clear/clear glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/8 in thick - low-E/clear/clear (e = 0.2) glass</value>
+          <display_name>Triple glazing - 1/8 in thick - low-E/clear/clear (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/4 in thick - low-E/clear/clear (e = 0.2) glass</value>
+          <display_name>Triple glazing - 1/4 in thick - low-E/clear/clear (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/8 in thick - clear/clear/low-E (e = 0.2) glass</value>
+          <display_name>Triple glazing - 1/8 in thick - clear/clear/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/4 in thick - clear/clear/low-E (e = 0.2) glass</value>
+          <display_name>Triple glazing - 1/4 in thick - clear/clear/low-E (e = 0.2) glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/8 in thick - low-E/clear/low-E (e = 0.1) glass</value>
+          <display_name>Triple glazing - 1/8 in thick - low-E/clear/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/4 in thick - low-E/clear/low-E (e = 0.1) glass</value>
+          <display_name>Triple glazing - 1/4 in thick - low-E/clear/low-E (e = 0.1) glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/8 in thick - low-E/low-E/clear (e = 0.05) glass</value>
+          <display_name>Triple glazing - 1/8 in thick - low-E/low-E/clear (e = 0.05) glass</display_name>
+        </choice>
+        <choice>
+          <value>Triple glazing - 1/4 in thick - low-E/low-E/clear (e = 0.05) glass</value>
+          <display_name>Triple glazing - 1/4 in thick - low-E/low-E/clear (e = 0.05) glass</display_name>
         </choice>
       </choices>
     </argument>
@@ -127,8 +2366,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Envelope.Opaque</tag>
   </tags>
@@ -162,22 +2401,16 @@
       <checksum>CD7F5672</checksum>
     </file>
     <file>
-      <filename>example_model.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>test</usage_type>
-      <checksum>53D14E69</checksum>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B68E96D</checksum>
     </file>
     <file>
-      <filename>replace_exterior_constructions_with_a_different_construction_from_resource_file_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>45BE711F</checksum>
-    </file>
-    <file>
-      <filename>insight_constructions.osm</filename>
-      <filetype>osm</filetype>
-      <usage_type>resource</usage_type>
-      <checksum>A158F0B0</checksum>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>232D0477</checksum>
     </file>
     <file>
       <version>
@@ -188,19 +2421,31 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>0ED5D103</checksum>
+      <checksum>37150D9D</checksum>
     </file>
     <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>232D0477</checksum>
+      <filename>insight_constructions.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>A158F0B0</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>C86EB293</checksum>
+      <filename>windowtype.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>6957E252</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>replace_exterior_constructions_with_a_different_construction_from_resource_file_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>F5FDF65D</checksum>
     </file>
   </files>
 </measure>
