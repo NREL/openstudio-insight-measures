@@ -89,6 +89,23 @@ class WindowType
       end
     end
 
+    # throw if U-value not set
+    raise "U-value is required for WindowType #{window_type.id}" if window_type.u_value.nil?
+
+    # throw if name not set
+    raise "Name is required for WindowType #{window_type.id}" if window_type.name.nil? || window_type.name.empty?
+
+    # set full name
+    window_type.full_name = window_type.name
+
+    # add U-value to full name
+    window_type.full_name += " U-#{window_type.u_value.round(2)}"
+
+    # if shading coeff is set, add it to full name
+    unless window_type.shading_coeff.nil?
+      window_type.full_name += " SC-#{window_type.shading_coeff.round(2)}"
+    end
+
     # full descriptive name
     window_type.full_name = window_type.name + " U-#{window_type.u_value.round(2)}"
 
