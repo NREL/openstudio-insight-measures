@@ -5,10 +5,10 @@
 # Replace Exterior Constructions with a Different Construction from Resource File
 
 ## Description
-Replace exterior wall, roof, or window constructions, with construction from a resource file.
+Replace exterior wall, roof, or window constructions, with an existing construction from a construction imported from a resource file.
 
 ## Modeler Description
-This will only have an argument for target construction. How that construction is tagged in the resource file will determine which surface types the construction is applied to.
+This will take an argument for a target construction to import from a resource GbXML file. How that construction is applied in the model or tagged in the resource file will determine which surface types the construction is applied to.
 
 ## Measure Type
 ModelMeasure
@@ -19,7 +19,7 @@ ModelMeasure
 ## Arguments
 
 
-### Target Construction for Exterior Surface Replacement
+### Target Construction from Library to use for Exterior Surface Replacement
 
 **Name:** new_construction,
 **Type:** Choice,
@@ -28,7 +28,7 @@ ModelMeasure
 **Model Dependent:** false
 
 
-**Choice Display Names** ["Roof 10.25-inch SIP", "Roof R10", "Roof R15", "Roof R19", "Roof R38", "Roof R60", "Roof Uninsulated", "Wall 12.25-inch SIP", "Wall 14-inch ICF", "Wall R13 Metal", "Wall R13 Wood", "Wall R13+R10 Metal", "Wall R2 CMU", "Wall R38 Wood", "Wall Uninsulated", "Window Dbl LoE", "Window Sgl Clr", "Window Trp Clr", "Window Trp LoE"]
+**Choice Display Names** ["R-13+R13 metal frame + ins. panel (SIP) wall, 14\\\", 4 1/2 in (114 mm)", "Membrane, sheathing, R-15 insulation, 4 1/4 in light concrete", "Low-E double glazing (1/4 in + 1/4 in) U-1.98 SHGC-0.56"]
 
 
 
