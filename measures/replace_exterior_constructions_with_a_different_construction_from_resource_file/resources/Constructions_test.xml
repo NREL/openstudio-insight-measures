@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?><gbXML>
+<!--These constructions are for testing purposes and do not represent actual data-->
+  <Construction id="STD_WAL2" surfaceType="ExteriorWall">
+    <Name>R-13+R13 metal frame + ins. panel (SIP) wall, 14\", 4 1/2 in (114 mm)</Name>
+    <Description>Standard wall construction</Description>
+    <LayerId layerIdRef="lay-STD_WAL2"/>
+    <U-value unit="WPerSquareMeterK">0.3495</U-value>
+  </Construction>
+  <Layer id="lay-STD_WAL2">
+    <MaterialId materialIdRef="mat-AF01"/>
+    <MaterialId materialIdRef="mat-AM08"/>
+    <MaterialId materialIdRef="mat-AF02"/>
+  </Layer>
+  <Construction id="FROOF2" surfaceType="Roof">
+    <Name>Membrane, sheathing, R-15 insulation, 4 1/4 in light concrete</Name>
+    <Description>Flat roof</Description>
+    <LayerId layerIdRef="lay-FROOF2"/>
+    <U-value unit="WPerSquareMeterK">0.2497</U-value>
+  </Construction>
+  <Layer id="lay-FROOF2">
+    <MaterialId materialIdRef="mat-AF01"/>
+    <MaterialId materialIdRef="mat-AF08"/>
+    <MaterialId materialIdRef="mat-AG03"/>
+    <MaterialId materialIdRef="mat-AF05"/>
+    <MaterialId materialIdRef="mat-AI05"/>
+    <MaterialId materialIdRef="mat-AG01"/>
+    <MaterialId materialIdRef="mat-AF03"/>
+  </Layer>
+  <WindowType id="GDPK6" openingType="FixedWindow">
+    <Name>Low-E double glazing (1/4 in + 1/4 in)</Name>
+    <Description>Low-E double glazing (1/4 in + 1/4 in)</Description>
+    <U-value unit="WPerSquareMeterK">1.9773</U-value>
+    <SolarHeatGainCoeff unit="Fraction" solarIncidentAngle="0">0.65</SolarHeatGainCoeff>
+    <SolarHeatGainCoeff unit="Fraction" solarIncidentAngle="40">0.63</SolarHeatGainCoeff>
+    <SolarHeatGainCoeff unit="Fraction" solarIncidentAngle="50">0.60</SolarHeatGainCoeff>
+    <SolarHeatGainCoeff unit="Fraction" solarIncidentAngle="60">0.54</SolarHeatGainCoeff>
+    <SolarHeatGainCoeff unit="Fraction" solarIncidentAngle="70">0.42</SolarHeatGainCoeff>
+    <SolarHeatGainCoeff unit="Fraction" solarIncidentAngle="80">0.21</SolarHeatGainCoeff>
+    <SolarHeatGainCoeff unit="Fraction">0.56</SolarHeatGainCoeff>
+    <Transmittance unit="Fraction" type="Visible">0.76</Transmittance>
+  </WindowType>
+  <Material id="mat-AF01">
+    <Name>Outside surface resistance</Name>
+    <Description>Outside surface resistance</Description>
+    <R-value unit="SquareMeterKPerW">0.04</R-value>
+  </Material>
+  <Material id="mat-AM08">
+    <Name>8 in lightweight concrete block (filled)</Name>
+    <Description>8 in (200 mm) lightweight concrete block (filled)</Description>
+    <Thickness unit="Meters">0.2032</Thickness>
+    <Conductivity unit="WPerMeterK">0.26</Conductivity>
+    <Density unit="KgPerCubicM">464</Density>
+    <SpecificHeat unit="JPerKgK">880</SpecificHeat>
+  </Material>
+  <Material id="mat-AF02">
+    <Name>Inside vertical surface resistance</Name>
+    <Description>Inside vertical surface resistance</Description>
+    <R-value unit="SquareMeterKPerW">0.12</R-value>
+  </Material>
+  <Material id="mat-AF08">
+    <Name>Metal surface</Name>
+    <Description>Metal surface</Description>
+    <Thickness unit="Meters">0.0008</Thickness>
+    <Conductivity unit="WPerMeterK">45.28</Conductivity>
+    <Density unit="KgPerCubicM">7824</Density>
+    <SpecificHeat unit="JPerKgK">500</SpecificHeat>
+  </Material>
+  <Material id="mat-AG03">
+    <Name>1/2 in fiberboard sheathing</Name>
+    <Description>1/2 in (12 mm) fiberboard sheathing</Description>
+    <Thickness unit="Meters">0.0127</Thickness>
+    <Conductivity unit="WPerMeterK">0.07</Conductivity>
+    <Density unit="KgPerCubicM">400</Density>
+    <SpecificHeat unit="JPerKgK">1300</SpecificHeat>
+  </Material>
+  <Material id="mat-AF05">
+    <Name>Ceiling air space resistance</Name>
+    <Description>Ceiling air space resistance</Description>
+    <R-value unit="SquareMeterKPerW">0.18</R-value>
+  </Material>
+  <Material id="mat-AI05">
+    <Name>R-19, 6 1/4 in batt insulation</Name>
+    <Description>R-19, 6 1/4 in (155 mm) batt insulation</Description>
+    <Thickness unit="Meters">0.1544</Thickness>
+    <Conductivity unit="WPerMeterK">0.05</Conductivity>
+    <Density unit="KgPerCubicM">19</Density>
+    <SpecificHeat unit="JPerKgK">960</SpecificHeat>
+  </Material>
+  <Material id="mat-AG01">
+    <Name>5/8 in gyp board</Name>
+    <Description>5/8 in (16 mm) gyp board</Description>
+    <Thickness unit="Meters">0.0159</Thickness>
+    <Conductivity unit="WPerMeterK">0.16</Conductivity>
+    <Density unit="KgPerCubicM">800</Density>
+    <SpecificHeat unit="JPerKgK">1090</SpecificHeat>
+  </Material>
+  <Material id="mat-AF03">
+    <Name>Inside horizontal surface resistance</Name>
+    <Description>Inside horizontal surface resistance</Description>
+    <R-value unit="SquareMeterKPerW">0.16</R-value>
+  </Material>
+</gbXML>
