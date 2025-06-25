@@ -24,61 +24,29 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
     return 'This will take an argument for target construction from the existing model or to import a construction from a resource GbXML file. How that construction is applied in the model or tagged in the resource file will determine which surface types the construction is applied to. If both arguments are entered, preference will be given to the existing model construction.'
   end
 
+  # change to production filename
+  LIB_FILE = 'Constructions_test.xml'.freeze
+  # LIB_FILE = 'Constructions.xml'.freeze
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    #make a choice argument for constructions
-    construction_handles = OpenStudio::StringVector.new
-    construction_display_names = OpenStudio::StringVector.new
-
-    # get existing contructions
-    construction_args = model.getConstructions
-    construction_args_hash = {}
-    construction_args.each do |construction_arg|
-      construction_args_hash[construction_arg.name.to_s] = construction_arg
-    end
-
-    construction_args_hash.sort.map do |key, value|
-      construction_handles << value.handle.to_s
-      construction_display_names << key
-    end
-
-    # make choice arg for existing construction
-    existing_model_cons = OpenStudio::Ruleset::OSArgument::makeChoiceArgument('existing_cons', construction_handles, construction_display_names, false)
-    existing_model_cons.setDisplayName('Target Existing Model Construction to use for Exterior Surface Replacement')
-    args << existing_model_cons 
-    #
-    # #load construction library
-    # translator = OpenStudio::OSVersion::VersionTranslator.new
-    # path = OpenStudio::Path.new(File.dirname(__FILE__) + "/resources/insight_constructions.osm")
-    # model2 = translator.loadModel(path)
-    # model2 = model2.get
-
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/resources/Constructions.xml')
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/resources/#{LIB_FILE}")
     xml_doc = File.read(path.to_s)
     parsed_xml = Oga.parse_xml(xml_doc)
     construction_names = parsed_xml.xpath("//Construction[@surfaceType='ExteriorWall' or @surfaceType='Roof']/Name").map(&:text)
-    construction_names += parsed_xml.xpath("//WindowType[@openingType='FixedWindow']/Name").map(&:text)
 
-    # nonunique names
-    
-    # #putting constructions into hash
-    # construction_args = model2.getConstructions
-    # construction_args_hash = {}
-    # construction_args.each do |construction_arg|
-    #   construction_args_hash[construction_arg.name.to_s] = construction_arg
-    # end
-
-    # #looping through sorted hash of model objects
-    # construction_args_hash.sort.map do |key,value|
-    #   construction_handles << value.handle.to_s
-    #   construction_display_names << key
-    # end
+    # handle window constructions - append u-value and shgc to name
+    window_elems = parsed_xml.xpath("//WindowType[@openingType='FixedWindow']")
+    window_elems.each do |window_elem|
+      parsed_window = WindowType.from_xml(window_elem)
+      construction_names << parsed_window.full_name
+    end
 
     #make a choice argument for new construction
     # new_construction = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("new_construction", construction_handles, construction_display_names,true)
-    new_construction = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("new_construction", construction_names, false)
+    new_construction = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("new_construction", construction_names, true)
     new_construction.setDisplayName("Target Construction from Library to use for Exterior Surface Replacement")
     args << new_construction
 
@@ -108,13 +76,7 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
       return false
     end
 
-    # # load resources model
-    # translator = OpenStudio::OSVersion::VersionTranslator.new
-    # path = OpenStudio::Path.new(File.dirname(__FILE__) + "/resources/insight_constructions.osm")
-    # model2 = translator.loadModel(path)
-    # model2 = model2.get
-
-    path = OpenStudio::Path.new(File.dirname(__FILE__) + '/resources/Constructions.xml')
+    path = OpenStudio::Path.new(File.dirname(__FILE__) + "/resources/#{LIB_FILE}")
     # parse gbxml to retrieve un-translated attributes
     gbxml = Oga.parse_xml(File.read(path.to_s)) 
     # translate gbxml to OpenStudio model
@@ -125,6 +87,12 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
     new_construction_name = runner.getStringArgumentValue("new_construction", user_arguments)
     facade = runner.getStringArgumentValue('facade', user_arguments)
 
+    # if the selected construction is for a window, strip out U-value and SHGC
+    if new_construction_name.include?('U-') && new_construction_name.include?('SHGC-')
+      new_construction_name = new_construction_name.split(' U-').first
+    end
+
+    # OpenStudio translates the construction name as the GBXML object id
     new_cons_obj_name = gbxml.at_xpath("//Name[text()='#{new_construction_name}']").parent['id']
     selected_construction = model2.getConstructionByName(new_cons_obj_name)
     #check the new construction for reasonableness
