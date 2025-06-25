@@ -16,12 +16,12 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
 
   # human readable description
   def description
-    return 'Replace exterior wall, roof, or window constructions, with an existing construction from the model or a construction imported from a resource file.'
+    return 'Replace exterior wall, roof, or window constructions, with an existing construction from a construction imported from a resource file.'
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This will take an argument for target construction from the existing model or to import a construction from a resource GbXML file. How that construction is applied in the model or tagged in the resource file will determine which surface types the construction is applied to. If both arguments are entered, preference will be given to the existing model construction.'
+    return 'This will take an argument for a target construction to import from a resource GbXML file. How that construction is applied in the model or tagged in the resource file will determine which surface types the construction is applied to.'
   end
 
   # change to production filename
@@ -119,14 +119,6 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
 
     new_construction = selected_construction.clone(model).to_Construction.get
 
-    # # identify construction type selected
-    # if new_construction.standardsInformation.intendedSurfaceType.is_initialized
-    #   const_int_use = new_construction.standardsInformation.intendedSurfaceType.get
-    # else
-    #   runner.registerError("Selected construction named #{new_construction.name} is not tagged with and intended surface type and cannot be applied to surfaces in the model.")
-    #   return false
-    # end
-
     # identify contruction type from gbxml attributes
     obj = gbxml.at_xpath("//Name[text()='#{new_construction_name}']").parent
     # obj_attrs = obj.values
@@ -155,21 +147,6 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
       runner.registerError("Selected construction named #{new_construction_name} with attributes #{obj_attrs} not expected by this measure.")
       return false
     end
-
-    # # report choice and store variable
-    # runner.registerInfo("Selected #{new_construction.name}, #{const_int_use}")
-    # surf_type = nil
-    # sub_surf_type = []
-    # if const_int_use == "ExteriorWall"
-    #   surf_type = "Wall"
-    # elsif const_int_use == "ExteriorRoof"
-    #   surf_type = "RoofCeiling"
-    # elsif const_int_use == "ExteriorWindow"
-    #   sub_surf_type = ["FixedWindow","OperableWindow"] # GlassDoor?
-    # else
-    #   runner.registerError("Selected construction named #{new_construction.name} tag of #{const_int_use} is not expected by this measure.")
-    #   return false
-    # end
 
     # store initial constructions used
     ext_constructions = []
