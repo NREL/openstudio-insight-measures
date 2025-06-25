@@ -87,8 +87,11 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
     new_construction_name = runner.getStringArgumentValue("new_construction", user_arguments)
     facade = runner.getStringArgumentValue('facade', user_arguments)
 
+    shgc = nil
     # if the selected construction is for a window, strip out U-value and SHGC
     if new_construction_name.include?('U-') && new_construction_name.include?('SHGC-')
+      # store solar heat gain coefficient from the name
+      shgc = new_construction_name.split('SHGC-').last.to_f
       new_construction_name = new_construction_name.split(' U-').first
     end
 
@@ -118,6 +121,25 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFile < O
     end
 
     new_construction = selected_construction.clone(model).to_Construction.get
+
+    # set the correct solar heat gain coefficient for windows
+    if !shgc.nil?
+      # set the solar heat gain coefficient for the construction
+      if new_construction.isFenestration
+        new_construction.layers.each do |layer|
+          if layer.to_SimpleGlazing.is_initialized
+            simple_glazing = layer.to_SimpleGlazing.get
+            # set the solar heat gain coefficient
+            simple_glazing.setSolarHeatGainCoefficient(shgc)
+            runner.registerInfo("Setting SHGC for #{new_construction.name} to #{shgc}")
+          else
+            runner.registerWarning("Layer #{layer.name} in construction #{new_construction.name} is not a SimpleGlazing and will not have SHGC set.")
+          end
+        end
+      else
+        runner.registerWarning("The selected construction #{new_construction.name} is not a fenestration type and will not have SHGC set.")
+      end
+    end
 
     # identify contruction type from gbxml attributes
     obj = gbxml.at_xpath("//Name[text()='#{new_construction_name}']").parent

@@ -205,6 +205,9 @@ class ReplaceExteriorConstructionsWithADifferentConstructionFromResourceFileTest
       surf.subSurfaces.each do |sub_surf|
         if sub_surf.subSurfaceType == 'FixedWindow'
           assert_equal(sub_surf.construction.get.name.get, args_hash['new_construction'].split(' U-')[0].gsub(',',' |') + ' Construction')
+          construction = sub_surf.construction.get.to_LayeredConstruction.get
+          glazing = construction.layers.first.to_SimpleGlazing.get
+          assert_equal(0.56, glazing.solarHeatGainCoefficient)
         end
       end
     end
