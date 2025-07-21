@@ -19,6 +19,30 @@ class GbxmlImport < OpenStudio::Measure::ModelMeasure
     return "Import a gbXML file"
   end
 
+  # windows with more than 4 vertices are not supported by EnergyPlus
+  # this method will identify and triangulate the windows surfaces and create new subsurfaces
+
+  def handle_window_vertices(model, runner)
+    model.getSubSurfaces.each do |subsurface|
+      num_verts = subsurface.vertices.size
+      if num_verts > 4
+        new_verts = subsurface.triangulation
+        new_subsurfs = []
+        new_verts.each_with_index do |verts, idx|
+          if idx == 0
+            subsurface.setVertices(verts)
+            new_subsurfs << subsurface
+          else
+            new_subsurface = subsurface.clone(model).to_SubSurface.get
+            new_subsurface.setVertices(verts)
+            new_subsurfs << new_subsurface
+          end
+        end
+        runner.registerInfo("Subsurface '#{subsurface.name}' has #{num_verts} vertices, which is greater than 4. #{new_subsurfs.size - 1} new surfaces created.")
+      end
+    end
+  end
+
   # define the arguments that the user will input
   def arguments(model)
     args = OpenStudio::Measure::OSArgumentVector.new
@@ -176,6 +200,9 @@ class GbxmlImport < OpenStudio::Measure::ModelMeasure
       end
 
     end
+  
+    # handle subsurfaces with more than 4 vertices
+    handle_window_vertices(model, runner)
 
   return true
 
